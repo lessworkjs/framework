@@ -7,11 +7,9 @@ class Controller {
     this.loadKernel();
   }
 
-  setKernel() {
-
-  }
-
   loadKernel() {
+    this.kernel = require(this.kernel);
+
     this.kernel(() => {
       this.onKernelLoad();
     });
@@ -19,6 +17,8 @@ class Controller {
 
   onKernelLoad() {
     this.construct();
+
+    use('State').set(this.state);
 
     this.handle();
   }

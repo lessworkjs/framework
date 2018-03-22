@@ -16,6 +16,12 @@ class AppProvider extends ServiceProvider {
    * @return {void}
    */
   * register() {
+    this.app.singleton('Lesswork/State', function (app) {
+      const State = require('../State');
+
+      return new State();
+    });
+
     this.app.singleton('Lesswork/App', function (app) {
       const App = require('../App');
 

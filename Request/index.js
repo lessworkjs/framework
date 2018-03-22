@@ -3,8 +3,13 @@
 const Macroable = require('macroable');
 
 class Request extends Macroable {
-  all() {
+  constructor(state) {
+    super();
+    this.state = state;
+  }
 
+  all() {
+    console.log('all', this.state)
   }
 
   input() {

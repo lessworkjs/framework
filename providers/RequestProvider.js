@@ -14,10 +14,10 @@ class RequestProvider extends ServiceProvider {
    * @return {void}
    */
   * register() {
-    this.app.singleton('Lesswork/Request', function (app) {
+    this.app.bind('Lesswork/Request', function (app) {
       const Request = require('../Request');
 
-      return new Request();
+      return new Request(use('State'));
     });
   }
 }
