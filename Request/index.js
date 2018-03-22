@@ -8,16 +8,36 @@ class Request extends Macroable {
     this.state = state;
   }
 
+  allParams() {
+    return Object.assign(this.state.event('body'), this.state.event('queryStringParameters'));
+  }
+
   all() {
-    console.log('all', this.state)
+    return this.allParams();
   }
 
-  input() {
-
+  fetch(event, hash) {
+    return this.state.event(event)[hash] || this.state.event(event);
   }
 
-  get() {
+  input(hash) {
+    return this.fetch('body', hash);
+  }
 
+  get(hash) {
+    return this.fetch('queryStringParameters', hash);
+  }
+
+  headers(hash) {
+    return this.fetch('headers', hash);
+  }
+
+  context(hash) {
+    return this.fetch('requestContext', hash);
+  }
+
+  method() {
+    return this.state.event('httpMethod');
   }
 }
 

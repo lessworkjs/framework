@@ -17,7 +17,7 @@ class ResponseProvider extends ServiceProvider {
     this.app.singleton('Lesswork/Response', function (app) {
       const Response = require('../Response');
 
-      return new Response();
+      return new Response(use('State'));
     });
   }
 }
