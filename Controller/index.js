@@ -1,14 +1,15 @@
 'use strict';
+const path = require('path');
 
 class Controller {
   constructor(state) {
     this.setState(state);
-    this.setKernel();
-    this.loadKernel();
   }
 
-  loadKernel() {
-    this.kernel = require(this.kernel);
+  loadKernel(appPath) {
+    this.appPath = appPath;
+
+    this.kernel = require(path.join(this.appPath, '/kernel'));
 
     this.kernel(() => {
       this.onKernelLoad();
@@ -19,6 +20,8 @@ class Controller {
     this.construct();
 
     use('State').set(this.state);
+
+    use('App').setPath(this.appPath);
 
     this.handle();
   }
