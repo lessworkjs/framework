@@ -4,10 +4,9 @@ const fold = require('adonis-fold');
 const path = require('path');
 const Helpers = require('lesswork-framework/Helpers');
 
-const packageFile = require(path.join(__dirname, '/package.json'));
-
 module.exports = function (appRoot) {
   const app = require(path.join(appRoot, './config/app'));
+  const packageFile = require(path.join(appRoot, '/package.json'));
 
   return function (callback, providers) {
     providers = providers || app.providers;
@@ -25,7 +24,7 @@ module.exports = function (appRoot) {
 
         if (packageFile.autoload) {
           for (let load in packageFile.autoload) {
-            fold.Ioc.autoload(load, path.join(__dirname, packageFile.autoload[load]));
+            fold.Ioc.autoload(load, path.join(appRoot, packageFile.autoload[load]));
           }
         }
 
