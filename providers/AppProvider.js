@@ -27,16 +27,28 @@ class AppProvider extends ServiceProvider {
 
       return new Config();
     });
-
     this.app.alias('Adonis/Src/Config', 'Lesswork/Config');
+
+    this.app.singleton('Lesswork/Command', function (app) {
+      const work = require('lesswork-cmd');
+
+      return work;
+    });
+    this.app.alias('Adonis/Src/Command', 'Lesswork/Command');
 
     this.app.singleton('Lesswork/Helpers', function (app) {
       const Helpers = require('../Helpers');
 
       return new Helpers();
     });
-
     this.app.alias('Adonis/Src/Helpers', 'Lesswork/Helpers');
+
+    this.app.singleton('Lesswork/Env', function (app) {
+      const Env = require('../Env');
+
+      return new Env();
+    });
+    this.app.alias('Adonis/Src/Env', 'Lesswork/Env');
 
     global.env = function (hash, alt) {
       return process.env[hash] || alt;
