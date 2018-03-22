@@ -14,7 +14,7 @@ class ResponseProvider extends ServiceProvider {
    * @return {void}
    */
   * register() {
-    this.app.singleton('Response', function (app) {
+    this.app.singleton('Lesswork/Response', function (app) {
       const Response = require('../lib/response');
 
       return new Response();
