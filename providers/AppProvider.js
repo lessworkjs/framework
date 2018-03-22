@@ -19,6 +19,10 @@ class AppProvider extends ServiceProvider {
 
       return new App();
     });
+
+    global.env = function (hash) {
+      return process.env[hash];
+    };
   }
 }
 
