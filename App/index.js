@@ -14,10 +14,6 @@ class App {
     global.state = use('State');
   }
 
-  setPath(path) {
-    this.appPath = path;
-  }
-
   environment() {
     if (arguments.length > 0) {
       const patterns = typeof arguments[0] === 'object' ? arguments[0] : arguments;
