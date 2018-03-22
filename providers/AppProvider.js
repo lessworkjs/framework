@@ -30,8 +30,8 @@ class AppProvider extends ServiceProvider {
 
     this.app.alias('Adonis/Src/Config', 'Lesswork/Config');
 
-    global.env = function (hash) {
-      return process.env[hash];
+    global.env = function (hash, alt) {
+      return process.env[hash] || alt;
     };
   }
 }
