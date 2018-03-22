@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const {
   ServiceProvider
@@ -18,7 +18,7 @@ class ResponseProvider extends ServiceProvider {
       const Response = require('../lib/response');
 
       return new Response();
-    })
+    });
   }
 }
 

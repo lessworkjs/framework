@@ -17,8 +17,8 @@ class MakeRoute extends BaseCommand {
       name
     };
 
-    this.ejsToFile('controller', `./app/Http/Controllers/${name}.js`, data)
-      .ejsToFile('function', `./config/functions/${name}.yml`, data)
+    this.ejsToFile('controller', `./app/Http/Controllers/${name}/${name}.js`, data)
+      .ejsToFile('function', `./app/Http/Routes/${name}.yml`, data)
       .ejsToFile('test', `./test/${name}Test.js`, data);
 
     console.log(`The route '${name}' has created.`);
