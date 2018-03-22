@@ -3,6 +3,7 @@
 class State {
   set(state) {
     this.state = state;
+    this.state.context.callbackWaitsForEmptyEventLoop = false;
   }
 
   callback() {
