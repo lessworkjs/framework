@@ -20,7 +20,7 @@ const pify = require('pify')
  * @constructor
  */
 class Helpers {
-  load(appRoot) {
+  constructor(appRoot) {
     this._appRoot = appRoot
   }
 
