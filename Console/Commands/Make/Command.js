@@ -3,7 +3,7 @@ const BaseCommand = require('../BaseCommand');
 class MakeCommand extends BaseCommand {
 
   static get signature() {
-    return 'make:command {name: Name of the route}';
+    return 'make:command {name: Name of the command}';
   }
 
   static get description() {

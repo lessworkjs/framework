@@ -6,6 +6,14 @@ const ejs = require('ejs');
 const fs = require('fs');
 
 class BaseCommand extends Command {
+  mkdir(dir) {
+    try {
+      if (!fs.exists(dir)) {
+        fs.mkdirSync(dir);
+      }
+    } catch (e) {}
+  }
+
   run(command) {
     const exec = require('child_process').exec;
     const child = exec(command,

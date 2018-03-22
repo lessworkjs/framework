@@ -4,9 +4,9 @@ const mochaPlugin = require('serverless-mocha-plugin');
 const expect = mochaPlugin.chai.expect;
 const assert = mochaPlugin.chai.assert;
 
-const Test = require('lesswork-framework/lib/test');
+const Test = require('lesswork-framework/Test');
 
-const wrapped = mochaPlugin.getWrapper('helloWorld', '/app/Http/Controllers/<%= name %>', 'handle');
+const wrapped = mochaPlugin.getWrapper('helloWorld', '/app/Http/Controllers/<%= name %>/<%= name %>', 'handle');
 
 describe('<%= name %>', () => {
   before((done) => {
