@@ -34,7 +34,7 @@ const debug = require('debug')('adonis:framework')
  * @constructor
  */
 class Env {
-  load(appRoot) {
+  constructor(appRoot) {
     this.appRoot = appRoot
     const bootedAsTesting = process.env.NODE_ENV === 'testing'
     const env = this.load(this.getEnvPath(), false) // do not overwrite at first place
@@ -134,7 +134,7 @@ class Env {
    */
   getEnvPath() {
     if (!process.env.ENV_PATH || process.env.ENV_PATH.length === 0) {
-      return '.env'
+      return '.env.yml'
     }
     return process.env.ENV_PATH
   }

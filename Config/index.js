@@ -28,7 +28,7 @@ const debug = require('debug')('adonis:framework')
  * @param {String} configPath Absolute path from where to load the config files from
  */
 class Config {
-  load(configPath) {
+  constructor(configPath) {
     this._configPath = configPath
     this._config = {}
     this.syncWithFileSystem()
