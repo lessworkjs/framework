@@ -30,6 +30,14 @@ class AppProvider extends ServiceProvider {
 
     this.app.alias('Adonis/Src/Config', 'Lesswork/Config');
 
+    this.app.singleton('Lesswork/Helpers', function (app) {
+      const Helpers = require('../Helpers');
+
+      return new Helpers();
+    });
+
+    this.app.alias('Adonis/Src/Helpers', 'Lesswork/Helpers');
+
     global.env = function (hash, alt) {
       return process.env[hash] || alt;
     };

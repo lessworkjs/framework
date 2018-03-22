@@ -6,6 +6,8 @@ class App {
 
     global.config = use('Config');
 
+    global.Helpers = use('Helpers');
+
     global.response = use('Response');
   }
 
