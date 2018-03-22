@@ -17,6 +17,10 @@ class MakeRoute extends BaseCommand {
       name
     };
 
+    const fs = require('fs');
+
+    fs.mkdir(`./app/Http/Controllers/${name}`)
+
     this.ejsToFile('controller', `./app/Http/Controllers/${name}/${name}.js`, data)
       .ejsToFile('function', `./app/Http/Routes/${name}.yml`, data)
       .ejsToFile('test', `./test/${name}Test.js`, data);
