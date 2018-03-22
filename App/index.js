@@ -3,12 +3,10 @@
 class App {
   registerGlobals() {
     global.app = use('App');
-
     global.Helpers = use('Helpers');
-
     global.config = use('Config');
-
     global.response = use('Response');
+    global.request = use('Request');
   }
 
   environment() {
