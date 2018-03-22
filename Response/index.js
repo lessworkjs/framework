@@ -10,7 +10,7 @@ class Response extends Macroable {
 
   body(code, body) {
     return {
-      statusCode: code || 200,
+      statusCode: code,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -35,7 +35,6 @@ class Response extends Macroable {
   }
 
   success() {
-
     let statusCode = 200;
     let data = null;
 
