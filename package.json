@@ -31,6 +31,7 @@
     "serverless-aws-documentation": "^1.0.1",
     "serverless-mocha-plugin": "^1.7.0",
     "serverless-offline": "^3.18.0",
-    "require-all": "^2.2.0"
+    "require-all": "^2.2.0",
+    "macroable": "^1.0.0"
   }
 }

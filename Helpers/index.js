@@ -205,6 +205,23 @@ class Helpers {
     const processFile = process.mainModule.filename
     return processFile.endsWith('ace')
   }
+
+  /**
+   * makes complete namespace for a given path and base
+   * namespace
+   *
+   * @method makeNameSpace
+   *
+   * @param  {String}      baseNameSpace
+   * @param  {String}      toPath
+   * @return {String}
+   *
+   * @public
+   */
+  makeNameSpace(baseNameSpace, toPath) {
+
+    return path.normalize(`${this._appRoot}/app/${baseNameSpace}/${toPath}`)
+  }
 }
 
 module.exports = Helpers

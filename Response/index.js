@@ -1,6 +1,8 @@
 'use strict';
 
-class Response {
+const Macroable = require('macroable');
+
+class Response extends Macroable {
   body(code, body) {
     return {
       statusCode: code || 200,
