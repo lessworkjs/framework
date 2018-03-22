@@ -21,16 +21,41 @@ class Response extends Macroable {
     };
   }
 
-  failure(error, callback) {
-    this.state.callback()(null, this.body(500, error));
+  failure(error, statusCode) {
+    this.state.callback()(null, this.body(statusCode || 500, error));
   }
 
-  success(error, data, transform, statusCode) {
-    if (error) {
-      return this.failure(error, callback);
+  successOrFailure() {
+    if (arguments[0] !== null) {
+      return this.failure(arguments[0]);
     }
 
-    this.state.callback()(null, this.body(statusCode, transform(data)));
+    const args = [].slice.call(arguments);
+    this.success(...args.slice(1));
+  }
+
+  success() {
+
+    let statusCode = 200;
+    let data = null;
+
+    if (!arguments) {
+      statusCode = 204;
+    }
+
+    if (arguments[0]) {
+      data = arguments[0];
+    }
+
+    if (arguments[1] && typeof arguments[1] === 'function') {
+      data = arguments[1](data);
+    }
+
+    if (arguments[1] && typeof arguments[1] === 'number' || arguments[2]) {
+      statusCode = arguments[2] || arguments[1];
+    }
+
+    this.state.callback()(null, this.body(statusCode, data));
   }
 }
 
