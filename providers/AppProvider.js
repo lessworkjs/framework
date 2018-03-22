@@ -4,6 +4,8 @@ const {
   ServiceProvider
 } = require('adonis-fold');
 
+const path = require('path');
+
 class AppProvider extends ServiceProvider {
   /**
    * Register method called by the Ioc container
@@ -15,10 +17,18 @@ class AppProvider extends ServiceProvider {
    */
   * register() {
     this.app.singleton('Lesswork/App', function (app) {
-      const App = require('../lib/app');
+      const App = require('../App');
 
       return new App();
     });
+
+    this.app.singleton('Lesswork/Config', function (app) {
+      const Config = require('../Config');
+
+      return new Config();
+    });
+
+    this.app.alias('Adonis/Src/Config', 'Lesswork/Config');
 
     global.env = function (hash) {
       return process.env[hash];
