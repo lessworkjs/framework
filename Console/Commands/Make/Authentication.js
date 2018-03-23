@@ -1,14 +1,13 @@
 const BaseCommand = require('../BaseCommand');
-const fs = require('fs');
 
 class MakeRoute extends BaseCommand {
 
   static get signature() {
-    return 'make:auth {name: Name of the route}';
+    return 'make:auth';
   }
 
   static get description() {
-    return 'Create a new authentication provider.';
+    return 'Create the authentication providers.';
   }
 
   handle({
@@ -20,9 +19,10 @@ class MakeRoute extends BaseCommand {
 
     this.mkdir('./app/Http/Authentication/');
 
-    this.ejsToFile('authentication/baisc', `./app/Http/Authentication/${name}Basic.js`, data);
+    this.ejsToFile('authentication/basic', `./app/Http/Authentication/Basic.js`, data);
+    this.ejsToFile('authentication/jwt', `./app/Http/Authentication/Jwt.js`, data);
 
-    console.log(`The auth provider '${name}' has created.`);
+    console.log(`${this.icon('success')} The authentication providers have been created.`);
 
   }
 

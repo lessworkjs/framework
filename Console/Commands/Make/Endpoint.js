@@ -1,14 +1,14 @@
 const BaseCommand = require('../BaseCommand');
 const fs = require('fs');
 
-class MakeRoute extends BaseCommand {
+class MakeEndpoint extends BaseCommand {
 
   static get signature() {
-    return 'make:route {name: Name of the route}';
+    return 'make:endpoint {name: Name of the endpoint}';
   }
 
   static get description() {
-    return 'Create a new route. Includes controller, function, and test.';
+    return 'Create a new route, controller and test.';
   }
 
   handle({
@@ -18,12 +18,15 @@ class MakeRoute extends BaseCommand {
       name
     };
 
+    this.mkdir('./app/Http/Controllers/');
+    this.mkdir('./app/Http/Routes/');
+
     this.ejsToFile('controller', `./app/Http/Controllers/${name}Controller.js`, data)
       .ejsToFile('route', `./app/Http/Routes/${name}Route.js`, data)
       .ejsToFile('test', `./test/${name}Test.js`, data);
 
-    console.log(`The route '${name}' has created.`);
+    console.log(`${this.icon('success')} The endpoint '${name}' has been created.`);
   }
 }
 
-module.exports = MakeRoute;
+module.exports = MakeEndpoint;

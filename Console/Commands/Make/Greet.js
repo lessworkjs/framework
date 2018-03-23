@@ -3,11 +3,11 @@ const BaseCommand = require('../BaseCommand');
 class MakeCommand extends BaseCommand {
 
   static get signature() {
-    return 'make:command {name: Name of the command}';
+    return 'make:greet';
   }
 
   static get description() {
-    return 'Create a new command.';
+    return 'Create the Greet example command.';
   }
 
   handle({
@@ -17,9 +17,9 @@ class MakeCommand extends BaseCommand {
       name
     };
 
-    this.ejsToFile('command', `./app/Console/Commands/${name}.js`, data);
+    this.ejsToFile('greet', `./app/Console/Commands/GreetCommand.js`, data);
 
-    console.log(`${this.icon('success')} The command '${name}' has been created.`);
+    console.log(`${this.icon('success')} The command 'greet' has been created.`);
     console.log(`${this.icon('info')} Don't forget to register it in commands object in config/app.`);
 
   }

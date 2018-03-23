@@ -1,8 +1,8 @@
 # lesswork-framework
 A nodejs based framework for AWS serverless applications.
 
-# Install 
-Use [lesswork](https://github.com/Askedio/lesswork) to deploy your own serverless applications.
+# Official Website
+Visit [lesswork.io](https://lesswork.io) for information on how to install and use this framework.
 
 # Goal
 The goal of this framework is to simplify the requirements to successfully build and deploy a nodejs based serverless application on aws.
@@ -16,3 +16,4 @@ The goal of this framework is to simplify the requirements to successfully build
 * Configs
 * Environments
 * Documentation
+

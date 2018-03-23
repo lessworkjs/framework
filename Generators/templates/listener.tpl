@@ -4,4 +4,4 @@ class <%= name %> {
   
 }
 
-module.exports = new <%= name %>;
+module.exports = new <%= name %>();
