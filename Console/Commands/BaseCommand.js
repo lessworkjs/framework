@@ -4,11 +4,26 @@ const {
 
 const ejs = require('ejs');
 const fs = require('fs');
+const path = require('path');
 
 class BaseCommand extends Command {
+  checkIfExists(file) {
+    if (typeof file === 'object') {
+      let results = false;
+      file.forEach((check) => {
+        if (fs.existsSync(check)) {
+          results = true;
+          return;
+        }
+      });
+      return results;
+    }
+    return fs.existsSync(file);
+  }
+
   mkdir(dir) {
     try {
-      if (!fs.exists(dir)) {
+      if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
       }
     } catch (e) {}

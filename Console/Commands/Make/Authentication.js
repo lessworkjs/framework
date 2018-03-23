@@ -22,7 +22,7 @@ class MakeRoute extends BaseCommand {
     this.ejsToFile('authentication/basic', `./app/Http/Authentication/Basic.js`, data);
     this.ejsToFile('authentication/jwt', `./app/Http/Authentication/Jwt.js`, data);
 
-    console.log(`${this.icon('success')} The authentication providers have been created.`);
+    this.success(`${this.icon('success')} The authentication providers have been created.`);
 
   }
 

@@ -5,5 +5,8 @@ module.exports = {
   'make:command': require('./Commands/Make/Command'),
   'make:listener': require('./Commands/Make/Listener'),
   'make:function': require('./Commands/Make/Function'),
+  'make:route': require('./Commands/Make/Route'),
+  'make:controller': require('./Commands/Make/Controller'),
+  'make:test': require('./Commands/Make/Test'),
   'test': require('./Commands/Test'),
 };

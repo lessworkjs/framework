@@ -17,10 +17,14 @@ class MakeCommand extends BaseCommand {
       name
     };
 
-    this.ejsToFile('greet', `./app/Console/Commands/GreetCommand.js`, data);
+    if (this.checkIfExists(Helpers.appRoot(`/app/Console/Commands/GreetCommand.js`))) {
+      return this.error(`${this.icon('error')} The command 'Greet' has already been created.`);
+    }
 
-    console.log(`${this.icon('success')} The command 'greet' has been created.`);
-    console.log(`${this.icon('info')} Don't forget to register it in commands object in config/app.`);
+    this.ejsToFile('greet', Helpers.appRoot(`/app/Console/Commands/GreetCommand.js`), data);
+
+    this.success(`${this.icon('success')} The command 'greet' has been created.`);
+    this.warn(`${this.icon('info')} Don't forget to register it in commands object in config/app.`);
 
   }
 }

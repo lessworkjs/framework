@@ -1,7 +1,7 @@
 'use strict'
 
 /*
- * adonis-sink
+ * adonis-ignitor
  *
  * (c) Harminder Virk <virk@adonisjs.com>
  *
@@ -16,6 +16,11 @@ const pify = require('pify')
  * This class returns absolute path to commonly
  * used AdonisJs directories.
  *
+ * @namespace Adonis/Src/Helpers
+ * @alias Helpers
+ * @singleton
+ * @group Core
+ *
  * @class Helpers
  * @constructor
  */
@@ -29,10 +34,12 @@ class Helpers {
    *
    * @method appRoot
    *
+   * @param  {String}   [toFile = '']
+   *
    * @return {String}
    */
-  appRoot() {
-    return this._appRoot
+  appRoot(toFile = '') {
+    return path.join(this._appRoot, toFile)
   }
 
   /**
@@ -203,24 +210,15 @@ class Helpers {
    */
   isAceCommand() {
     const processFile = process.mainModule.filename
-    return processFile.endsWith('ace')
-  }
+    if (processFile.endsWith('ace')) {
+      return true
+    }
 
-  /**
-   * makes complete namespace for a given path and base
-   * namespace
-   *
-   * @method makeNameSpace
-   *
-   * @param  {String}      baseNameSpace
-   * @param  {String}      toPath
-   * @return {String}
-   *
-   * @public
-   */
-  makeNameSpace(baseNameSpace, toPath) {
-
-    return path.normalize(`${this._appRoot}/app/${baseNameSpace}/${toPath}`)
+    /**
+     * When command is executed via `adonis cli`, then ace is a children
+     * of the process mainModule
+     */
+    return !!process.mainModule.children.find((child) => child.filename.endsWith('ace'))
   }
 }
 

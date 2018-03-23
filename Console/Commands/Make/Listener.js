@@ -17,12 +17,16 @@ class MakeListener extends BaseCommand {
       name
     };
 
+    if (this.checkIfExists(Helpers.appRoot(`/app/Http/Listeners/${name}Listener.js`))) {
+      return this.error(`${this.icon('error')} The listener  '${name}' has already been created.`);
+    }
+
     this.mkdir('./app/Listeners/');
 
-    this.ejsToFile('listener', `./app/Listeners/${name}Listener.js`, data);
+    this.ejsToFile('listener', Helpers.appRoot(`/app/Listeners/${name}Listener.js`), data);
 
-    console.log(`${this.icon('success')} The listener '${name}' has been created.`);
-    console.log(`${this.icon('info')} Don't forget to register it in config/events.`);
+    this.success(`${this.icon('success')} The listener '${name}' has been created.`);
+    this.warn(`${this.icon('info')} Don't forget to register it in config/events.`);
   }
 }
 

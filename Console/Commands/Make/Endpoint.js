@@ -18,14 +18,23 @@ class MakeEndpoint extends BaseCommand {
       name
     };
 
-    this.mkdir('./app/Http/Controllers/');
-    this.mkdir('./app/Http/Routes/');
+    if (this.checkIfExists([
+        Helpers.appRoot(`/app/Http/Controllers/${name}Controller.js`),
+        Helpers.appRoot(`/app/Http/Routes/${name}Route.js`),
+        Helpers.appRoot(`/app/Http/Controllers/${name}Controller.js`),
+        Helpers.appRoot(`/test/${name}Test.js`)
+      ])) {
+      return this.error(`${this.icon('error')} Part of the endpoint '${name}' has already been created.`);
+    }
 
-    this.ejsToFile('controller', `./app/Http/Controllers/${name}Controller.js`, data)
-      .ejsToFile('route', `./app/Http/Routes/${name}Route.js`, data)
-      .ejsToFile('test', `./test/${name}Test.js`, data);
+    this.mkdir(Helpers.appRoot('/app/Http/Controllers/'));
+    this.mkdir(Helpers.appRoot('/app/Http/Routes/'));
 
-    console.log(`${this.icon('success')} The endpoint '${name}' has been created.`);
+    this.ejsToFile('controller', Helpers.appRoot(`/app/Http/Controllers/${name}Controller.js`), data)
+      .ejsToFile('route', Helpers.appRoot(`/app/Http/Routes/${name}Route.js`), data)
+      .ejsToFile('test', Helpers.appRoot(`/test/${name}Test.js`), data);
+
+    this.success(`${this.icon('success')} The endpoint '${name}' has been created.`);
   }
 }
 
