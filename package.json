@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A nodejs based framework for AWS serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Askedio/lesswork#readme",
   "dependencies": {
+    "adonis-binding-resolver": "^1.0.1",
     "adonis-fold": "3.0.3",
     "child_process": "^1.0.2",
     "env-yaml": "^0.1.2",
