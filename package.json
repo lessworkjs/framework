@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Askedio/lesswork#readme",
   "dependencies": {
-    "adonis-fold": "^3.0.3",
+    "adonis-fold": "3.0.3",
     "child_process": "^1.0.2",
     "env-yaml": "^0.1.2",
     "js-yaml": "^3.11.0",
@@ -32,6 +32,7 @@
     "serverless-mocha-plugin": "^1.7.0",
     "serverless-offline": "^3.18.0",
     "require-all": "^2.2.0",
-    "macroable": "^1.0.0"
+    "macroable": "^1.0.0",
+    "pretty-error": "^2.1.1"
   }
 }

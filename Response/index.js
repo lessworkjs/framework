@@ -16,7 +16,7 @@ class Response extends Macroable {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body) || {},
       isBase64Encoded: false
     };
   }

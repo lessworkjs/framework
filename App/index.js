@@ -12,6 +12,9 @@ class App {
     global.response = use('Response');
     global.request = use('Request');
     global.state = use('State');
+    global.EXP = use('Exception');
+
+    use('Event').fire('app:registerGlobals');
   }
 
   environment() {

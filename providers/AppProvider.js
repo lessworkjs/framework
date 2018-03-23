@@ -40,10 +40,10 @@ class AppProvider extends ServiceProvider {
   }
 
   registerCommand() {
-    this.app.singleton('Lesswork/Command', function (app) {
+    this.app.bind('Lesswork/Command', function (app) {
       const work = require('lesswork-cmd');
 
-      return work;
+      return work.Command;
     });
     this.app.alias('Adonis/Src/Command', 'Lesswork/Command');
 
@@ -65,12 +65,24 @@ class AppProvider extends ServiceProvider {
     return this;
   }
 
+  registerException() {
+    this.app.bind('Lesswork/Exception', function (app) {
+      const Exception = require('../Exception');
+
+      return Exception;
+    });
+    this.app.alias('Adonis/Src/Exception', 'Lesswork/Exception');
+
+    return this;
+  }
+
   * register() {
     this.registerState()
       .registerApp()
       .registerConfig()
       .registerCommand()
-      .registerEnv();
+      .registerEnv()
+      .registerException();
   }
 }
 

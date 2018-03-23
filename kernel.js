@@ -34,6 +34,16 @@ module.exports = function (appRoot) {
 
         callback();
       })
-      .catch((error) => console.error(error.stack));
+      .catch((error) => {
+        use('Event').fire('app.error', error);
+
+        if (error.statusCode === 500) {
+          const PrettyError = require('pretty-error');
+
+          console.error(new PrettyError().render(error));
+        }
+
+        response.failure(use('ErrorTransformer').transform(error), error.status);
+      });
   }
 };
