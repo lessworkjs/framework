@@ -2,10 +2,10 @@ const {
   Command
 } = require('lesswork-cmd');
 
-class <%= name %> extends Command {
+class <%= name %>Commands extends Command {
 
   static get signature() {
-    return '<%= name %>';
+    return 'example:<%= name %>';
   }
 
   static get description() {
@@ -18,4 +18,4 @@ class <%= name %> extends Command {
 
 }
 
-module.exports = <%= name %>;
+module.exports = <%= name %>Commands;

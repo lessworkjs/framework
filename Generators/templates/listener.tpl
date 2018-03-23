@@ -1,7 +1,7 @@
 'use strict';
 
-class <%= name %> {
+class <%= name %>Listener {
   
 }
 
-module.exports = new <%= name %>();
+module.exports = new <%= name %>Listener();

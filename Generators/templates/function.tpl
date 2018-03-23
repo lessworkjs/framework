@@ -1,6 +1,6 @@
 'use strict';
 
-const app = require('../../../app');
+const app = require('../../../bootstrap/app');
 
 module.exports = {
   handle: function (event, context, callback) {

@@ -9,6 +9,10 @@ class State {
     }
   }
 
+  context() {
+    return this.state.context;
+  }
+
   callback() {
     return this.state.callback;
   }

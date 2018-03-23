@@ -1,6 +1,6 @@
 'use strict';
 
-const app = require('../../../app');
+const app = require('../../../bootstrap/app');
 
 const <%= name %>Controller = require('../Controllers/<%= name %>Controller');
 

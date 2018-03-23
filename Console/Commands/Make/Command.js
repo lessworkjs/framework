@@ -17,7 +17,7 @@ class MakeCommand extends BaseCommand {
       name
     };
 
-    this.ejsToFile('command', `./app/Console/Commands/${name}.js`, data);
+    this.ejsToFile('command', `./app/Console/Commands/${name}Commands.js`, data);
 
     console.log(`${this.icon('success')} The command '${name}' has been created.`);
     console.log(`${this.icon('info')} Don't forget to register it in commands object in config/app.`);
