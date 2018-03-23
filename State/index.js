@@ -14,6 +14,8 @@ class State {
   }
 
   callback() {
+    use('Event').fire('state:callback');
+
     return this.state.callback;
   }
 
