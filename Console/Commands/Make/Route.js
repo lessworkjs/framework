@@ -18,16 +18,12 @@ class MakeRoute extends BaseCommand {
       name
     };
 
-    this.mkdir(`./app/Http/Controllers/${name}`);
-
-    this.ejsToFile('controller', `./app/Http/Controllers/${name}/${name}.js`, data)
-      .ejsToFile('function', `./app/Http/Routes/${name}.yml`, data)
+    this.ejsToFile('controller', `./app/Http/Controllers/${name}Controller.js`, data)
+      .ejsToFile('route', `./app/Http/Routes/${name}Route.js`, data)
       .ejsToFile('test', `./test/${name}Test.js`, data);
 
     console.log(`The route '${name}' has created.`);
-
   }
-
 }
 
 module.exports = MakeRoute;

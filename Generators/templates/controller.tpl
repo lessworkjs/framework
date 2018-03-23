@@ -1,21 +1,11 @@
 'use strict';
 
-class <%= name %> extends require('../BaseController') {
-  handle() {
-    const responseObject = {
-      data: "Hello World!"
-    };
-
-    use('response').success(null, responseObject, results => {
-      return results.data;
-    }, this.state.callback);
+class <%= name %>Controller extends require('lesswork-framework/Controller') {
+  get() {
+    response.success({
+      hello: 'world'
+    });
   }
 }
 
-module.exports.handle = function (event, context, callback) {
-  new <%= name %>({
-    event,
-    context,
-    callback
-  });
-};
+module.exports = <%= name %>Controller;

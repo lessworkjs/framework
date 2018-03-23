@@ -6,18 +6,21 @@ const assert = mochaPlugin.chai.assert;
 
 const Test = require('lesswork-framework/Test');
 
-const wrapped = mochaPlugin.getWrapper('helloWorld', '/app/Http/Controllers/<%= name %>/<%= name %>', 'handle');
+let wrapped = mochaPlugin.getWrapper('<%= name %>', '/app/Http/Routes/<%= name %>Route', 'get');
 
 describe('<%= name %>', () => {
   before((done) => {
     done();
   });
 
-  it('should return 200', () => {
-    return wrapped.run({}).then((response) => {
+  it('should work', () => {
+    return wrapped.run().then((response) => {
       expect(response).to.not.be.empty;
       assert.equal(typeof response, 'object');
       assert.equal(response.statusCode, '200');
+
+      const body = JSON.parse(response.body);
+      assert.equal(body.hello, 'world');
     });
   });
 });
