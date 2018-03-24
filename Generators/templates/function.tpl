@@ -3,7 +3,7 @@
 const app = require('../../../bootstrap/app');
 
 module.exports = {
-  handle: function (event, context, callback) {
+  handle: function () {
     app(arguments, function () {
       callback(null, 'success');
     });

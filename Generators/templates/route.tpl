@@ -3,9 +3,9 @@
 const app = require('../../../bootstrap/app');
 
 module.exports = {
-  get: function (event, context, callback) {
+  get: function () {
     app(arguments, function () {
-      make(use('App/Http/Controllers/<%= name %>Controller')).get();
+      Route('App/Http/Controllers/<%= name %>Controller@get');
     });
   },
 

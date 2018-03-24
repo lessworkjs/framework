@@ -5,7 +5,7 @@ const app = require('../../../app');
 const Jwt = require('lesswork-framework/Authentication/Jwt');
 
 module.exports = {
-  auth: function (event, context, callback) {
+  auth: function () {
     app(arguments, function () {
       new Jwt().auth(env('APP_KEY'));
     });

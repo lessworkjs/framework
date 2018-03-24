@@ -14,6 +14,11 @@ class App {
     global.state = use('State');
     global.EXP = use('Exception');
 
+    global.Route = function (hash) {
+      hash = hash.split('@');
+      return make(use(hash[0]))[hash[1]]();
+    }
+
     use('Event').fire('app:registerGlobals');
   }
 

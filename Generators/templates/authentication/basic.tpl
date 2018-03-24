@@ -5,7 +5,7 @@ const app = require('../../../app');
 const Basic = require('lesswork-framework/Authentication/Basic');
 
 module.exports = {
-  auth: function (event, context, callback) {
+  auth: function () {
     app(arguments, function () {
       new Basic().auth('test', 'test');
     });
