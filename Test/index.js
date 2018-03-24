@@ -1,4 +1,6 @@
-require('env-yaml').config();
+const path = require('path');
+
+process.env = Object.assign(process.env, require(path.resolve(process.cwd(), '.env.js'))());
 
 class Test {
   constructor() {
@@ -47,4 +49,4 @@ class Test {
   }
 }
 
-module.exports = new Test;
+module.exports = new Test();
