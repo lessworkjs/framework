@@ -9,6 +9,9 @@ module.exports = {
     });
   },
 
-  config: `Function<%= name %>:
-    handler: app/Http/Functions/<%= name %>Function.handle`
+  config: {
+    Function<%= name %>: {
+      handler: 'app/Http/Functions/<%= name %>Function.handle',
+    }
+  }
 };

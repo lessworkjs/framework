@@ -11,8 +11,10 @@ module.exports = {
     });
   },
 
-  config: `Authentication<%= name %>Jwt:
-    handler: app/Http/Authentication/<%= name %>Jwt.auth
-    documentation:
-      description: "Jwt Auth Handler"`
+  config: Authentication<%= name %>Jwt: {
+      handler: 'app/Http/Authentication/<%= name %>Jwt.auth',
+      documentation: {
+        description: 'Jwt Auth.'
+      }
+    }
 };

@@ -11,8 +11,11 @@ module.exports = {
     });
   },
 
-  config: `Authentication<%= name %>Basic:
-    handler: app/Http/Authentication/<%= name %>Basic.auth
-    documentation:
-      description: "Basic Auth Handler"`
+  config: {
+    Authentication<%= name %>Basic: {
+      handler: 'app/Http/Authentication/<%= name %>Basic.auth',
+      documentation: {
+        description: 'Basic Auth.'
+      }
+    }
 };

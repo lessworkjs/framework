@@ -10,7 +10,7 @@ module.exports = {
   },
 
   config: {
-    work: {
+    <%= name %>: {
       handler: 'app/Http/Routes/<%= name %>Route.get',
       events: [{
         http: {
