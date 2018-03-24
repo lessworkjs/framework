@@ -4,9 +4,7 @@ const app = require('../../../bootstrap/app');
 
 module.exports = {
   get: function () {
-    app(arguments, function () {
-      Route('App/Http/Controllers/<%= name %>Controller@get');
-    });
+    app(arguments, 'App/Http/Controllers/<%= name %>Controller@get');
   },
 
   config: {
