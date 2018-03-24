@@ -1,6 +1,7 @@
 'use strict';
 
 const fold = require('adonis-fold');
+
 const path = require('path');
 const Helpers = require('lesswork-framework/Helpers');
 
@@ -37,7 +38,7 @@ module.exports = function (appRoot) {
       .catch((error) => {
         use('Event').fire('app.error', error);
 
-        if (error.statusCode === 500) {
+        if (!error.status || error.status == 500) {
           const PrettyError = require('pretty-error');
 
           console.error(new PrettyError().render(error));

@@ -2,12 +2,10 @@
 
 const app = require('../../../bootstrap/app');
 
-const <%= name %>Controller = require('../Controllers/<%= name %>Controller');
-
 module.exports = {
   get: function (event, context, callback) {
     app(arguments, function () {
-      new <%= name %>Controller().get();
+      make(use('App/Http/Controllers/<%= name %>Controller')).get();
     });
   },
 
