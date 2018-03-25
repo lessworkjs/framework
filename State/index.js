@@ -1,22 +1,28 @@
 'use strict';
 
-class State {
-  set(state) {
-    this.state = state;
+const Macroable = require('macroable');
+
+class State extends Macroable {
+  set(args) {
+    this.state = {
+      event: args[0],
+      context: args[1],
+      callback: args[2]
+    };
 
     if (this.state.context) {
       this.state.context.callbackWaitsForEmptyEventLoop = false;
     }
+
+    this.callback = this.state.callback;
   }
 
-  context() {
-    return this.state.context;
-  }
+  context(hash) {
+    if (!hash) {
+      return this.state.context;
+    }
 
-  callback() {
-    use('Event').fire('state:callback');
-
-    return this.state.callback;
+    return this.state.context[hash];
   }
 
   event(hash) {

@@ -1,7 +1,11 @@
 'use strict';
 
-class App {
+const Macroable = require('macroable');
+
+class App extends Macroable {
   constructor() {
+    super();
+
     this.state = {};
   }
 
@@ -20,6 +24,14 @@ class App {
     }
 
     use('Event').fire('app:registerGlobals');
+  }
+
+  run(callback) {
+    if (typeof callback === 'string') {
+      callback = Route(callback);
+    }
+
+    return require('co')(callback);
   }
 
   environment() {

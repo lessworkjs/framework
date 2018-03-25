@@ -22,7 +22,7 @@ class Response extends Macroable {
   }
 
   failure(error, statusCode) {
-    this.state.callback()(null, this.body(statusCode || 500, error));
+    this.state.callback(null, this.body(statusCode || 500, error));
   }
 
   successOrFailure() {
@@ -54,7 +54,7 @@ class Response extends Macroable {
       statusCode = arguments[2] || arguments[1];
     }
 
-    this.state.callback()(null, this.body(statusCode, data));
+    this.state.callback(null, this.body(statusCode, data));
   }
 }
 

@@ -3,7 +3,7 @@
 module.exports = function (app) {
   const work = require('lesswork-cmd');
 
-  const Commands = require('..//Console');
+  const Commands = require('../Console');
 
   const AppCommands = app.commands;
 

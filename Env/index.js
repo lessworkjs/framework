@@ -1,7 +1,7 @@
 'use strict'
 
-/*
- * adonis-ignitor
+/**
+ * adonis-framework
  *
  * (c) Harminder Virk <virk@adonisjs.com>
  *
@@ -9,217 +9,179 @@
  * file that was distributed with this source code.
  */
 
+const _ = require('lodash')
 const path = require('path')
-const pify = require('pify')
+const dotenv = require('dotenv')
+const fs = require('fs')
+const debug = require('debug')('adonis:framework')
+const Macroable = require('macroable');
 
 /**
- * This class returns absolute path to commonly
- * used AdonisJs directories.
+ * Manages the application environment variables by
+ * reading the `.env` file from the project root.
  *
- * @namespace Adonis/Src/Helpers
- * @alias Helpers
- * @singleton
+ * If `.env` file is missing, an exception will be thrown
+ * to supress the exception, pass `ENV_SILENT=true` when
+ * starting the app.
+ *
+ * Can define different location by setting `ENV_PATH`
+ * environment variable.
+ *
+ * @binding Adonis/Src/Env
  * @group Core
+ * @alias Env
+ * @singleton
  *
- * @class Helpers
+ * @class Env
  * @constructor
  */
-class Helpers {
+class Env extends Macroable {
   constructor(appRoot) {
-    this._appRoot = appRoot
-  }
+    super()
 
-  /**
-   * Returns path to the application root
-   *
-   * @method appRoot
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  appRoot(toFile = '') {
-    return path.join(this._appRoot, toFile)
-  }
+    this.appRoot = appRoot
+    const bootedAsTesting = process.env.NODE_ENV === 'testing'
+    const env = this.load(this.getEnvPath(), false) // do not overwrite at first place
 
-  /**
-   * Returns path to the public directory or a
-   * specific file to the public directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method publicPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  publicPath(toFile = '') {
-    return path.join(this._appRoot, '/public', toFile)
-  }
-
-  /**
-   * Returns path to the config directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method configPath
-   *
-   * @return {String}
-   */
-  configPath() {
-    if (arguments[0]) {
-      throw new Error('You should never read a config file from the config directory and instead use config provider.')
-    }
-    return path.join(this._appRoot, '/config')
-  }
-
-  /**
-   * Returns path to the resources directory or a
-   * specific file to the resources directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method resourcesPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  resourcesPath(toFile = '') {
-    return path.join(this._appRoot, '/resources', toFile)
-  }
-
-  /**
-   * Returns path to the views directory or a
-   * specific file to the views directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method viewsPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  viewsPath(toFile = '') {
-    return path.join(this._appRoot, '/resources/views', toFile)
-  }
-
-  /**
-   * Returns path to the database directory or a
-   * specific file to the database directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method databasePath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  databasePath(toFile = '') {
-    return path.join(this._appRoot, '/database', toFile)
-  }
-
-  /**
-   * Returns path to the migrations directory or a
-   * specific file to the migrations directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method migrationsPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  migrationsPath(toFile = '') {
-    return path.join(this._appRoot, '/database/migrations', toFile)
-  }
-
-  /**
-   * Returns path to the seeds directory or a
-   * specific file to the seeds directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method seedsPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  seedsPath(toFile = '') {
-    return path.join(this._appRoot, '/database/seeds', toFile)
-  }
-
-  /**
-   * Returns path to the tmp directory or a
-   * specific file to the tmp directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method tmpPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  tmpPath(toFile = '') {
-    return path.join(this._appRoot, '/tmp', toFile)
-  }
-
-  /**
-   * Promisify callback style functions
-   *
-   * @method promisify
-   *
-   * @param  {Function} fn
-   * @param  {Object}   options
-   *
-   * @return {Promise}
-   */
-  promisify(fn, options) {
-    return pify(fn, options)
-  }
-
-  /**
-   * Tells whether the process has been started by
-   * ace command.
-   *
-   * @method isAceCommand
-   *
-   * @return {Boolean}
-   */
-  isAceCommand() {
-    const processFile = process.mainModule.filename
-    if (processFile.endsWith('ace')) {
-      return true
+    /**
+     * Throwing the exception when ENV_SILENT is not set to true
+     * and ofcourse there is an error
+     */
+    if (env.error && process.env.ENV_SILENT !== 'true') {
+      throw env.error
     }
 
     /**
-     * When command is executed via `adonis cli`, then ace is a children
-     * of the process mainModule
+     * Load the `.env.testing` file if app was booted
+     * under testing mode
      */
-    return !!process.mainModule.children.find((child) => child.filename.endsWith('ace'))
+    if (bootedAsTesting) {
+      this.load('.env.testing')
+    }
+  }
+
+  /**
+   * Replacing dynamic values inside .env file
+   *
+   * @method _interpolate
+   *
+   * @param  {String}     env
+   * @param  {Object}     envConfig
+   *
+   * @return {String}
+   *
+   * @private
+   */
+  _interpolate(env, envConfig) {
+    const matches = env.match(/\$([a-zA-Z0-9_]+)|\${([a-zA-Z0-9_]+)}/g) || []
+    _.each(matches, (match) => {
+      const key = match.replace(/\$|{|}/g, '')
+      const variable = envConfig[key] || process.env[key] || ''
+      env = env.replace(match, this._interpolate(variable))
+    })
+    return env
+  }
+
+  /**
+   * Load env file from a given location.
+   *
+   * @method load
+   *
+   * @param  {String}  filePath
+   * @param  {Boolean} [overwrite = 'true']
+   * @param  {String}  [encoding = 'utf8']
+   *
+   * @return {void}
+   */
+  load(filePath, overwrite = true, encoding = 'utf8') {
+    const options = {
+      path: path.isAbsolute(filePath) ? filePath : path.join(this.appRoot, filePath),
+      encoding
+    }
+
+    try {
+      const envConfig = dotenv.parse(fs.readFileSync(options.path, options.encoding))
+
+      /**
+       * Dotenv doesn't overwrite existing env variables, so we
+       * need to do it manaully by parsing the file.
+       */
+      debug('%s environment file from %s', overwrite ? 'merging' : 'loading', options.path)
+
+      /**
+       * Loop over values and set them on environment only
+       * when actual value is not defined or overwrite
+       * is set to true
+       */
+      _.each(envConfig, (value, key) => {
+        if (process.env[key] === undefined || overwrite) {
+          process.env[key] = this._interpolate(value, envConfig)
+        }
+      })
+      return {
+        parsed: envConfig
+      }
+    } catch (error) {
+      return {
+        error
+      }
+    }
+  }
+
+  /**
+   * Returns the path from where the `.env`
+   * file should be loaded.
+   *
+   * @method getEnvPath
+   *
+   * @return {String}
+   */
+  getEnvPath() {
+    if (!process.env.ENV_PATH || process.env.ENV_PATH.length === 0) {
+      return '.env'
+    }
+    return process.env.ENV_PATH
+  }
+
+  /**
+   * Get value for a given key from the `process.env`
+   * object.
+   *
+   * @method get
+   *
+   * @param  {String} key
+   * @param  {Mixed} [defaultValue = null]
+   *
+   * @return {Mixed}
+   *
+   * @example
+   * ```js
+   * Env.get('CACHE_VIEWS', false)
+   * ```
+   */
+  get(key, defaultValue = null) {
+    return _.get(process.env, key, defaultValue)
+  }
+
+  /**
+   * Set value for a given key inside the `process.env`
+   * object. If value exists, will be updated
+   *
+   * @method set
+   *
+   * @param  {String} key
+   * @param  {Mixed} value
+   *
+   * @return {void}
+   *
+   * @example
+   * ```js
+   * Env.set('PORT', 3333)
+   * ```
+   */
+  set(key, value) {
+    _.set(process.env, key, value)
   }
 }
 
-module.exports = Helpers
+module.exports = Env

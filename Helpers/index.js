@@ -1,4 +1,6 @@
-'use strict'
+'use strict';
+
+const Macroable = require('macroable');
 
 /*
  * adonis-ignitor
@@ -24,8 +26,10 @@ const pify = require('pify')
  * @class Helpers
  * @constructor
  */
-class Helpers {
+class Helpers extends Macroable {
   constructor(appRoot) {
+    super()
+
     this._appRoot = appRoot
   }
 

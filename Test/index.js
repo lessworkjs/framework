@@ -1,9 +1,14 @@
+'use strict';
+
 const path = require('path');
+const Macroable = require('macroable');
 
 process.env = Object.assign(process.env, require(path.resolve(process.cwd(), '.env.js'))());
 
-class Test {
+class Test extends Macroable {
   constructor() {
+    super();
+
     this.obj = {};
   }
 

@@ -16,10 +16,13 @@ const resolver = new Resolver(Ioc)
 const _ = require('lodash')
 const util = require('../lib/util')
 const co = require('co')
+const Macroable = require('macroable');
 
-class Event {
+class Event extends Macroable {
 
   constructor(Config, Helpers) {
+    super();
+
     const options = Config.get('event')
     this.listenersPath = 'Listeners'
     this.helpers = Helpers

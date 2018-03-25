@@ -6,6 +6,7 @@ const path = require('path');
 const Helpers = require('lesswork-framework/Helpers');
 
 module.exports = function (appRoot) {
+  appRoot = path.join(appRoot, '..');
   const app = require(path.join(appRoot, './config/app'));
   const packageFile = require(path.join(appRoot, '/package.json'));
 
@@ -30,6 +31,8 @@ module.exports = function (appRoot) {
         }
 
         use('App').registerGlobals();
+
+        //require(path.join(appRoot, './database/factory.js'));
 
         require(path.join(appRoot, './config/events'));
 

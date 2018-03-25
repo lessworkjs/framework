@@ -1,5 +1,7 @@
 'use strict'
 
+const Macroable = require('macroable');
+
 /**
  * adonis-framework
  *
@@ -27,8 +29,10 @@ const debug = require('debug')('adonis:framework')
  *
  * @param {String} configPath Absolute path from where to load the config files from
  */
-class Config {
+class Config extends Macroable {
   constructor(configPath) {
+    super()
+
     this._configPath = configPath
     this._config = {}
     this.syncWithFileSystem()

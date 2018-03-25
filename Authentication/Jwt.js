@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 
 class Jwt extends require('./Base') {
   auth(secret) {
-    const event = state.event();
-
     const authString = this.getAuthorizationToken();
 
     if (!authString) {
