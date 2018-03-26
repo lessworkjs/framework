@@ -5,14 +5,14 @@ const Macroable = require('macroable');
 class State extends Macroable {
   set(args) {
     this.state = {
-      event: args[0],
-      context: args[1],
-      callback: args[2]
+      event: args[0] || {},
+      context: args[1] || {},
+      callback: args[2] || function () {
+        console.log('State Callback:', arguments);
+      }
     };
 
-    if (this.state.context) {
-      this.state.context.callbackWaitsForEmptyEventLoop = false;
-    }
+    this.state.context.callbackWaitsForEmptyEventLoop = false;
 
     this.callback = this.state.callback;
   }

@@ -1,6 +1,6 @@
-const BaseCommand = require('./BaseCommand');
+const BaseCommand = require('../BaseCommand');
 
-class Test extends BaseCommand {
+class TestCommand extends BaseCommand {
 
   static get signature() {
     return 'test {--coverage: with code coverage} {--sls: test serverless}';
@@ -32,4 +32,4 @@ class Test extends BaseCommand {
   }
 }
 
-module.exports = Test;
+module.exports = TestCommand;

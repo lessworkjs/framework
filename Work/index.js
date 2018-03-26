@@ -3,7 +3,13 @@
 module.exports = function (app) {
   const work = require('../../../../work');
 
-  const Commands = require('../Console');
+  let Commands = require('require-all')({
+    dirname: __dirname + '/../Console/Commands',
+    recursive: true,
+    excludeDirs: /^BaseCommand$/,
+  });
+
+  Commands = Object.assign({}, Commands.Console, Commands.Make);
 
   const AppCommands = app.commands;
 

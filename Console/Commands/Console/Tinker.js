@@ -1,4 +1,4 @@
-const BaseCommand = require('./BaseCommand');
+const BaseCommand = require('../BaseCommand');
 const repl = require('repl');
 const path = require('path');
 
@@ -13,7 +13,7 @@ class Serve extends BaseCommand {
   }
 
   handle(options, flags) {
-    process.env = Object.assign(process.env, require(path.resolve(process.cwd(), '.env.js'))());
+    app.local();
 
     this.success(`Lesswork Tinker: ${app.environment()}`);
 

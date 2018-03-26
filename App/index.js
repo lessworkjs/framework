@@ -1,12 +1,11 @@
 'use strict';
 
 const Macroable = require('macroable');
+const path = require('path');
 
 class App extends Macroable {
   constructor() {
     super();
-
-    this.state = {};
   }
 
   registerGlobals() {
@@ -20,6 +19,10 @@ class App extends Macroable {
     global.Route = use('Route');
 
     use('Event').fire('app:registerGlobals');
+  }
+
+  local() {
+    process.env = Object.assign(process.env, require(path.resolve(process.cwd(), '.env.js'))());
   }
 
   run(callback) {
