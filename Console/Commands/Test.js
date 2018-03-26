@@ -17,12 +17,12 @@ class Test extends BaseCommand {
     } = flags;
 
     if (coverage) {
-      this.warn(`${this.icon('info')} Starting code coverage.`);
+      this.warn(`${this.icon('info')} Starting code coverage...`);
 
       return this.run('npm run coverage');
     }
 
-    this.warn(`${this.icon('info')} Starting tests.`);
+    this.warn(`${this.icon('info')} Starting tests...`);
 
     if (sls) {
       return this.run('npm run test');

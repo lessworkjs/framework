@@ -11,4 +11,5 @@ module.exports = {
   'make:test': require('./Commands/Make/Test'),
   'test': require('./Commands/Test'),
   'serve': require('./Commands/Serve'),
+  'tinker': require('./Commands/Tinker'),
 };

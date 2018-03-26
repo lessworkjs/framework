@@ -25,7 +25,7 @@ class Serve extends BaseCommand {
   }
 
   static get description() {
-    return 'Run the `serverless-offline` development server.';
+    return 'Run the `serverless-offline` development server...';
   }
 
   handle(options, flags) {

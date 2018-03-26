@@ -65,6 +65,7 @@ class BaseCommand extends Command {
     return child;
   }
 
+  // TO-DO: accept arrays
   ejsToFile(template, destination, options) {
     ejs.renderFile(__dirname + `/../../Generators/templates/${template}.tpl`, options, function (err, data) {
       try {
