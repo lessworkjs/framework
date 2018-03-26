@@ -17,11 +17,7 @@ class App extends Macroable {
     global.request = use('Request');
     global.state = use('State');
     global.EXP = use('Exception');
-
-    global.Route = function (hash) {
-      hash = hash.split('@');
-      return make(use(hash[0]))[hash[1]]();
-    }
+    global.Route = use('Route');
 
     use('Event').fire('app:registerGlobals');
   }

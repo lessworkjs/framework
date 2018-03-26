@@ -7,7 +7,7 @@ class MakeRoute extends BaseCommand {
   }
 
   static get description() {
-    return 'Create the authentication providers.';
+    return 'Scaffold basic and jwt authentication providers.';
   }
 
   handle({

@@ -39,6 +39,14 @@ class AppProvider extends ServiceProvider {
     return this;
   }
 
+  registerRoute() {
+    this.app.singleton('Lesswork/Route', function (app) {
+      return require('../Route');
+    });
+
+    return this;
+  }
+
   registerCommand() {
     this.app.bind('Lesswork/Command', function (app) {
       const work = require('lesswork-cmd');
@@ -82,7 +90,8 @@ class AppProvider extends ServiceProvider {
       .registerConfig()
       .registerCommand()
       .registerEnv()
-      .registerException();
+      .registerException()
+      .registerRoute();
   }
 }
 

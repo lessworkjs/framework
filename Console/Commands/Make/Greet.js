@@ -7,7 +7,7 @@ class MakeCommand extends BaseCommand {
   }
 
   static get description() {
-    return 'Create the Greet example command.';
+    return 'Create a new Greet command.';
   }
 
   handle({

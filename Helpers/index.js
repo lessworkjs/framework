@@ -1,7 +1,4 @@
 'use strict';
-
-const Macroable = require('macroable');
-
 /*
  * adonis-ignitor
  *
@@ -11,8 +8,10 @@ const Macroable = require('macroable');
  * file that was distributed with this source code.
  */
 
+const Macroable = require('macroable');
 const path = require('path')
 const pify = require('pify')
+const fs = require('fs');
 
 /**
  * This class returns absolute path to commonly
@@ -31,6 +30,14 @@ class Helpers extends Macroable {
     super()
 
     this._appRoot = appRoot
+  }
+
+  requireIfExists(file) {
+    if (!fs.existsSync(file)) {
+      return false;
+    }
+
+    return require(file);
   }
 
   /**
@@ -75,11 +82,8 @@ class Helpers extends Macroable {
    *
    * @return {String}
    */
-  configPath() {
-    if (arguments[0]) {
-      throw new Error('You should never read a config file from the config directory and instead use config provider.')
-    }
-    return path.join(this._appRoot, '/config')
+  configPath(toFile = '') {
+    return path.join(this._appRoot, '/config', toFile)
   }
 
   /**

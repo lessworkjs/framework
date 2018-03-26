@@ -32,9 +32,11 @@ module.exports = function (appRoot) {
 
         use('App').registerGlobals();
 
-        //require(path.join(appRoot, './database/factory.js'));
+        const helpers = use('Lesswork/Helpers');
 
-        require(path.join(appRoot, './config/events'));
+        helpers.requireIfExists(helpers.databasePath('factory'));
+
+        helpers.requireIfExists(helpers.configPath('events'));
 
         callback();
       })

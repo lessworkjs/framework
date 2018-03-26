@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.21",
+  "version": "0.0.23",
   "description": "A nodejs based framework for AWS serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "adonis-binding-resolver": "^1.0.1",
     "adonis-fold": "3.0.3",
     "child_process": "^1.0.2",
-    "lesswork-cmd": "^5.0.3",
+    "lesswork-cmd": "^5.0.7",
     "nyc": "^11.6.0",
     "serverless-aws-documentation": "^1.0.1",
     "serverless-mocha-plugin": "^1.7.0",
