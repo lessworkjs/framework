@@ -5,6 +5,8 @@ const {
 const ejs = require('ejs');
 const fs = require('fs');
 const path = require('path');
+const PrettyError = require('pretty-error');
+const exec = require('child_process').exec;
 
 class BaseCommand extends Command {
   checkIfExists(file) {
@@ -29,20 +31,38 @@ class BaseCommand extends Command {
     } catch (e) {}
   }
 
-  run(command) {
-    const exec = require('child_process').exec;
-    const child = exec(command,
-      (error, stdout, stderr) => {
-        console.log(stdout);
+  error(error) {
+    console.error(new PrettyError().render(error));
+  }
 
+  run(command, flags) {
+    const args = [];
+
+    if (flags) {
+      Object.keys(flags).forEach(flag => {
+        if (!flags[flag]) {
+          return;
+        }
+        args.push(`--${flag} ${flags[flag]}`);
+      });
+    }
+
+    const child = exec(`${command} ${args}`,
+      (error, stdout, stderr) => {
         if (stderr) {
-          console.log(`Error: ${stderr}`);
+          this.error(stderr);
         }
 
         if (error !== null) {
-          console.log(`Error: ${error}`);
+          this.error(error);
         }
       });
+
+    child.stdout.on('data', function (data) {
+      console.log(data);
+    });
+
+    return child;
   }
 
   ejsToFile(template, destination, options) {

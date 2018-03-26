@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (app) {
-  const work = require('lesswork-cmd');
+  const work = require('../../../../work');
 
   const Commands = require('../Console');
 

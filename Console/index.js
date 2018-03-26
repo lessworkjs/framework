@@ -10,4 +10,5 @@ module.exports = {
   'make:provider': require('./Commands/Make/Provider'),
   'make:test': require('./Commands/Make/Test'),
   'test': require('./Commands/Test'),
+  'serve': require('./Commands/Serve'),
 };
