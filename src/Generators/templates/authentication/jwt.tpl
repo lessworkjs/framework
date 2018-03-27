@@ -1,17 +1,17 @@
 'use strict';
 
-const app = require('../../../app');
+const Route = require('lesswork-framework/src/Route');
 
 const Jwt = require('lesswork-framework/Authentication/Jwt');
 
 module.exports = {
   auth: function () {
-    app(arguments, function () {
+    Route(arguments, function () {
       new Jwt().auth(env('APP_KEY'));
     });
   },
 
-  config: Authentication<%= name %>Jwt: {
+  serverless: Authentication<%= name %>Jwt: {
       handler: 'app/Http/Authentication/<%= name %>Jwt.auth',
       documentation: {
         description: 'Jwt Auth.'

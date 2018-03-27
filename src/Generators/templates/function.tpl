@@ -1,16 +1,16 @@
 'use strict';
 
-const Route = require('lesswork-framework/src/Route')(process.cwd());
+const Route = require('lesswork-framework/src/Route');
 
 module.exports = {
   handle: function () {
     Route(arguments, function () {
-      callback(null, 'success');
+      State.callback(null, 'success');
     });
   },
 
-  config: {
-    Function<%= name %>: {
+  serverless: {
+    <%= name %>Function: {
       handler: 'app/Http/Functions/<%= name %>Function.handle',
     }
   }

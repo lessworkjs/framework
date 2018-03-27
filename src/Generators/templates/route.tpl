@@ -1,6 +1,6 @@
 'use strict';
 
-const Route = require('lesswork-framework/src/Route')(process.cwd());
+const Route = require('lesswork-framework/src/Route');
 
 module.exports = {
   get: function () {

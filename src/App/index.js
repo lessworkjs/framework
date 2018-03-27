@@ -18,12 +18,12 @@ class App extends Macroable {
   }
 
   registerGlobals() {
-    global.app = use('App');
+    global.App = use('App');
     global.Helpers = use('Helpers');
-    global.config = use('Config');
-    global.response = use('Response');
-    global.request = use('Request');
-    global.state = use('State');
+    global.Config = use('Config');
+    global.Response = use('Response');
+    global.Request = use('Request');
+    global.State = use('State');
     global.EXP = use('Exception');
     global.Route = use('Route');
 
@@ -40,7 +40,7 @@ class App extends Macroable {
     global.__ = Lintl.translate;
     global.lang = global.__;
 
-    this.setLocale(config.get('app.locale'));
+    this.setLocale(Config.get('app.locale'));
   }
 
   run(callback) {

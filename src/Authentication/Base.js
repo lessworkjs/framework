@@ -2,7 +2,7 @@
 
 class Base {
   callback() {
-    state.callback(null, this.IAMPolicy(...arguments));
+    State.callback(null, this.IAMPolicy(...arguments));
   }
 
   IAMPolicy(principalId, effect, resource, context) {
@@ -21,11 +21,11 @@ class Base {
   }
 
   getAuthorizationToken() {
-    if (!state.event('authorizationToken')) {
+    if (!State.event('authorizationToken')) {
       return false;
     }
 
-    const token = state.event('authorizationToken').split(' ');
+    const token = State.event('authorizationToken').split(' ');
 
     if (token.length === 2) {
       return token[1];
@@ -35,11 +35,11 @@ class Base {
   }
 
   deny(user) {
-    this.callback(user, 'Deny', state.event('methodArn'), {});
+    this.callback(user, 'Deny', State.event('methodArn'), {});
   }
 
   approve(authString, user) {
-    this.callback(authString, 'Allow', state.event('methodArn').split('/').slice(0, 2).join('/') + '/*', {
+    this.callback(authString, 'Allow', State.event('methodArn').split('/').slice(0, 2).join('/') + '/*', {
       user
     });
   }
