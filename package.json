@@ -1,7 +1,7 @@
 {
   "name": "lesswork-framework",
   "version": "0.0.28",
-  "description": "A nodejs based framework for AWS serverless applications.",
+  "description": "A nodejs based framework for serverless applications.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
