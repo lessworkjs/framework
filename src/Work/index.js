@@ -22,7 +22,7 @@ module.exports = function (app, basePath) {
   });
 
   work.onError(function (error) {
-    require('../lib/error')(error);
+    require('../../lib/error')(error);
     process.exit(1);
   });
 

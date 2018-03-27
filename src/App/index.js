@@ -40,7 +40,7 @@ class App extends Macroable {
     }
 
     return require('co')(callback).catch(error => {
-      require('../lib/error')(error);
+      require('../../lib/error')(error);
     });
   }
 

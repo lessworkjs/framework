@@ -31,7 +31,7 @@ class BaseCommand extends Command {
   }
 
   error(error) {
-    require('../../../lib/error')(error);
+    require('../../../../lib/error')(error);
   }
 
   run(command, flags) {

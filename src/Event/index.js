@@ -14,7 +14,7 @@ const Ioc = require('adonis-fold').Ioc
 const Resolver = require('adonis-binding-resolver')
 const resolver = new Resolver(Ioc)
 const _ = require('lodash')
-const util = require('../lib/util')
+const util = require('../../lib/util')
 const co = require('co')
 const Macroable = require('macroable');
 

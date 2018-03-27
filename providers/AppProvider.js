@@ -10,7 +10,7 @@ class AppProvider extends ServiceProvider {
 
   registerState() {
     this.app.singleton('Lesswork/State', function (app) {
-      const State = require('../State');
+      const State = require('../src/State');
 
       return new State();
     });
@@ -20,7 +20,7 @@ class AppProvider extends ServiceProvider {
 
   registerApp() {
     this.app.singleton('Lesswork/App', function (app) {
-      const App = require('../App');
+      const App = require('../src/App');
 
       return new App();
     });
@@ -30,7 +30,7 @@ class AppProvider extends ServiceProvider {
 
   registerConfig() {
     this.app.singleton('Lesswork/Config', function (app) {
-      const Config = require('../Config');
+      const Config = require('../src/Config');
 
       return new Config(app.use('Helpers').configPath());
     });
@@ -41,7 +41,7 @@ class AppProvider extends ServiceProvider {
 
   registerRoute() {
     this.app.singleton('Lesswork/Route', function (app) {
-      return require('../Route');
+      return require('../src/Route');
     });
 
     return this;
@@ -60,7 +60,7 @@ class AppProvider extends ServiceProvider {
 
   registerEnv() {
     this.app.singleton('Lesswork/Env', function (app) {
-      const Env = require('../Env');
+      const Env = require('../src/Env');
 
       return new Env(app.use('Helpers').appRoot());
     });
@@ -73,7 +73,7 @@ class AppProvider extends ServiceProvider {
 
   registerException() {
     this.app.bind('Lesswork/Exception', function (app) {
-      const Exception = require('../Exception');
+      const Exception = require('../src/Exception');
 
       return Exception;
     });
