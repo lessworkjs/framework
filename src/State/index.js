@@ -2,6 +2,15 @@
 
 const Macroable = require('macroable');
 
+/**
+ * State Class
+ *
+ * @alias State
+ * @binding Lesswork/State
+ * @group Core
+ *
+ * @class State
+ */
 class State extends Macroable {
   set(args) {
     this.state = {

@@ -6,6 +6,15 @@ const IntlMessageFormat = require('intl-messageformat');
 const path = require('path');
 const _ = require('lodash');
 
+/**
+ * Lintl Class
+ *
+ * @alias Lintl
+ * @binding Lesswork/Lintl
+ * @group Core
+ *
+ * @class Lintl
+ */
 class Lintl extends Macroable {
   constructor(fallback) {
     super();

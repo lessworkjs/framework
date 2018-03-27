@@ -18,6 +18,15 @@ const util = require('../../lib/util')
 const co = require('co')
 const Macroable = require('macroable');
 
+/**
+ * Event Class
+ *
+ * @alias Event
+ * @binding Lesswork/Event
+ * @group Core
+ *
+ * @class Event
+ */
 class Event extends Macroable {
 
   constructor(Config, Helpers) {

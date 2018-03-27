@@ -2,6 +2,11 @@
 
 const NE = require('node-exceptions')
 
+/**
+ * RuntimeException Class
+ * 
+ * @class RuntimeException
+ */
 class RuntimeException extends NE.RuntimeException {
 
   /**

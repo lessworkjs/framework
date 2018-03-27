@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Controller Class
+ *
+ * @class Controller
+ */
 class Controller {
 
 }

@@ -20,7 +20,7 @@ const debug = require('debug')('adonis:framework')
  * `.js` files from the `config` folder.
  *
  * @alias Config
- * @binding Adonis/Src/Config
+ * @binding Lesswork/Config
  * @group Core
  * @singleton
  *

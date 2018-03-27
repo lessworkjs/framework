@@ -27,7 +27,7 @@ const Macroable = require('macroable');
  * Can define different location by setting `ENV_PATH`
  * environment variable.
  *
- * @binding Adonis/Src/Env
+ * @binding Lesswork/Env
  * @group Core
  * @alias Env
  * @singleton

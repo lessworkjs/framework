@@ -2,6 +2,15 @@
 
 const Macroable = require('macroable');
 
+/**
+ * Request Class
+ *
+ * @alias Request
+ * @binding Lesswork/Request
+ * @group Core
+ *
+ * @class Request
+ */
 class Request extends Macroable {
   constructor(state) {
     super();

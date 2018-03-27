@@ -3,6 +3,15 @@
 const Macroable = require('macroable');
 const path = require('path');
 
+/**
+ * App Class
+ *
+ * @alias App
+ * @binding Lesswork/App
+ * @group Core
+ *
+ * @class App
+ */
 class App extends Macroable {
   constructor() {
     super();

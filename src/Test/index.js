@@ -3,6 +3,11 @@
 const path = require('path');
 const Macroable = require('macroable');
 
+/**
+ * Test Class
+ * 
+ * @class Test
+ */
 class Test extends Macroable {
   constructor() {
     super();
