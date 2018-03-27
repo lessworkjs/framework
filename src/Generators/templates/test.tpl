@@ -6,7 +6,7 @@ const assert = mochaPlugin.chai.assert;
 
 const Test = require('lesswork-framework/src/Test');
 
-let wrapped = mochaPlugin.getWrapper('<%= name %>', '/app/Http/Routes/<%= name %>Route', 'get');
+let wrapped = mochaPlugin.getWrapper('<%= name %>', '/app/Http/Routes/<%= name %>', 'get');
 
 describe('<%= name %>', () => {
   before((done) => {
