@@ -11,7 +11,6 @@
 
 const _ = require('lodash')
 const path = require('path')
-const dotenv = require('dotenv')
 const fs = require('fs')
 const debug = require('debug')('adonis:framework')
 const Macroable = require('macroable');
@@ -100,7 +99,7 @@ class Env extends Macroable {
     }
 
     try {
-      const envConfig = dotenv.parse(fs.readFileSync(options.path, options.encoding))
+      const envConfig = require(path.resolve(options.path))();
 
       /**
        * Dotenv doesn't overwrite existing env variables, so we

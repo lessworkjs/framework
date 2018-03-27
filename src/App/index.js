@@ -21,11 +21,19 @@ class App extends Macroable {
     global.App = use('App');
     global.Helpers = use('Helpers');
     global.Config = use('Config');
+    global.config = function () {
+      return use('Config').get(...arguments);
+    };
+
+    global.Env = use('Env');
+    global.env = function () {
+      return use('Env').get(...arguments);
+    };
+
     global.Response = use('Response');
     global.Request = use('Request');
     global.State = use('State');
     global.EXP = use('Exception');
-    global.Route = use('Route');
 
     this.registerLintl();
 
@@ -33,7 +41,7 @@ class App extends Macroable {
   }
 
   registerLintl() {
-    const Lintl = use('Lintl');
+    global.Lintl = use('Lintl');
 
     global.numberFormat = Lintl.numberFormat;
     global.dateFormat = Lintl.dateFormat;
