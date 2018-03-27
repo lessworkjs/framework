@@ -25,33 +25,32 @@ class Response extends Macroable {
     this.state.callback(null, this.body(statusCode || 500, error));
   }
 
-  successOrFailure() {
-    if (arguments[0] !== null) {
-      return this.failure(arguments[0]);
+  successOrFailure(...args) {
+    if (args[0] !== null) {
+      return this.failure(args[0]);
     }
 
-    const args = [].slice.call(arguments);
     this.success(...args.slice(1));
   }
 
-  success() {
+  success(...args) {
     let statusCode = 200;
     let data = null;
 
-    if (!arguments) {
+    if (!args) {
       statusCode = 204;
     }
 
-    if (arguments[0]) {
-      data = arguments[0];
+    if (args[0]) {
+      data = args[0];
     }
 
-    if (arguments[1] && typeof arguments[1] === 'function') {
-      data = arguments[1](data);
+    if (args[1] && typeof args[1] === 'function') {
+      data = args[1](data);
     }
 
-    if (arguments[1] && typeof arguments[1] === 'number' || arguments[2]) {
-      statusCode = arguments[2] || arguments[1];
+    if (args[1] && typeof args[1] === 'number' || args[2]) {
+      statusCode = args[2] || args[1];
     }
 
     this.state.callback(null, this.body(statusCode, data));
