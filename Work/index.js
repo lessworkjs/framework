@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = function (app) {
-  const work = require('../../../../work');
+const work = require('lesswork-cmd');
 
+module.exports = function (app, basePath) {
   let Commands = require('require-all')({
     dirname: __dirname + '/../Console/Commands',
     recursive: true,
@@ -21,11 +21,8 @@ module.exports = function (app) {
     work.addCommand(require(AppCommands[name]));
   });
 
-  work.onError(function (error, commandName) {
-    const PrettyError = require('pretty-error');
-
-    console.error(new PrettyError().render(error));
-
+  work.onError(function (error) {
+    require('../lib/error')(error);
     process.exit(1);
   });
 

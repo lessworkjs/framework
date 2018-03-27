@@ -4,19 +4,65 @@ const Macroable = require('macroable');
 const Intl = require('intl');
 const IntlMessageFormat = require('intl-messageformat');
 const path = require('path');
+const _ = require('lodash');
 
-class Translation extends Macroable {
+class Lintl extends Macroable {
   constructor(fallback) {
     super();
 
     this.fallback = fallback;
 
     this.translate = this._translate.bind(this);
+    this.numberFormat = this._numberFormat.bind(this);
+    this.dateFormat = this._dateFormat.bind(this);
+  }
+
+  _dateFormat(date, locale, fallback = true) {
+    locale = locale || use('App').getLocale();
+
+    if (fallback) {
+      fallback = this.fallback;
+    }
+
+    if (!locale) {
+      return date;
+    }
+
+    return new Intl.DateTimeFormat(_.without([locale, fallback], null)).format(date);
+  }
+
+  _numberFormat(...args) {
+    let number = args[0];
+    let locale = use('App').getLocale();
+    let fallback = true;
+    let format = false;
+
+    args.slice(1).forEach(function (_arg) {
+      if (typeof _arg === 'string') {
+        locale = _arg;
+      }
+
+      if (typeof _arg === 'object') {
+        format = _arg;
+      }
+
+      if (typeof _arg === 'boolean') {
+        fallback = _arg;
+      }
+    });
+
+    if (fallback) {
+      fallback = this.fallback;
+    }
+
+    if (!locale) {
+      return number;
+    }
+
+    return new Intl.NumberFormat(_.without([locale, fallback], null), format).format(number);
   }
 
   _translate(...args) {
-    console.log(args);
-
     let hash = args[0];
     let locale = null;
     let fallback = true;
@@ -76,4 +122,4 @@ class Translation extends Macroable {
   }
 }
 
-module.exports = Translation;
+module.exports = Lintl;

@@ -18,12 +18,20 @@ class App extends Macroable {
     global.EXP = use('Exception');
     global.Route = use('Route');
 
-    global.__ = use('Translation').translate;
+    this.registerLintl();
+
+    use('Event').fire('app:registerGlobals');
+  }
+
+  registerLintl() {
+    const Lintl = use('Lintl');
+
+    global.numberFormat = Lintl.numberFormat;
+    global.dateFormat = Lintl.dateFormat;
+    global.__ = Lintl.translate;
     global.lang = global.__;
 
     this.setLocale(config.get('app.locale'));
-
-    use('Event').fire('app:registerGlobals');
   }
 
   run(callback) {
@@ -31,7 +39,9 @@ class App extends Macroable {
       callback = Route(callback);
     }
 
-    return require('co')(callback);
+    return require('co')(callback).catch(error => {
+      require('../lib/error')(error);
+    });
   }
 
   environment() {

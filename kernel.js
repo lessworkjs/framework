@@ -44,9 +44,7 @@ module.exports = function (appRoot) {
       })
       .catch((error) => {
         if (!error.status || error.status == 500) {
-          const PrettyError = require('pretty-error');
-
-          console.error(new PrettyError().render(error));
+          require('./lib/error')(error);
         }
 
         if (typeof response === 'undefined') {

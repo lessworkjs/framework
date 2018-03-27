@@ -5,7 +5,6 @@ const {
 const ejs = require('ejs');
 const fs = require('fs');
 const path = require('path');
-const PrettyError = require('pretty-error');
 const exec = require('child_process').exec;
 
 class BaseCommand extends Command {
@@ -32,7 +31,7 @@ class BaseCommand extends Command {
   }
 
   error(error) {
-    console.error(new PrettyError().render(error));
+    require('../../../lib/error')(error);
   }
 
   run(command, flags) {
