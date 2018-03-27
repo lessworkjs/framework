@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "A nodejs based framework for AWS serverless applications.",
   "main": "index.js",
   "scripts": {
