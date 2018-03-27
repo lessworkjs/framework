@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "A nodejs based framework for AWS serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -33,6 +33,7 @@
     "require-all": "^2.2.0",
     "macroable": "^1.0.0",
     "pretty-error": "^2.1.1",
-    "intl-messageformat": "^2.2.0"
+    "intl-messageformat": "^2.2.0",
+    "intl": "^1.2.5"
   }
 }

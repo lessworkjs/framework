@@ -66,7 +66,7 @@ class BaseCommand extends Command {
 
   // TO-DO: accept arrays
   ejsToFile(template, destination, options) {
-    ejs.renderFile(__dirname + `/../../Generators/templates/${template}.tpl`, options, function (err, data) {
+    ejs.renderFile(path.join(__dirname, `/../../../Generators/templates/${template}.tpl`), options, function (err, data) {
       try {
         fs.writeFile(destination, data, 'utf8');
       } catch (err) {
