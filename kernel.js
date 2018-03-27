@@ -5,6 +5,8 @@ const fold = require('adonis-fold');
 const path = require('path');
 const Helpers = require('lesswork-framework/Helpers');
 
+require('./lib/env');
+
 module.exports = function (appRoot) {
   appRoot = path.join(appRoot, '..');
   const app = require(path.join(appRoot, './config/app'));

@@ -3,14 +3,9 @@
 const path = require('path');
 const Macroable = require('macroable');
 
-(new require('../App')).local();
-
-process.env = Object.assign(process.env, require(path.resolve(process.cwd(), '.env.js'))());
-
 class Test extends Macroable {
   constructor() {
     super();
-
     this.obj = {};
   }
 

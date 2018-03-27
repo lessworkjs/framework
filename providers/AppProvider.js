@@ -66,9 +66,7 @@ class AppProvider extends ServiceProvider {
     });
     this.app.alias('Adonis/Src/Env', 'Lesswork/Env');
 
-    global.env = function (hash, alt) {
-      return process.env[hash] || alt;
-    };
+    require('lesswork-framework/lib/env');
 
     return this;
   }

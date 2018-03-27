@@ -18,11 +18,12 @@ class App extends Macroable {
     global.EXP = use('Exception');
     global.Route = use('Route');
 
-    use('Event').fire('app:registerGlobals');
-  }
+    global.__ = use('Translation').translate;
+    global.lang = global.__;
 
-  local() {
-    process.env = Object.assign(process.env, require(path.resolve(process.cwd(), '.env.js'))());
+    this.setLocale(config.get('app.locale'));
+
+    use('Event').fire('app:registerGlobals');
   }
 
   run(callback) {
@@ -47,6 +48,18 @@ class App extends Macroable {
     }
 
     return process.env.APP_ENV;
+  }
+
+  getLocale() {
+    return this.locale;
+  }
+
+  isLocale(locale) {
+    return this.locale === locale;
+  }
+
+  setLocale(locale) {
+    this.locale = locale;
   }
 }
 
