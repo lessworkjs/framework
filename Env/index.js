@@ -138,7 +138,7 @@ class Env extends Macroable {
    */
   getEnvPath() {
     if (!process.env.ENV_PATH || process.env.ENV_PATH.length === 0) {
-      return '.env'
+      return '.env.js'
     }
     return process.env.ENV_PATH
   }

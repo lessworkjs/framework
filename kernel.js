@@ -41,13 +41,17 @@ module.exports = function (appRoot) {
         callback();
       })
       .catch((error) => {
-        use('Event').fire('app.error', error);
-
         if (!error.status || error.status == 500) {
           const PrettyError = require('pretty-error');
 
           console.error(new PrettyError().render(error));
         }
+
+        if (typeof response === 'undefined') {
+          return;
+        }
+
+        use('Event').fire('app.error', error);
 
         response.failure(use('ErrorTransformer').transform(error), error.status);
       });
