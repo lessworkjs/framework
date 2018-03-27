@@ -45,7 +45,7 @@ class App extends Macroable {
 
   run(callback) {
     if (typeof callback === 'string') {
-      callback = Route(callback);
+      callback = Helpers.requireByName(callback);
     }
 
     return require('co')(callback).catch(error => {

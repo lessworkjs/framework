@@ -1,10 +1,10 @@
 'use strict';
 
-const app = require('lesswork-framework/lib/app')(process.cwd());
+const Route = require('lesswork-framework/src/Route')(process.cwd());
 
 module.exports = {
   handle: function () {
-    app(arguments, function () {
+    Route(arguments, function () {
       callback(null, 'success');
     });
   },
