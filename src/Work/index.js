@@ -1,8 +1,9 @@
 'use strict';
 
 const work = require('lesswork-cmd');
+require('../../lib/env');
 
-module.exports = function (app, basePath) {
+module.exports = function (appConfig) {
   let Commands = require('require-all')({
     dirname: __dirname + '/../Console/Commands',
     recursive: true,
@@ -11,7 +12,7 @@ module.exports = function (app, basePath) {
 
   Commands = Object.assign({}, Commands.Console, Commands.Make);
 
-  const AppCommands = app.commands;
+  const AppCommands = appConfig.commands;
 
   Object.keys(Commands).forEach((name) => {
     work.addCommand(Commands[name]);
