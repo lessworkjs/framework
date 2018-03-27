@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * WIP
+ */
+
 const Macroable = require('macroable');
 const Intl = require('intl');
 const IntlMessageFormat = require('intl-messageformat');

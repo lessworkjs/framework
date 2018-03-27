@@ -17,7 +17,7 @@ class State extends Macroable {
       event: args[0] || {},
       context: args[1] || {},
       callback: args[2] || function () {
-        console.log('State Callback:', arguments);
+        // console.log('State Callback:', arguments);
       }
     };
 

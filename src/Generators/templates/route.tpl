@@ -1,6 +1,6 @@
 'use strict';
 
-const app = require('../../../bootstrap/app');
+const app = require('lesswork-framework/lib/app')(process.cwd());
 
 module.exports = {
   get: function () {
