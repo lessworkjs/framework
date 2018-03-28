@@ -32,7 +32,7 @@ class AppProvider extends ServiceProvider {
     this.app.singleton('Lesswork/Src/Config', function (app) {
       const Config = require('../src/Config');
 
-      return new Config(app.use('Helpers').configPath());
+      return new Config(use('Helpers').configPath());
     });
     this.app.alias('Adonis/Src/Config', 'Lesswork/Src/Config');
 
@@ -62,7 +62,7 @@ class AppProvider extends ServiceProvider {
     this.app.singleton('Lesswork/Src/Env', function (app) {
       const Env = require('../src/Env');
 
-      return new Env(app.use('Helpers').appRoot());
+      return new Env(use('Helpers').appRoot());
     });
     this.app.alias('Adonis/Src/Env', 'Lesswork/Src/Env');
 

@@ -31,7 +31,7 @@ class Lintl extends Macroable {
   }
 
   _dateFormat(date, locale, fallback = true) {
-    locale = locale || use('App').getLocale();
+    locale = locale || App.getLocale();
 
     if (fallback) {
       fallback = this.fallback;
@@ -46,7 +46,7 @@ class Lintl extends Macroable {
 
   _numberFormat(...args) {
     let number = args[0];
-    let locale = use('App').getLocale();
+    let locale = App.getLocale();
     let fallback = true;
     let format = false;
 
@@ -95,7 +95,7 @@ class Lintl extends Macroable {
       }
     });
 
-    const locales = [locale || use('App').getLocale()];
+    const locales = [locale || App.getLocale()];
 
     if (!locales.length) {
       return hash;

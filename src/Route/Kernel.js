@@ -17,15 +17,15 @@ module.exports = function (...args) {
   }
 
   require('../../lib/kernel')(process.cwd())(function () {
-    use('Event').fire('app:start');
+    Event.fire('app:start');
 
-    use('State').set(state);
+    State.set(state);
 
     use('App/Http/Kernel');
 
     new Run(callback, lastArg);
 
-    use('Event').fire('app:end');
+    Event.fire('app:end');
   });
 
   return args;

@@ -31,13 +31,19 @@ class App extends Macroable {
     };
 
     global.Response = use('Response');
+    global.response = function () {
+      return Response.success(...arguments);
+    }
+
     global.Request = use('Request');
     global.State = use('State');
     global.EXP = use('Exception');
 
     this.registerLintl();
 
-    use('Event').fire('app:registerGlobals');
+    global.Event = use('Event');
+
+    Event.fire('app:registerGlobals');
   }
 
   registerLintl() {

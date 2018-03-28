@@ -16,9 +16,13 @@ class Run extends Macroable {
     const Middleware = use('Middleware');
 
     const routeAction = function* (handler) {
-      const results = yield use('App').run(callback);
+      const results = yield App.run(callback);
 
       // TO-DO: collect.js 
+      if (!results) {
+        return;
+      }
+
       Response.success(results);
     };
 
@@ -51,6 +55,8 @@ class Run extends Macroable {
     };
 
     const handleError = function (error) {
+      require('../../lib/error')(error);
+
       Response.error(use('ErrorTransformer').transform(error), error.status);
     }
 
@@ -63,7 +69,7 @@ class Run extends Macroable {
       });
     };
 
-    _respond(use('Request'), use('Response'), finalHandler);
+    _respond(Request, Response, finalHandler);
   }
 }
 
