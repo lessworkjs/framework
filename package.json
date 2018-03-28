@@ -36,6 +36,7 @@
     "macroable": "^1.0.0",
     "nyc": "^11.6.0",
     "pretty-error": "^2.1.1",
+    "repl.history": "^0.1.4",
     "require-all": "^2.2.0",
     "serverless-aws-documentation": "^1.0.1",
     "serverless-mocha-plugin": "^1.7.0",

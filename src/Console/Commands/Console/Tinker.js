@@ -15,7 +15,9 @@ class Serve extends BaseCommand {
   handle(options, flags) {
     this.success(`Lesswork Tinker: ${App.environment()}`);
 
-    repl.start(`>>> `);
+    const _repl = repl.start(`>>> `);
+
+    require('repl.history')(_repl, process.env.HOME + '/.node_history');
   }
 }
 
