@@ -25,9 +25,9 @@ module.exports = function (...args) {
 
     const handle = function () {
       if (process.env.LESSWORK_CMD) {
-        callback();
-
         delete process.env.LESSWORK_CMD;
+
+        callback();
 
         return;
       }
