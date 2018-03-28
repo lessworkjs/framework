@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/lessworkjs/framework/badge.svg?branch=master)](https://coveralls.io/github/lessworkjs/framework?branch=master)
+
 # lesswork-framework
 A nodejs based framework for serverless applications.
 
