@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "A nodejs based framework for serverless applications.",
   "main": "index.js",
   "scripts": {
