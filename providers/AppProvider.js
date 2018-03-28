@@ -62,7 +62,7 @@ class AppProvider extends ServiceProvider {
     this.app.singleton('Lesswork/Src/Env', function (app) {
       const Env = require('../src/Env');
 
-      return new Env(use('Helpers').appRoot());
+      return new Env(use('Helpers')._appRoot);
     });
     this.app.alias('Adonis/Src/Env', 'Lesswork/Src/Env');
 

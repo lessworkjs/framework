@@ -2,7 +2,7 @@
 
 const work = require('lesswork-cmd');
 
-module.exports = function (appConfig) {
+module.exports = function (appConfig, testing) {
   let Commands = require('require-all')({
     dirname: __dirname + '/../Console/Commands',
     recursive: true,
@@ -27,6 +27,10 @@ module.exports = function (appConfig) {
   });
 
   work.wireUpWithCommander();
+
+  if (testing) {
+    return work;
+  }
 
   work.invoke();
 };

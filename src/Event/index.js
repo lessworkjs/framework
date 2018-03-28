@@ -17,6 +17,7 @@ const _ = require('lodash')
 const util = require('../../lib/util')
 const co = require('co')
 const Macroable = require('macroable');
+const CE = require('../Exception');
 
 /**
  * Event Class
@@ -176,7 +177,7 @@ class Event extends Macroable {
   removeListener(event, name) {
     const handler = this.namedListeners[name]
     if (!handler) {
-      //throw CE.InvalidArgumentException.missingEvent(event, name)
+      throw CE.InvalidArgumentException.missingEvent(event, name)
       throw (event, name)
     }
     this.emitter.removeListener(event, handler)

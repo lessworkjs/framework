@@ -13,7 +13,16 @@ const _ = require('lodash')
 const path = require('path')
 const fs = require('fs')
 const debug = require('debug')('adonis:framework')
-const Macroable = require('macroable');
+
+const jsconfig = function (file) {
+  try {
+    return require(file)();
+  } catch (e) {
+    return {
+      error: e
+    }
+  }
+}
 
 /**
  * Manages the application environment variables by
@@ -26,7 +35,7 @@ const Macroable = require('macroable');
  * Can define different location by setting `ENV_PATH`
  * environment variable.
  *
- * @binding Lesswork/Env
+ * @binding Adonis/Src/Env
  * @group Core
  * @alias Env
  * @singleton
@@ -34,10 +43,8 @@ const Macroable = require('macroable');
  * @class Env
  * @constructor
  */
-class Env extends Macroable {
+class Env {
   constructor(appRoot) {
-    super()
-
     this.appRoot = appRoot
     const bootedAsTesting = process.env.NODE_ENV === 'testing'
     const env = this.load(this.getEnvPath(), false) // do not overwrite at first place
@@ -55,7 +62,7 @@ class Env extends Macroable {
      * under testing mode
      */
     if (bootedAsTesting) {
-      this.load('.env.testing')
+      this.load('.env.testing.js')
     }
   }
 
@@ -72,7 +79,7 @@ class Env extends Macroable {
    * @private
    */
   _interpolate(env, envConfig) {
-    const matches = env.match(/\$([a-zA-Z0-9_]+)|\${([a-zA-Z0-9_]+)}/g) || []
+    const matches = String(env).match(/\$([a-zA-Z0-9_]+)|\${([a-zA-Z0-9_]+)}/g) || []
     _.each(matches, (match) => {
       const key = match.replace(/\$|{|}/g, '')
       const variable = envConfig[key] || process.env[key] || ''
@@ -99,7 +106,8 @@ class Env extends Macroable {
     }
 
     try {
-      const envConfig = require(path.resolve(options.path))();
+
+      const envConfig = jsconfig(options.path)
 
       /**
        * Dotenv doesn't overwrite existing env variables, so we

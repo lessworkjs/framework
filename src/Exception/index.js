@@ -20,55 +20,6 @@ class RuntimeException extends NE.RuntimeException {
   }
 
   /**
-   * this exception is thrown when a route action is referenced
-   * inside a view but not registered within the routes file.
-   *
-   * @param  {String} action
-   * @param  {Number} [code=500]
-   *
-   * @return {Object}
-   */
-  static missingRouteAction(action, code) {
-    return new this(`The action ${action} has not been found`, code || this.defaultErrorCode, 'E_MISSING_ROUTE_ACTION')
-  }
-
-  /**
-   * this exception is thrown when a route is referenced inside
-   * a view but not registered within the routes file.
-   *
-   * @param  {String} route
-   * @param  {Number} [code=500]
-   *
-   * @return {Object}
-   */
-  static missingRoute(route, code) {
-    return new this(`The route ${route} has not been found`, code || this.defaultErrorCode, 'E_MISSING_ROUTE')
-  }
-
-  /**
-   * this exceptions is raised when mac is invalid when
-   * trying to encrypt data
-   *
-   * @param  {Number} [code=500]
-   *
-   * @return {Object}
-   */
-  static invalidEncryptionMac(code) {
-    return new this('The MAC is invalid', code || this.defaultErrorCode, 'E_INVALID_ENCRYPTION_MAC')
-  }
-
-  /**
-   * this exception is raised when encryption payload is not valid
-   *
-   * @param  {Number} [code=500]
-   *
-   * @return {Object}
-   */
-  static invalidEncryptionPayload(code) {
-    return new this('The payload is invalid', code || this.defaultErrorCode, 'E_INVALID_ENCRYPTION_PAYLOAD')
-  }
-
-  /**
    * this exception is raised when expected value is
    * not a valid json object.
    *

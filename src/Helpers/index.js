@@ -94,8 +94,11 @@ class Helpers extends Macroable {
    *
    * @return {String}
    */
-  configPath(toFile = '') {
-    return path.join(this._appRoot, '/config', toFile)
+  configPath() {
+    if (arguments[0]) {
+      throw new Error('You should never read a config file from the config directory and instead use config provider.')
+    }
+    return path.join(this._appRoot, '/config')
   }
 
   /**
