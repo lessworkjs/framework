@@ -1,6 +1,6 @@
 'use strict';
 
-const Kernel = require('./Kernel');
+const Kernel = require('../Kernel');
 
 const Macroable = require('macroable');
 
