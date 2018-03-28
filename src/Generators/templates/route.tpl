@@ -4,6 +4,6 @@ const Route = require('lesswork-framework/src/Route');
 
 module.exports = {
   get: function () {
-    Route(arguments, 'App/Http/Controllers/<%= name %>Controller@get');
-  }
+    return Route(arguments).get('<%= name %>', 'App/Http/Controllers/<%= name %>Controller@get');
+  },
 };

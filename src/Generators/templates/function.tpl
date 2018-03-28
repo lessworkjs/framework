@@ -1,10 +1,10 @@
 'use strict';
 
-const Route = require('lesswork-framework/src/Route');
+const Kernel = require('lesswork-framework/src/Route/Kernel');
 
 module.exports = {
   handle: function () {
-    Route(arguments, function () {
+    Kernel(arguments, function () {
       State.callback(null, 'success');
     });
   },

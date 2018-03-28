@@ -1,21 +1,22 @@
 'use strict';
 
-const Route = require('lesswork-framework/src/Route');
+const Kernel = require('lesswork-framework/src/Route/Kernel');
 
-const Basic = require('lesswork-framework/Authentication/Basic');
+const Basic = require('lesswork-framework/src/Authentication/Basic');
 
 module.exports = {
   auth: function () {
-    Route(arguments, function () {
+    Kernel(arguments, function () {
       new Basic().auth('test', 'test');
     });
   },
 
   serverless: {
-    Authentication<%= name %>Basic: {
-      handler: 'app/Http/Authentication/<%= name %>Basic.auth',
+    AuthenticationBasic: {
+      handler: 'app/Http/Authentication/Basic.auth',
       documentation: {
         description: 'Basic Auth.'
       }
     }
+  }
 };
