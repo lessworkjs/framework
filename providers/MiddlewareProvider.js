@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * adonis-framework
@@ -6,17 +6,17 @@
  * MIT Licensed
  */
 
-const ServiceProvider = require('adonis-fold').ServiceProvider
+const ServiceProvider = require('adonis-fold').ServiceProvider;
 
 class MiddlewareProvider extends ServiceProvider {
 
   * register() {
     this.app.bind('Lesswork/Src/Middleware', function () {
-      return require('../src/Middleware')
-    })
+      return require('../src/Middleware');
+    });
 
     this.app.alias('Adonis/Src/Middleware', 'Lesswork/Src/Middleware');
   }
 }
 
-module.exports = MiddlewareProvider
+module.exports = MiddlewareProvider;

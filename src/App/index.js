@@ -51,14 +51,16 @@ class App extends Macroable {
     this.setLocale(Config.get('app.locale'));
   }
 
-  run(callback) {
+  * run(callback) {
     if (typeof callback === 'string') {
       callback = Helpers.requireByName(callback);
     }
 
-    return require('co')(callback).catch(error => {
+    const results = yield require('co')(callback).catch(error => {
       require('../../lib/error')(error);
     });
+
+    return results;
   }
 
   environment() {

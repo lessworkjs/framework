@@ -6,7 +6,7 @@
  * MIT Licensed
  */
 
-let helpers = exports = module.exports = {}
+let helpers = module.exports = {}
 
 /**
  * returns an array of middleware concatenated with

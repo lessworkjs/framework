@@ -190,7 +190,10 @@ class Event extends Macroable {
    * @public
    */
   removeListeners(event) {
-    event ? this.emitter.removeAllListeners(event) : this.emitter.removeAllListeners()
+    if (event) {
+      return this.emitter.removeAllListeners(event)
+    }
+    this.emitter.removeAllListeners()
   }
 
   /**

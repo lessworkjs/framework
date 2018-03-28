@@ -2,9 +2,9 @@
 
 class <%= name %>Controller extends require('lesswork-framework/Controller') {
   * get() {
-    Response.success({
+    return {
       hello: 'world'
-    });
+    };
   }
 }
 

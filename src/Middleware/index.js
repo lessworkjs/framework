@@ -62,7 +62,7 @@ const _composeObject = function (middleware) {
  * for a given HTTP request.
  * @module Middleware
  */
-let Middleware = exports = module.exports = {}
+let Middleware = module.exports = {}
 
 /**
  * clears off all global and named middleware

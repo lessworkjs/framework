@@ -12,7 +12,10 @@ class Run {
     const Middleware = use('Middleware');
 
     const routeAction = function* (handler) {
-      use('App').run(callback);
+      const results = yield use('App').run(callback);
+
+      // TO-DO: collect.js 
+      Response.success(results);
     };
 
     let routeMiddlewares = false;
