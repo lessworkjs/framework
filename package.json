@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "A nodejs based framework for serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -29,16 +29,17 @@
     "adonis-binding-resolver": "^1.0.1",
     "adonis-fold": "3.0.3",
     "child_process": "^1.0.2",
+    "intl": "^1.2.5",
+    "intl-messageformat": "^2.2.0",
     "lesswork-cmd": "^5.0.7",
+    "lodash": "^4.17.5",
+    "macroable": "^1.0.0",
     "nyc": "^11.6.0",
+    "pretty-error": "^2.1.1",
+    "require-all": "^2.2.0",
     "serverless-aws-documentation": "^1.0.1",
     "serverless-mocha-plugin": "^1.7.0",
-    "serverless-offline": "^3.18.0",
-    "require-all": "^2.2.0",
-    "macroable": "^1.0.0",
-    "pretty-error": "^2.1.1",
-    "intl-messageformat": "^2.2.0",
-    "intl": "^1.2.5"
+    "serverless-offline": "^3.18.0"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",

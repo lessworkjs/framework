@@ -40,7 +40,7 @@ class Helpers extends Macroable {
     try {
       return make(use(route))[method]();
     } catch (e) {
-      throw new Error(`Unable to load method '${method}' on '${route}'\n${Helpers.appRoot(hash[0])}.js\n${e}`);
+      throw new Error(`Unable to load method '${method}' on '${route}'\n${this.appRoot(hash[0])}.js\n${e}`);
     }
   }
 
