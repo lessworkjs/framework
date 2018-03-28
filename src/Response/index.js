@@ -6,7 +6,7 @@ const Macroable = require('macroable');
  * Response Class
  *
  * @alias Response
- * @binding Lesswork/Response
+ * @namespace Lesswork/Src/Response
  * @group Core
  *
  * @class Response

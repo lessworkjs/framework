@@ -17,7 +17,7 @@ const fs = require('fs');
  * This class returns absolute path to commonly
  * used AdonisJs directories.
  *
- * @namespace Lesswork/Helpers
+ * @namespace Lesswork/Src/Helpers
  * @alias Helpers
  * @singleton
  * @group Core

@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Authentication Base Class
+ * 
+ * @class Base
+ */
 class Base {
   callback() {
     State.callback(null, this.IAMPolicy(...arguments));

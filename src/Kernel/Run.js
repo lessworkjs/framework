@@ -12,7 +12,7 @@ class Run extends Macroable {
   constructor(callback, lastArg) {
     super();
 
-    const helpers = require('./helpers');
+    const helpers = require('../Route/helpers');
     const Middleware = use('Middleware');
 
     const routeAction = function* (handler) {

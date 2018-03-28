@@ -23,7 +23,19 @@ module.exports = function (...args) {
 
     use('App/Http/Kernel');
 
-    new Run(callback, lastArg);
+    const handle = function () {
+      if (process.env.LESSWORK_CMD) {
+        callback();
+
+        delete process.env.LESSWORK_CMD;
+
+        return;
+      }
+
+      new Run(callback, lastArg);
+    }
+
+    handle();
 
     Event.fire('app:end');
   });

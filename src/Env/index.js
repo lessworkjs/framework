@@ -35,7 +35,7 @@ const jsconfig = function (file) {
  * Can define different location by setting `ENV_PATH`
  * environment variable.
  *
- * @binding Adonis/Src/Env
+ * @namespace Adonis/Src/Env
  * @group Core
  * @alias Env
  * @singleton

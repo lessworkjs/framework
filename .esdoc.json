@@ -2,6 +2,13 @@
   "source": "./src",
   "destination": "../../../repos/docs",
   "plugins": [{
-    "name": "esdoc-standard-plugin"
-  }]
+      "name": "esdoc-standard-plugin"
+    },
+    {
+      "name": "esdoc-lint-plugin",
+      "option": {
+        "enable": false
+      }
+    }
+  ]
 }

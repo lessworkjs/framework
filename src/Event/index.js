@@ -23,7 +23,7 @@ const CE = require('../Exception');
  * Event Class
  *
  * @alias Event
- * @binding Lesswork/Event
+ * @namespace Lesswork/Src/Event
  * @group Core
  *
  * @class Event

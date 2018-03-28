@@ -30,7 +30,7 @@ class Test extends Macroable {
 
   get(key = 'id', value = 1, encode) {
     if (encode) {
-      //value = hashids.encode(value);
+      // value = hashids.encode(value);
     }
 
     this.obj.pathParameters = this.obj.pathParameters || {};

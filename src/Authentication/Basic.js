@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Authentication Basic Class
+ * 
+ * @class Basic
+ */
 class Basic extends require('./Base') {
   auth(user, pass) {
     const authString = 'Basic ' + new Buffer(user + ':' + pass).toString('base64');

@@ -14,7 +14,7 @@ const _ = require('lodash');
  * Lintl Class
  *
  * @alias Lintl
- * @binding Lesswork/Lintl
+ * @namespace Lesswork/Src/Lintl
  * @group Core
  *
  * @class Lintl

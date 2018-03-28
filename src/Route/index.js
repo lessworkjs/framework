@@ -1,9 +1,17 @@
 'use strict';
 
 const Kernel = require('../Kernel');
-
 const Macroable = require('macroable');
 
+/**
+ * Route Class
+ *
+ * @alias Route
+ * @namespace Lesswork/Src/Route
+ * @group Core
+ *
+ * @class Request
+ */
 class Route extends Macroable {
   constructor(args) {
     super();

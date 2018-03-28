@@ -6,7 +6,7 @@ const Macroable = require('macroable');
  * Request Class
  *
  * @alias Request
- * @binding Lesswork/Request
+ * @namespace Lesswork/Src/Request
  * @group Core
  *
  * @class Request

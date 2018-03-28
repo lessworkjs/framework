@@ -6,7 +6,7 @@ const Macroable = require('macroable');
  * State Class
  *
  * @alias State
- * @binding Lesswork/State
+ * @namespace Lesswork/Src/State
  * @group Core
  *
  * @class State
@@ -16,9 +16,7 @@ class State extends Macroable {
     this.state = {
       event: args[0] || {},
       context: args[1] || {},
-      callback: args[2] || function () {
-        //
-      }
+      callback: args[2] || function () {}
     };
 
     this.state.context.callbackWaitsForEmptyEventLoop = false;
