@@ -1,7 +1,6 @@
 'use strict';
 
 const work = require('lesswork-cmd');
-require('../../lib/env');
 
 module.exports = function (appConfig) {
   let Commands = require('require-all')({

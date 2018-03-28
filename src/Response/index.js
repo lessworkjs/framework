@@ -25,18 +25,18 @@ class Response extends Macroable {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true
       },
-      body: JSON.stringify(body) || {},
+      body: body ? JSON.stringify(body) : {},
       isBase64Encoded: false
     };
   }
 
-  failure(error, statusCode) {
+  error(error, statusCode) {
     this.state.callback(null, this.body(statusCode || 500, error));
   }
 
-  successOrFailure(...args) {
+  successOrError(...args) {
     if (args[0] !== null) {
-      return this.failure(args[0]);
+      return this.error(args[0]);
     }
 
     this.success(...args.slice(1));

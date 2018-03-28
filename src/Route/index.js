@@ -1,29 +1,72 @@
 'use strict';
 
-module.exports = function (...args) {
-  if (process.env.LESSWORK_FUNCTION_MODE) {
-    return args;
+const Kernel = require('./Kernel');
+
+class Route {
+  constructor(args) {
+    this._middleware = null;
+    this._authorizer = null;
+    this._arguments = args;
+
   }
 
-  const appRoot = process.cwd();
-
-  const state = args[0];
-
-  let callback = args[1];
-
-  if ((args.length === 3 && typeof args[args.length - 1] !== 'object') || args.length === 4) {
-    callback = args[2];
+  setArgs(args) {
+    this._arguments = args;
+    return this;
   }
 
-  require('../../lib/kernel')(appRoot)(function () {
-    use('Event').fire('app:start');
+  auth(authorizer) {
+    this._authorizer = authorizer;
+    return this;
+  }
 
-    use('State').set(state);
+  middleware(middleware) {
+    this._middleware = (typeof middleware === 'object') ? middleware : [middleware];
+    return this;
+  }
 
-    use('App').run(callback);
+  run(method, path, callback, options = {}) {
+    let middleware = this._middleware;
+    let authorizer = this._authorizer;
 
-    use('Event').fire('app:end');
-  });
+    return Kernel(this._arguments, path, callback, Object.assign({
+      method,
+      middleware,
+      authorizer,
+    }, options));
+  }
 
-  return args;
+  get() {
+    return this.run('get', ...arguments);
+  }
+
+  post() {
+    return this.run('post', ...arguments);
+  }
+
+  put() {
+    return this.run('put', ...arguments);
+  }
+
+  patch() {
+    return this.run('patch', ...arguments);
+  }
+
+  delete() {
+    return this.run('delete', ...arguments);
+  }
+
+  options() {
+    return this.run('options', ...arguments);
+  }
+
+  connect() {
+    return this.run('connect', ...arguments);
+  }
+}
+
+const route = new Route();
+
+module.exports = function (args) {
+  return route.setArgs(args);
 };

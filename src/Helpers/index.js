@@ -240,6 +240,27 @@ class Helpers extends Macroable {
      */
     return !!process.mainModule.children.find((child) => child.filename.endsWith('ace'))
   }
+
+  /**
+   * makes complete namespace for a given path and base
+   * namespace
+   *
+   * @method makeNameSpace
+   *
+   * @param  {String}      baseNameSpace
+   * @param  {String}      toPath
+   * @return {String}
+   *
+   * @public
+   */
+  makeNameSpace(baseNameSpace, toPath) {
+    const appNameSpace = 'App';
+
+    if (toPath.startsWith(`${appNameSpace}/`)) {
+      return toPath
+    }
+    return path.normalize(`${appNameSpace}/${baseNameSpace}/${toPath}`)
+  }
 }
 
 module.exports = Helpers

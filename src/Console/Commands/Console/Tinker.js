@@ -13,7 +13,7 @@ class Serve extends BaseCommand {
   }
 
   handle(options, flags) {
-    this.success(`Lesswork Tinker: ${app.environment()}`);
+    this.success(`Lesswork Tinker: ${App.environment()}`);
 
     repl.start(`>>> `);
   }
