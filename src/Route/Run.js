@@ -6,8 +6,12 @@
  * 
  */
 
-class Run {
+const Macroable = require('macroable');
+
+class Run extends Macroable {
   constructor(callback, lastArg) {
+    super();
+
     const helpers = require('./helpers');
     const Middleware = use('Middleware');
 

@@ -2,8 +2,12 @@
 
 const Kernel = require('./Kernel');
 
-class Route {
+const Macroable = require('macroable');
+
+class Route extends Macroable {
   constructor(args) {
+    super();
+
     this._middleware = null;
     this._authorizer = null;
     this._arguments = args;
