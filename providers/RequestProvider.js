@@ -14,7 +14,7 @@ class RequestProvider extends ServiceProvider {
    * @return {void}
    */
   * register() {
-    this.app.bind('Lesswork/Request', function (app) {
+    this.app.bind('Lesswork/Src/Request', function (app) {
       const Request = require('../src/Request');
 
       return new Request(use('State'));

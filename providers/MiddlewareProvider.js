@@ -11,11 +11,11 @@ const ServiceProvider = require('adonis-fold').ServiceProvider
 class MiddlewareProvider extends ServiceProvider {
 
   * register() {
-    this.app.bind('Lesswork/Middleware', function () {
+    this.app.bind('Lesswork/Src/Middleware', function () {
       return require('../src/Middleware')
     })
 
-    this.app.alias('Adonis/Src/Middleware', 'Lesswork/Middleware');
+    this.app.alias('Adonis/Src/Middleware', 'Lesswork/Src/Middleware');
   }
 }
 

@@ -14,7 +14,7 @@ class EventProvider extends ServiceProvider {
    * @return {void}
    */
   * register() {
-    this.app.singleton('Lesswork/Event', function (app) {
+    this.app.singleton('Lesswork/Src/Event', function (app) {
       const Event = require('../src/Event');
 
       return new Event(use('Config'), use('Helpers'));

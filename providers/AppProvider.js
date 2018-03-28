@@ -9,7 +9,7 @@ const path = require('path');
 class AppProvider extends ServiceProvider {
 
   registerState() {
-    this.app.singleton('Lesswork/State', function (app) {
+    this.app.singleton('Lesswork/Src/State', function (app) {
       const State = require('../src/State');
 
       return new State();
@@ -19,7 +19,7 @@ class AppProvider extends ServiceProvider {
   }
 
   registerApp() {
-    this.app.singleton('Lesswork/App', function (app) {
+    this.app.singleton('Lesswork/Src/App', function (app) {
       const App = require('../src/App');
 
       return new App();
@@ -29,18 +29,18 @@ class AppProvider extends ServiceProvider {
   }
 
   registerConfig() {
-    this.app.singleton('Lesswork/Config', function (app) {
+    this.app.singleton('Lesswork/Src/Config', function (app) {
       const Config = require('../src/Config');
 
       return new Config(app.use('Helpers').configPath());
     });
-    this.app.alias('Adonis/Src/Config', 'Lesswork/Config');
+    this.app.alias('Adonis/Src/Config', 'Lesswork/Src/Config');
 
     return this;
   }
 
   registerRoute() {
-    this.app.singleton('Lesswork/Route', function (app) {
+    this.app.singleton('Lesswork/Src/Route', function (app) {
       return require('../src/Route');
     });
 
@@ -48,23 +48,23 @@ class AppProvider extends ServiceProvider {
   }
 
   registerCommand() {
-    this.app.bind('Lesswork/Command', function (app) {
+    this.app.bind('Lesswork/Src/Command', function (app) {
       const work = require('lesswork-cmd');
 
       return work.Command;
     });
-    this.app.alias('Adonis/Src/Command', 'Lesswork/Command');
+    this.app.alias('Adonis/Src/Command', 'Lesswork/Src/Command');
 
     return this;
   }
 
   registerEnv() {
-    this.app.singleton('Lesswork/Env', function (app) {
+    this.app.singleton('Lesswork/Src/Env', function (app) {
       const Env = require('../src/Env');
 
       return new Env(app.use('Helpers').appRoot());
     });
-    this.app.alias('Adonis/Src/Env', 'Lesswork/Env');
+    this.app.alias('Adonis/Src/Env', 'Lesswork/Src/Env');
 
     require('lesswork-framework/lib/env');
 
@@ -72,12 +72,12 @@ class AppProvider extends ServiceProvider {
   }
 
   registerException() {
-    this.app.bind('Lesswork/Exception', function (app) {
+    this.app.bind('Lesswork/Src/Exception', function (app) {
       const Exception = require('../src/Exception');
 
       return Exception;
     });
-    this.app.alias('Adonis/Src/Exception', 'Lesswork/Exception');
+    this.app.alias('Adonis/Src/Exception', 'Lesswork/Src/Exception');
 
     return this;
   }

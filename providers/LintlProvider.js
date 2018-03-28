@@ -14,7 +14,7 @@ class LintlProvider extends ServiceProvider {
    * @return {void}
    */
   * register() {
-    this.app.singleton('Lesswork/Lintl', function (app) {
+    this.app.singleton('Lesswork/Src/Lintl', function (app) {
       const Lintl = require('../src/Lintl');
 
       return new Lintl(app.use('Config').get('app.fallback_locale'));
