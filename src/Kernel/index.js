@@ -5,11 +5,13 @@ const path = require('path');
 
 class Kernel {
   constructor(state, appRoot) {
-    this._state = state;
+    this._state = state || [{}, {}, () => {}];
     this._appRoot = appRoot || process.cwd();
   }
 
   handle(...args) {
+    // TO-DO: refactor for appRoot update
+    // Don't unshift, instead change rest of class to be.. a class :P.
     args.unshift(this._state);
 
     if (process.env.LESSWORK_FUNCTION_MODE) {
@@ -25,7 +27,8 @@ class Kernel {
       callback = args[2];
     }
 
-    require('../../lib/kernel')(this._appRoot)(function () {
+    // TO-DO: refactor out th need...
+    require('./lib')(this._appRoot)(function () {
       Event.fire('app:start');
 
       State.set(state);

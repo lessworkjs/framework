@@ -4,7 +4,7 @@ const fold = require('adonis-fold');
 
 const path = require('path');
 
-const Globals = require('../src/Globals');
+const Globals = require('../Globals');
 
 module.exports = function (appRoot) {
 
