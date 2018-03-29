@@ -7,6 +7,8 @@
  */
 
 const Macroable = require('macroable');
+const co = require('co');
+const Helpers = require('../Helpers');
 
 class Run extends Macroable {
   constructor(callback, lastArg) {
@@ -15,8 +17,20 @@ class Run extends Macroable {
     const helpers = require('../Route/helpers');
     const Middleware = use('Middleware');
 
+    const run = function* (callback) {
+      if (typeof callback === 'string') {
+        callback = new Helpers().requireByName(callback);
+      }
+
+      const results = yield co(callback).catch(error => {
+        require('../../lib/error')(error);
+      });
+
+      return results;
+    }
+
     const routeAction = function* (handler) {
-      const results = yield App.run(callback);
+      const results = yield run(callback);
 
       // TO-DO: collect.js 
       if (!results) {

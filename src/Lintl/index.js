@@ -20,11 +20,11 @@ const _ = require('lodash');
  * @class Lintl
  */
 class Lintl extends Macroable {
-  constructor(app, helpers, fallback) {
+  constructor(App, Helpers, fallback) {
     super();
 
-    this.app = app;
-    this.helpers = helpers;
+    this.app = App;
+    this.helpers = Helpers;
     this.fallback = fallback;
 
     this.translate = this._translate.bind(this);

@@ -1,10 +1,12 @@
 'use strict';
 
 const work = require('lesswork-cmd');
+const commandsPath = require.resolve('lesswork-commands');
+const path = require('path');
 
 module.exports = function (appConfig, testing) {
   let Commands = require('require-all')({
-    dirname: __dirname + '/../Console/Commands',
+    dirname: path.join(commandsPath, '../src/'),
     recursive: true,
     excludeDirs: /^BaseCommand$/,
   });
