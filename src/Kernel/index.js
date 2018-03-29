@@ -33,8 +33,7 @@ class Kernel {
       require(Helpers.appRoot('app/Http/Kernel'))
 
       const handle = function () {
-        if (process.env.LESSWORK_CMD) {
-          delete process.env.LESSWORK_CMD;
+        if (Helpers.isWorkCommand()) {
           return callback();
         }
 

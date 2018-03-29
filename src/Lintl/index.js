@@ -74,7 +74,7 @@ class Lintl extends Macroable {
       return number;
     }
 
-    return new Intl.NumberFormat(_.without([locale, fallback], null), format).format(number);
+    return new Intl.NumberFormat(_.without([locale, fallback || null], null), format).format(number);
   }
 
   _translate(...args) {

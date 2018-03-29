@@ -19,5 +19,12 @@ test.group('Lintl', (group) => {
     lintl._numberFormat('1,000')
     lintl._translate('message.hello')
 
+    lintl._numberFormat('1,000', 'en-US', {
+      style: 'currency',
+      currency: 'JPY'
+    }, false)
+
+    lintl._translate('message.hello', 'en-US', {}, false)
+
   })
 })

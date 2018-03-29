@@ -12,7 +12,7 @@ const Middleware = use('Middleware');
 |
 */
 const globalMiddleware = [
-  'App/Http/Middleware/Global'
+
 ];
 
 /*

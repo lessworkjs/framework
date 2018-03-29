@@ -42,7 +42,7 @@ test.group('Helpers', (group) => {
   })
 
   test('return false when process has not been started with ace', (assert) => {
-    assert.isFalse(this.helpers.isAceCommand())
+    assert.isFalse(this.helpers.isWorkCommand())
   })
 
   test('return path to a file inside public dir', (assert) => {
@@ -95,6 +95,11 @@ test.group('Helpers', (group) => {
 
   test('return path to a file inside tmp dir', (assert) => {
     assert.equal(this.helpers.tmpPath('logs.txt'), path.join(__dirname, './tmp/logs.txt'))
+  })
+
+  test('namespace...', (assert) => {
+    this.helpers.makeNameSpace('Test', 'test')
+    this.helpers.makeNameSpace('Test', 'App/test');
   })
 
 })

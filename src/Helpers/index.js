@@ -10,7 +10,6 @@
 
 const Macroable = require('macroable');
 const path = require('path')
-const pify = require('pify')
 const fs = require('fs');
 
 /**
@@ -210,30 +209,17 @@ class Helpers extends Macroable {
   }
 
   /**
-   * Promisify callback style functions
-   *
-   * @method promisify
-   *
-   * @param  {Function} fn
-   * @param  {Object}   options
-   *
-   * @return {Promise}
-   */
-  promisify(fn, options) {
-    return pify(fn, options)
-  }
-
-  /**
    * Tells whether the process has been started by
    * ace command.
    *
-   * @method isAceCommand
+   * @method isWorkCommand
    *
    * @return {Boolean}
    */
-  isAceCommand() {
+  isWorkCommand() {
     const processFile = process.mainModule.filename
-    if (processFile.endsWith('ace')) {
+
+    if (processFile.endsWith('work')) {
       return true
     }
 
@@ -241,7 +227,7 @@ class Helpers extends Macroable {
      * When command is executed via `adonis cli`, then ace is a children
      * of the process mainModule
      */
-    return !!process.mainModule.children.find((child) => child.filename.endsWith('ace'))
+    return !!process.mainModule.children.find((child) => child.filename.endsWith('work'))
   }
 
   /**

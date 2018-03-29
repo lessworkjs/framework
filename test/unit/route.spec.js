@@ -15,8 +15,9 @@ test.group('Route', (group) => {
     new Route(slsState, __dirname).patch('test', require('./app/Http/Controllers/HomeController')['index']);
     new Route(slsState, __dirname).delete('test', require('./app/Http/Controllers/HomeController')['index']);
     new Route(slsState, __dirname).options('test', require('./app/Http/Controllers/HomeController')['index']);
+    new Route(slsState, __dirname).put('test', require('./app/Http/Controllers/HomeController')['index']);
     new Route(slsState, __dirname).connect('test', require('./app/Http/Controllers/HomeController')['index']);
-    // new Route(slsState, __dirname).middleware('App/Http/Middleware/Global').auth('').get('test', require('./app/Http/Controllers/HomeController')['index']);
+    new Route(slsState, __dirname).auth('').get('test', require('./app/Http/Controllers/HomeController')['index']);
 
   })
 

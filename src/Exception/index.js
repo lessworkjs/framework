@@ -44,31 +44,6 @@ class RuntimeException extends NE.RuntimeException {
   }
 
   /**
-   * this exception is raised when encryption class is not
-   * able to decrypt a given piece of data
-   *
-   * @param  {Number} [code=500]
-   *
-   * @return {Object}
-   */
-  static decryptFailed(code) {
-    return new this('Could not decrypt the data', code || this.defaultErrorCode, 'E_ENCRYPTION_DECRYPT_FAILED')
-  }
-
-  /**
-   * this exception is raised when the encryption cipher is
-   * not supported or app key length is not in-sync with
-   * given cipher
-   *
-   * @param  {Number} [code=500]
-   *
-   * @return {Object}
-   */
-  static invalidEncryptionCipher(code) {
-    return new this('The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths', code || this.defaultErrorCode, 'E_INVALID_ENCRPYTION_CIPHER')
-  }
-
-  /**
    * this exception is raised when app key is missing
    * inside config/app.js file.
    *
@@ -79,19 +54,6 @@ class RuntimeException extends NE.RuntimeException {
    */
   static missingAppKey(message, code) {
     return new this(message, code || this.defaultErrorCode, 'E_MISSING_APPKEY')
-  }
-
-  /**
-   * this exception is raised when an uknown
-   * session driver is used
-   *
-   * @param  {String} driver
-   * @param  {Number} [code=500]
-   *
-   * @return {Object}
-   */
-  static invalidSessionDriver(driver, code) {
-    return new this(`Unable to locate ${driver} session driver`, code || this.defaultErrorCode, 'E_INVALID_SESSION_DRIVER')
   }
 
   /**
