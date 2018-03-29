@@ -8,10 +8,9 @@
 
 const Macroable = require('macroable');
 const co = require('co');
-const Helpers = require('../Helpers');
 
-class Run extends Macroable {
-  constructor(callback, lastArg) {
+class Middleware extends Macroable {
+  constructor(callback, config) {
     super();
 
     const helpers = require('../Route/helpers');
@@ -19,7 +18,7 @@ class Run extends Macroable {
 
     const run = function* (callback) {
       if (typeof callback === 'string') {
-        callback = new Helpers().requireByName(callback);
+        callback = Helpers.requireByName(callback);
       }
 
       const results = yield co(callback).catch(error => {
@@ -42,10 +41,8 @@ class Run extends Macroable {
 
     let routeMiddlewares = false;
 
-    if (typeof lastArg === "object") {
-      if (lastArg.middleware) {
-        routeMiddlewares = typeof lastArg.middleware === "object" ? lastArg.middleware : [lastArg.middleware];
-      }
+    if (config.middleware) {
+      routeMiddlewares = typeof config.middleware === "object" ? config.middleware : [config.middleware];
     }
 
     const callRouteAction = function (resolvedRoute, request, response) {
@@ -87,4 +84,4 @@ class Run extends Macroable {
   }
 }
 
-module.exports = Run;
+module.exports = Middleware;

@@ -6,7 +6,7 @@ const path = require('path');
 
 module.exports = function (appConfig, testing) {
   let Commands = require('require-all')({
-    dirname: path.join(commandsPath, '../src/'),
+    dirname: path.join(commandsPath, '../src/Commands'),
     recursive: true,
     excludeDirs: /^BaseCommand$/,
   });

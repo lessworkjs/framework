@@ -1,44 +1,53 @@
 'use strict';
 
-const Run = require('./Run');
+const Middleware = require('./Middleware');
+const path = require('path');
 
-module.exports = function (...args) {
-  if (process.env.LESSWORK_FUNCTION_MODE) {
-    return args;
+class Kernel {
+  constructor(state, appRoot) {
+    this._state = state;
+    this._appRoot = appRoot || process.cwd();
   }
 
-  const state = args[0];
-  const lastArg = args[args.length - 1];
+  handle(...args) {
+    args.unshift(this._state);
 
-  let callback = args[1];
-
-  if ((args.length === 3 && typeof lastArg !== 'object') || args.length === 4) {
-    callback = args[2];
-  }
-
-  require('../../lib/kernel')(process.cwd())(function () {
-    Event.fire('app:start');
-
-    State.set(state);
-
-    use('App/Http/Kernel');
-
-    const handle = function () {
-      if (process.env.LESSWORK_CMD) {
-        delete process.env.LESSWORK_CMD;
-
-        callback();
-
-        return;
-      }
-
-      new Run(callback, lastArg);
+    if (process.env.LESSWORK_FUNCTION_MODE) {
+      return args;
     }
 
-    handle();
+    const state = args[0];
+    const lastArg = args[args.length - 1];
 
-    Event.fire('app:end');
-  });
+    let callback = args[1];
 
-  return args;
-};
+    if ((args.length === 3 && typeof lastArg !== 'object') || args.length === 4) {
+      callback = args[2];
+    }
+
+    require('../../lib/kernel')(this._appRoot)(function () {
+      Event.fire('app:start');
+
+      State.set(state);
+
+      require(Helpers.appRoot('app/Http/Kernel'))
+
+      const handle = function () {
+        if (process.env.LESSWORK_CMD) {
+          delete process.env.LESSWORK_CMD;
+          return callback();
+        }
+
+        const config = typeof lastArg === 'object' ? lastArg : false;
+
+        new Middleware(callback, config);
+      }
+
+      handle();
+
+      Event.fire('app:end');
+    });
+  }
+}
+
+module.exports = Kernel;

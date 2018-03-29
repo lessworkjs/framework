@@ -13,18 +13,14 @@ const Macroable = require('macroable');
  * @class Request
  */
 class Route extends Macroable {
-  constructor(args) {
+  constructor(args, appRoot) {
     super();
 
     this._middleware = null;
     this._authorizer = null;
     this._arguments = args;
+    this._appRoot = appRoot || process.cwd();
 
-  }
-
-  setArgs(args) {
-    this._arguments = args;
-    return this;
   }
 
   auth(authorizer) {
@@ -41,7 +37,7 @@ class Route extends Macroable {
     let middleware = this._middleware;
     let authorizer = this._authorizer;
 
-    return Kernel(this._arguments, path, callback, Object.assign({
+    return new Kernel(this._arguments, this._appRoot).handle(path, callback, Object.assign({
       method,
       middleware,
       authorizer,
@@ -77,8 +73,4 @@ class Route extends Macroable {
   }
 }
 
-const route = new Route();
-
-module.exports = function (args) {
-  return route.setArgs(args);
-};
+module.exports = Route;

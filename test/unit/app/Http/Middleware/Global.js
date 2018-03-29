@@ -2,7 +2,7 @@
 
 class Global {
 
-  * handle (request, response, next) {
+  * handle(request, response, next) {
     request.count = 2
     yield next
   }

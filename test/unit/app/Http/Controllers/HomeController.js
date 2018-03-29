@@ -2,8 +2,10 @@
 
 class HomeController {
 
-  * index (request, response) {
-    response.send({rendered: true})
+  index(request, response) {
+    response.send({
+      rendered: true
+    })
   }
 
 }

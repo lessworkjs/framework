@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "make:docs": "./node_modules/.bin/esdoc",
-    "japa": "./node_modules/.bin/japa || exit 0",
-    "test": "./node_modules/mocha/bin/mocha --recursive|| exit 0",
+    "japa": "./node_modules/.bin/japa",
+    "test": "mocha $(find test -name '*spec.js')",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coverage:all": "./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0"
   },
@@ -32,7 +32,7 @@
     "intl": "^1.2.5",
     "intl-messageformat": "^2.2.0",
     "lesswork-cmd": "^5.0.7",
-    "lesswork-commands": "^1.0.0",
+    "lesswork-commands": "^1.0.1",
     "lodash": "^4.17.5",
     "macroable": "^1.0.0",
     "nyc": "^11.6.0",
