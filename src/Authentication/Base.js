@@ -44,6 +44,7 @@ class Base {
   }
 
   approve(authString, user) {
+    // TO-DO: restrict to requested route.
     this.callback(authString, 'Allow', State.event('methodArn').split('/').slice(0, 2).join('/') + '/*', {
       user
     });

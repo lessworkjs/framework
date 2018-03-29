@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -92,12 +94,12 @@ module.exports = {
   |
   */
   providers: [
-    '../providers/AppProvider',
-    '../providers/MiddlewareProvider',
-    '../providers/RequestProvider',
-    '../providers/ResponseProvider',
-    '../providers/EventProvider',
-    '../providers/LintlProvider',
+    path.join(__dirname, '../../../providers/AppProvider'),
+    path.join(__dirname, '../../../providers/MiddlewareProvider'),
+    path.join(__dirname, '../../../providers/RequestProvider'),
+    path.join(__dirname, '../../../providers/ResponseProvider'),
+    path.join(__dirname, '../../../providers/EventProvider'),
+    path.join(__dirname, '../../../providers/LintlProvider'),
   ],
 
   /*
@@ -161,7 +163,7 @@ module.exports = {
   |
   */
   functions: [
-    '../routes',
+    path.join(__dirname, '../routes'),
     'Http/Authentication',
     'Http/Functions',
   ],
