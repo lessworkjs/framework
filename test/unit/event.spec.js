@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+const test = require('japa')
 const chai = require('chai')
 const expect = chai.expect
 const Ioc = require('adonis-fold').Ioc
@@ -28,26 +29,26 @@ const Helpers = {
   }
 }
 
-describe('Event', function () {
-  it('should throw an exception when event handler is not a valid function or reference to function', function () {
+test.group('Event', (group) => {
+  test('should throw an exception when event handler is not a valid function or reference to function', function () {
     const event = new Event(Config, Helpers)
     const fn = () => event.on('foo', {})
     expect(fn).to.throw('E_INVALID_IOC_BINDING: Handler must point to a valid namespace or a closure')
   })
 
-  it('should throw an exception when event.once handler is not a valid function or reference to function', function () {
+  test('should throw an exception when event.once handler is not a valid function or reference to function', function () {
     const event = new Event(Config, Helpers)
     const fn = () => event.once('foo', {})
     expect(fn).to.throw('E_INVALID_IOC_BINDING: Handler must point to a valid namespace or a closure')
   })
 
-  it('should throw an exception when event.any handler is not a valid function or reference to function', function () {
+  test('should throw an exception when event.any handler is not a valid function or reference to function', function () {
     const event = new Event(Config, Helpers)
     const fn = () => event.any({})
     expect(fn).to.throw('E_INVALID_IOC_BINDING: Handler must point to a valid namespace or a closure')
   })
 
-  it('should be able to register an event', function (done) {
+  test('should be able to register an event', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.on('foo', function (data) {
       expect(data).deep.equal({
@@ -60,25 +61,7 @@ describe('Event', function () {
     })
   })
 
-  it('should be able to pass multiple arguments to the emit method', function (done) {
-    const event = new Event(Config, Helpers)
-    event.on('foo', function (data, bar) {
-      expect(data).deep.equal({
-        foo: 'bar'
-      })
-      expect(bar).deep.equal({
-        bar: 'baz'
-      })
-      done()
-    })
-    event.emit('foo', {
-      foo: 'bar'
-    }, {
-      bar: 'baz'
-    })
-  })
-
-  it('should be able to pass multiple arguments to the fire method', function (done) {
+  test('should be able to pass multiple arguments to the fire method', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.on('foo', function (data, bar) {
       expect(data).deep.equal({
@@ -96,7 +79,7 @@ describe('Event', function () {
     })
   })
 
-  it('should be able to bind a class instance to the callback', function (done) {
+  test('should be able to bind a class instance to the callback', function (assert, done) {
     const event = new Event(Config, Helpers)
     class Foo {
       constructor() {
@@ -112,7 +95,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should be able to register generator method as callback', function (done) {
+  test('should be able to register generator method as callback', function (assert, done) {
     const event = new Event(Config, Helpers)
     const getName = function () {
       return new Promise(function (resolve) {
@@ -129,7 +112,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should be able to make class instance from Ioc Container', function (done) {
+  test('should be able to make class instance from Ioc Container', function (assert, done) {
     const event = new Event(Config, Helpers)
     class Foo {
 
@@ -150,7 +133,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should be able to bind generator method', function (done) {
+  test('should be able to bind generator method', function (assert, done) {
     const event = new Event(Config, Helpers)
     class Foo {
       constructor() {
@@ -175,7 +158,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should be able to get data passed by the fire method', function (done) {
+  test('should be able to get data passed by the fire method', function (assert, done) {
     const event = new Event(Config, Helpers)
     class Foo {
       sayFoo(data) {
@@ -195,7 +178,7 @@ describe('Event', function () {
     })
   })
 
-  it('should be able to get data passed by the fire method inside a generator method', function (done) {
+  test('should be able to get data passed by the fire method inside a generator method', function (assert, done) {
     const event = new Event(Config, Helpers)
     class Foo {
       * sayFoo(data) {
@@ -215,7 +198,7 @@ describe('Event', function () {
     })
   })
 
-  it('should be able to listen for a event using the when method', function (done) {
+  test('should be able to listen for a event using the when method', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.when('user.login', function (data) {
       expect(data).deep.equal({
@@ -228,7 +211,7 @@ describe('Event', function () {
     })
   })
 
-  it('should be able to listen for a event using the listen method', function (done) {
+  test('should be able to listen for a event using the listen method', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.listen('user.login', function (data) {
       expect(data).deep.equal({
@@ -241,7 +224,7 @@ describe('Event', function () {
     })
   })
 
-  it('should be able to listen for any event', function (done) {
+  test('should be able to listen for any event', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.any(function (event, data) {
       expect(event).to.equal('foo')
@@ -251,7 +234,7 @@ describe('Event', function () {
     event.fire('foo', 'bar')
   })
 
-  it('should be able to register one time only event listener', function (done) {
+  test('should be able to register one time only event listener', function (assert, done) {
     let count = 0
     const event = new Event(Config, Helpers)
     event.once('foo', function () {
@@ -263,7 +246,7 @@ describe('Event', function () {
     done()
   })
 
-  it('should be able to get list of listeners for a specific event', function () {
+  test('should be able to get list of listeners for a specific event', function () {
     const event = new Event(Config, Helpers)
     event.once('foo', function () {})
     const listeners = event.getListeners('foo')
@@ -271,7 +254,7 @@ describe('Event', function () {
     expect(listeners.length).to.equal(1)
   })
 
-  it('should be able to get list of listeners for wildcard events', function () {
+  test('should be able to get list of listeners for wildcard events', function () {
     const event = new Event(Config, Helpers)
     event.once('foo.bar', function () {})
     const listeners = event.getListeners('foo.*')
@@ -279,18 +262,18 @@ describe('Event', function () {
     expect(listeners.length).to.equal(1)
   })
 
-  it('should tell whether there are any listeners for a given event', function () {
+  test('should tell whether there are any listeners for a given event', function () {
     const event = new Event(Config, Helpers)
     event.once('foo.bar', function () {})
     expect(event.hasListeners('foo.*')).to.equal(true)
   })
 
-  it('should tell whether wildcard is enabled or not', function () {
+  test('should tell whether wildcard is enabled or not', function () {
     const event = new Event(Config, Helpers)
     expect(event.wildcard()).to.equal(true)
   })
 
-  it('should be able to define named events', function (done) {
+  test('should be able to define named events', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.on('foo', 'fooEvent', function () {
       done()
@@ -298,7 +281,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should be able to remove named events', function () {
+  test('should be able to remove named events', function () {
     const event = new Event(Config, Helpers)
     event.on('foo', 'fooEvent', function () {})
     event.on('foo', 'anotherEvent', function () {})
@@ -307,7 +290,7 @@ describe('Event', function () {
     expect(listeners.length).to.equal(1)
   })
 
-  it('should throw error when trying to remove unregistered named event', function () {
+  test('should throw error when trying to remove unregistered named event', function () {
     const event = new Event(Config, Helpers)
     const fn = function () {
       event.removeListener('foo', 'fooEvent')
@@ -315,7 +298,7 @@ describe('Event', function () {
     expect(fn).to.throw('E_MISSING_NAMED_EVENT: Cannot find an event with fooEvent name for foo event')
   })
 
-  it('should be able to remove the correct named events', function (done) {
+  test('should be able to remove the correct named events', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.on('foo', 'fooEvent', function () {
       expect(true).to.equal(false)
@@ -328,7 +311,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should be able to remove all listeners for a given event', function () {
+  test('should be able to remove all listeners for a given event', function () {
     const event = new Event(Config, Helpers)
     event.on('foo', function () {})
     event.on('foo', function () {})
@@ -337,7 +320,7 @@ describe('Event', function () {
     expect(listeners.length).to.equal(0)
   })
 
-  it('should be able to remove all listeners for all events', function () {
+  test('should be able to remove all listeners for all events', function () {
     const event = new Event(Config, Helpers)
     event.on('foo', function () {})
     event.on('bar', function () {})
@@ -346,7 +329,7 @@ describe('Event', function () {
     expect(event.getListeners('bar').length).to.equal(0)
   })
 
-  it('should be able to define the number for times a event should be executed', function () {
+  test('should be able to define the number for times a event should be executed', function () {
     const event = new Event(Config, Helpers)
     let count = 0
     event.times(4).on('foo', function () {
@@ -362,7 +345,7 @@ describe('Event', function () {
     expect(count).to.equal(4)
   })
 
-  it('should have access to the actual event via the emitter property on context', function (done) {
+  test('should have access to the actual event via the emitter property on context', function (assert, done) {
     const event = new Event(Config, Helpers)
     event.on('foo', function () {
       expect(this.emitter.event).to.equal('foo')
@@ -371,7 +354,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should have access to the actual event via the emitter property on context when a generator method is binded', function (done) {
+  test('should have access to the actual event via the emitter property on context when a generator method is binded', function (assert, done) {
     const event = new Event(Config, Helpers)
     const getName = function () {
       return new Promise((resolve) => resolve('done'))
@@ -384,7 +367,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should have access to the actual event resolving out of the IoC container', function (done) {
+  test('should have access to the actual event resolving out of the IoC container', function (assert, done) {
     const event = new Event(Config, Helpers)
     class FooListener {
       sayFoo() {
@@ -400,7 +383,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should have access to the actual event resolving out of the IoC container within a generator method', function (done) {
+  test('should have access to the actual event resolving out of the IoC container within a generator method', function (assert, done) {
     const event = new Event(Config, Helpers)
     class FooListener {
       * sayFoo() {
@@ -416,7 +399,7 @@ describe('Event', function () {
     event.fire('foo')
   })
 
-  it('should return the actual when with emitting event as an array', function (done) {
+  test('should return the actual when with emitting event as an array', function (assert, done) {
     const Config = {
       get: function () {
         return {
