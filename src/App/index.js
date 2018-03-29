@@ -86,7 +86,7 @@ class App extends Macroable {
   }
 
   getLocale() {
-    return this.locale;
+    return this.locale || null;
   }
 
   isLocale(locale) {

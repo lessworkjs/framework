@@ -20,9 +20,11 @@ const _ = require('lodash');
  * @class Lintl
  */
 class Lintl extends Macroable {
-  constructor(fallback) {
+  constructor(app, helpers, fallback) {
     super();
 
+    this.app = app;
+    this.helpers = helpers;
     this.fallback = fallback;
 
     this.translate = this._translate.bind(this);
@@ -31,7 +33,7 @@ class Lintl extends Macroable {
   }
 
   _dateFormat(date, locale, fallback = true) {
-    locale = locale || App.getLocale();
+    locale = locale || this.app.getLocale();
 
     if (fallback) {
       fallback = this.fallback;
@@ -46,7 +48,7 @@ class Lintl extends Macroable {
 
   _numberFormat(...args) {
     let number = args[0];
-    let locale = App.getLocale();
+    let locale = this.app.getLocale();
     let fallback = true;
     let format = false;
 
@@ -95,7 +97,7 @@ class Lintl extends Macroable {
       }
     });
 
-    const locales = [locale || App.getLocale()];
+    const locales = [locale || this.app.getLocale()];
 
     if (!locales.length) {
       return hash;
@@ -105,16 +107,20 @@ class Lintl extends Macroable {
     hash = hash.split('.');
 
     const file = hash[0];
-    if (fallback) {
+    if (fallback && this.fallback != locales[0]) {
       locales.push(this.fallback);
     }
 
     let line = null;
 
     for (let locale of locales) {
-      const config = Helpers.requireIfExists(path.join(Helpers.resourcesPath(path.join('lang', locale)), `${file}.js`));
 
-      if (!config) {
+      try {
+        const config = this.helpers.requireIfExists(path.join(this.helpers.resourcesPath(path.join('lang', locale)), `${file}.js`));
+        if (!config) {
+          continue;
+        }
+      } catch (error) {
         continue;
       }
 

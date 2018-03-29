@@ -1,10 +1,12 @@
 const test = require('japa')
 const path = require('path')
 
+require('../../lib/env')
+
 const App = require('../../src/App');
 
 test.group('App', (group) => {
-  test('shoud set and get', (assert) => {
+  test('shoud set, get, and check locale', (assert) => {
     const app = new App()
 
     app.setLocale('en-ES');
