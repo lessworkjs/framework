@@ -44,6 +44,7 @@
     "serverless-offline": "^3.18.0"
   },
   "devDependencies": {
+    "clear-require": "^2.0.0",
     "co-mocha": "^1.2.2",
     "coveralls": "^3.0.0",
     "japa": "^1.0.6",
