@@ -46,6 +46,7 @@ class BaseCommand extends Command {
       });
     }
 
+    // TO-DO: spawn and detach.
     const child = exec(`${command} ${args}`,
       (error, stdout, stderr) => {
         if (stderr) {

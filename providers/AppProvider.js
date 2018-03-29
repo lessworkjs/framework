@@ -66,8 +66,6 @@ class AppProvider extends ServiceProvider {
     });
     this.app.alias('Adonis/Src/Env', 'Lesswork/Src/Env');
 
-    require('lesswork-framework/lib/env');
-
     return this;
   }
 
