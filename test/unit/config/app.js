@@ -92,12 +92,12 @@ module.exports = {
   |
   */
   providers: [
-    'lesswork-framework/providers/AppProvider',
-    'lesswork-framework/providers/MiddlewareProvider',
-    'lesswork-framework/providers/RequestProvider',
-    'lesswork-framework/providers/ResponseProvider',
-    'lesswork-framework/providers/EventProvider',
-    'lesswork-framework/providers/LintlProvider',
+    '../providers/AppProvider',
+    '../providers/MiddlewareProvider',
+    '../providers/RequestProvider',
+    '../providers/ResponseProvider',
+    '../providers/EventProvider',
+    '../providers/LintlProvider',
   ],
 
   /*
@@ -121,7 +121,7 @@ module.exports = {
     State: 'Lesswork/Src/State',
     Exception: 'Lesswork/Src/Exception',
     Route: 'Lesswork/Src/Route',
-    ErrorTransformer: 'lesswork-framework/src/Transformers/ErrorTransformer',
+    ErrorTransformer: '../src/Transformers/ErrorTransformer',
     Lintl: 'Lesswork/Src/Lintl',
     Middleware: 'Lesswork/Src/Middleware',
   },
