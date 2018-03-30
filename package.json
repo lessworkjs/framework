@@ -6,10 +6,10 @@
   "scripts": {
     "make:docs": "./node_modules/.bin/esdoc",
     "japa": "./node_modules/.bin/japa",
-    "test": "npm run pretty-error; nyc --all mocha \"test/**/*.spec.js\"",
+    "test": "npm run prettyerror; nyc --all mocha \"test/**/*.spec.js\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "coverage:all": "npm run pretty-error; ./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0",
-    "pretty-error": "export PRETTYERROR=true"
+    "coverage:all": "npm run prettyerror; ./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0",
+    "prettyerror": "export PRETTYERROR=true"
   },
   "repository": {
     "type": "git",
