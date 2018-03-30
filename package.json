@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "A nodejs based framework for serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,9 @@
     "lodash": "^4.17.5",
     "macroable": "^1.0.0",
     "pretty-error": "^2.1.1",
-    "require-all": "^2.2.0"
+    "require-all": "^2.2.0",
+    "debug": "^3.1.0",
+    "dotenv": "^5.0.1"
   },
   "devDependencies": {
     "lesswork-cmd": "^5.0.7",

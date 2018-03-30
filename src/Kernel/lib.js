@@ -1,18 +1,18 @@
 'use strict';
 
 const fold = require('adonis-fold');
-
 const path = require('path');
-
 const Globals = require('../Globals');
+
+require('../../lib/env');
 
 module.exports = function (appRoot) {
 
-  const app = require(path.join(appRoot, './config/app'));
+  const appConfig = require(path.join(appRoot, './config/app'));
   const packageFile = require(path.join(appRoot, '/package.json'));
 
   return function (callback, providers) {
-    providers = providers || app.providers;
+    providers = providers || appConfig.providers;
 
     fold.Ioc.singleton('Lesswork/Src/Helpers', function (app) {
       const Helpers = require('lesswork-framework/src/Helpers');
@@ -25,7 +25,7 @@ module.exports = function (appRoot) {
     fold.Registrar
       .register(providers)
       .then(() => {
-        fold.Ioc.aliases(app.aliases);
+        fold.Ioc.aliases(appConfig.aliases);
 
         if (packageFile.autoload) {
           for (let load in packageFile.autoload) {
