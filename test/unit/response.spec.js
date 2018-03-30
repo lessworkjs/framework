@@ -3,8 +3,8 @@ const path = require('path')
 
 require('../../lib/env')
 
-const Response = require('../../src/Response');
-const State = require('../../src/State');
+const Response = require('../../src/Response/Aws');
+const State = require('../../src/State/Aws');
 
 const state = new State()
 state.set([{}, {}, () => {}])

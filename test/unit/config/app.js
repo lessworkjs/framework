@@ -114,13 +114,13 @@ module.exports = {
   */
   aliases: {
     App: 'Lesswork/Src/App',
-    Response: 'Lesswork/Src/Response',
+    Response: 'Lesswork/Src/Response/Aws',
     Config: 'Lesswork/Src/Config',
     Helpers: 'Lesswork/Src/Helpers',
     Env: 'Lesswork/Src/Env',
     Event: 'Lesswork/Src/Event',
-    Request: 'Lesswork/Src/Request',
-    State: 'Lesswork/Src/State',
+    Request: 'Lesswork/Src/Request/Aws',
+    State: 'Lesswork/Src/State/Aws',
     Exception: 'Lesswork/Src/Exception',
     Route: 'Lesswork/Src/Route',
     ErrorTransformer: '../src/Transformers/ErrorTransformer',

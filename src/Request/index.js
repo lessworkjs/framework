@@ -14,6 +14,7 @@ const Macroable = require('macroable');
 class Request extends Macroable {
   constructor(state) {
     super();
+
     this.state = state;
   }
 

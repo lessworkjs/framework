@@ -1,0 +1,191 @@
+
+
+  0 passing (4ms)
+
+
+  [37mApp[39m
+    [32m✓[39m [90mshoud set, get, and check locale[39m [90m(3ms)[39m
+    [32m✓[39m [90mshould read APP_ENV from environment()[39m [90m(0ms)[39m
+
+  [37mAuth[39m
+    [32m✓[39m [90mshould work[39m [90m(1ms)[39m
+
+  [37mConfig[39m
+    [32m✓[39m [90mignore any files apart from .js files inside the config directory[39m [90m(3ms)[39m
+    [32m✓[39m [90mget value for a given key from config store[39m [90m(2ms)[39m
+    [32m✓[39m [90mreturn default value when actual value does not exists[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn actual value when it's falsy[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn undefined when default value is not defined[39m [90m(0ms)[39m
+    [32m✓[39m [90mset value for a given key[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould set mid level paths via key[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould return booleans as booleans[39m [90m(1ms)[39m
+    [32m✓[39m [90mmerge values with the defaults[39m [90m(2ms)[39m
+    [32m✓[39m [90mignore error when config directory does not exists[39m [90m(0ms)[39m
+
+  [37mController[39m
+    [32m✓[39m [90mshould be an object.[39m [90m(0ms)[39m
+
+  [37mEnv Lib[39m
+    [32m✓[39m [90mshould env()[39m [90m(0ms)[39m
+    [31m✖[39m [31mshould Env()[39m [90m(3ms)[39m
+
+  [37mError Lib[39m
+    [32m✓[39m [90mshould work[39m [90m(84ms)[39m
+
+  [37mErrorTransformer[39m
+    [32m✓[39m [90mshoud set, get, and check locale[39m [90m(1ms)[39m
+
+  [37mEvent[39m
+    [32m✓[39m [90mshould throw an exception when event handler is not a valid function or reference to function[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould throw an exception when event.once handler is not a valid function or reference to function[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould throw an exception when event.any handler is not a valid function or reference to function[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould be able to register an event[39m [90m(4ms)[39m
+    [32m✓[39m [90mshould be able to pass multiple arguments to the fire method[39m [90m(3ms)[39m
+    [32m✓[39m [90mshould be able to bind a class instance to the callback[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould be able to register generator method as callback[39m [90m(3ms)[39m
+    [32m✓[39m [90mshould be able to make class instance from Ioc Container[39m [90m(5ms)[39m
+    [32m✓[39m [90mshould be able to bind generator method[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould be able to get data passed by the fire method[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould be able to get data passed by the fire method inside a generator method[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould be able to listen for a event using the when method[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould be able to listen for a event using the listen method[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould be able to listen for any event[39m [90m(3ms)[39m
+    [32m✓[39m [90mshould be able to register one time only event listener[39m [90m(3ms)[39m
+    [32m✓[39m [90mshould be able to get list of listeners for a specific event[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould be able to get list of listeners for wildcard events[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould tell whether there are any listeners for a given event[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould tell whether wildcard is enabled or not[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould be able to define named events[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould be able to remove named events[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould throw error when trying to remove unregistered named event[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould be able to remove the correct named events[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould be able to remove all listeners for a given event[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould be able to remove all listeners for all events[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould be able to define the number for times a event should be executed[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould have access to the actual event via the emitter property on context[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould have access to the actual event via the emitter property on context when a generator method is binded[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould have access to the actual event resolving out of the IoC container[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould have access to the actual event resolving out of the IoC container within a generator method[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould return the actual when with emitting event as an array[39m [90m(2ms)[39m
+
+  [37mException[39m
+    [32m✓[39m [90mshould show RuntimeException malformedJSON[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould show RuntimeException fileDeleted[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould show RuntimeException missingAppKey[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould show InvalidArgumentException invalidParameter[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould show InvalidArgumentException missingParameter[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould show InvalidArgumentException invalidParameter[39m [90m(0ms)[39m
+
+  [37mFunctions Lib[39m
+    [32m✓[39m [90mshould work[39m [90m(1ms)[39m
+
+  [37mGlobals[39m
+    [32m✓[39m [90mshould work[39m [90m(10ms)[39m
+
+  [37mHelpers[39m
+    [32m✓[39m [90mreturn path to app root[39m [90m(1ms)[39m
+    [32m✓[39m [90mreturn path to file from app root[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to public dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to config dir[39m [90m(1ms)[39m
+    [32m✓[39m [90mthrow error when trying to access file inside config dir[39m [90m(1ms)[39m
+    [32m✓[39m [90mreturn false when process has not been started with ace[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to a file inside public dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to resources dir[39m [90m(1ms)[39m
+    [32m✓[39m [90mreturn path to a file inside resources dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to views dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to a file inside views dir[39m [90m(1ms)[39m
+    [32m✓[39m [90mreturn path to database dir[39m [90m(1ms)[39m
+    [32m✓[39m [90mreturn path to a file inside database dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to migrations dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to a file inside migrations dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to seeds dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to a file inside seeds dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to tmp dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mreturn path to a file inside tmp dir[39m [90m(0ms)[39m
+    [32m✓[39m [90mnamespace...[39m [90m(1ms)[39m
+
+  [37mLib[39m
+    [32m✓[39m [90mshould set authed[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould get hashed[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould get[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould get body[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould get data[39m [90m(3ms)[39m
+    [32m✓[39m [90mshould render[39m [90m(1ms)[39m
+
+  [37mLintl[39m
+    [32m✓[39m [90mshoud..[39m [90m(28ms)[39m
+
+  [37mMiddleware[39m
+    [32m✓[39m [90mshould register a global middleware[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould register a named middleware[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould bulk register global middleware[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould register only unique middleware to the global list[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould bulk register a named middleware[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould fetch parameters from named middleware[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould fetch parameters from multiple named middleware[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould resolve all global middleware using resolve method[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould format named middleware keys to namespace params mappings[39m [90m(9ms)[39m
+    [32m✓[39m [90mshould throw error when unable to find mapping inside middleware store[39m [90m(3ms)[39m
+    [32m✓[39m [90mshould resolve named middleware using resolve method[39m [90m(2ms)[39m
+    [32m✓[39m [90mshould resolve global and named named middleware using resolve method[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould compose global middleware using compose method[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould abort request in between when middleware throws an error[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould call middleware one by one[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould pass parameters to the middleware[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould be able to compose a closure attached to the middleware[39m [90m(0ms)[39m
+
+  [37mRequest[39m
+    [32m✓[39m [90mshoud..[39m [90m(1ms)[39m
+
+  [37mResponse[39m
+    [32m✓[39m [90mshoud..[39m [90m(1ms)[39m
+
+  [37mRoute[39m
+    [32m✓[39m [90mshoud work[39m [90m(7ms)[39m
+
+  [37mState[39m
+    [32m✓[39m [90mshoud..[39m [90m(1ms)[39m
+
+  [37mTest[39m
+    [32m✓[39m [90mshould set authed[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould get hashed[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould get[39m [90m(1ms)[39m
+    [32m✓[39m [90mshould get body[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould get data[39m [90m(0ms)[39m
+    [32m✓[39m [90mshould render[39m [90m(1ms)[39m
+
+  [37mWork[39m
+    [32m✓[39m [90mshould not fail [39m [90m(29ms)[39m
+
+
+  [41m ERRORS [49m
+
+  [31m1.[39m [31mshould Env()[39m
+  [31mError: ENOENT: no such file or directory, open '/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/test/unit/.env'[39m
+[31m    at Error (native)[39m
+[31m    at Object.fs.openSync (fs.js:641:18)[39m
+[31m    at Object.fs.readFileSync (fs.js:509:33)[39m
+[31m    at Env.load (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/src/Env/index.js:100:41)[39m
+[31m    at new Env (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/src/Env/index.js:41:22)[39m
+[31m    at Callable.test [as _fn] (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/test/unit/env.spec.js:14:17)[39m
+[31m    at Callable._callFn (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Callable.js:86:17)[39m
+[31m    at error (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Callable.js:291:29)[39m
+[31m    at Callable.run (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Callable.js:147:12)[39m
+[31m    at Promise (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Test.js:180:8)[39m
+[31m    at Test._runTest (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Test.js:177:12)[39m
+[31m    at RetryOperation.op.attempt [as _fn] (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Test.js:241:10)[39m
+[31m    at RetryOperation.attempt (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/retry/lib/retry_operation.js:97:8)[39m
+[31m    at Promise (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Test.js:239:10)[39m
+[31m    at Test.run (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Test.js:216:12)[39m
+[31m    at Promise (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Group.js:90:48)[39m
+[31m    at Middleware._wrapFn [as _fnWrapper] (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Group.js:90:12)[39m
+[31m    at Promise (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Middleware.js:61:12)[39m
+[31m    at Middleware._dispatch (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Middleware.js:60:12)[39m
+[31m    at _fnWrapper.then (/Users/admin/Projects/personal/lessworkjs/lesswork/node_modules/lesswork-framework/node_modules/japa/src/Middleware.js:62:24)[39m
+
+  [41m[37m FAILED [39m[49m
+
+[90m  total       : 112[39m
+[90m[39m[90m  passed      : 111[39m
+[90m[39m[90m  failed      : 1[39m
+[90m[39m[90m  time        : 468ms[39m

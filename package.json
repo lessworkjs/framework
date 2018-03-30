@@ -6,9 +6,10 @@
   "scripts": {
     "make:docs": "./node_modules/.bin/esdoc",
     "japa": "./node_modules/.bin/japa",
-    "test": "nyc --all mocha \"test/**/*.spec.js\"",
+    "test": "npm run pretty-error; nyc --all mocha \"test/**/*.spec.js\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "coverage:all": "./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0"
+    "coverage:all": "npm run pretty-error; ./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0",
+    "pretty-error": "export PRETTYERROR=true"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,6 @@
     "jsonwebtoken": "^8.2.0",
     "lodash": "^4.17.5",
     "macroable": "^1.0.0",
-    "pretty-error": "^2.1.1",
     "require-all": "^2.2.0",
     "debug": "^3.1.0",
     "dotenv": "^5.0.1"
@@ -47,6 +47,7 @@
     "japa": "^1.0.6",
     "mocha": "^5.0.5",
     "nyc": "^11.6.0",
-    "test-console": "^1.1.0"
+    "test-console": "^1.1.0",
+    "pretty-error": "^2.1.1"
   }
 }
