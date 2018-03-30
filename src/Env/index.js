@@ -11,18 +11,9 @@
 
 const _ = require('lodash')
 const path = require('path')
+const dotenv = require('dotenv')
 const fs = require('fs')
 const debug = require('debug')('adonis:framework')
-
-const jsconfig = function (file) {
-  try {
-    return require(file)();
-  } catch (e) {
-    return {
-      error: e
-    }
-  }
-}
 
 /**
  * Manages the application environment variables by
@@ -35,7 +26,7 @@ const jsconfig = function (file) {
  * Can define different location by setting `ENV_PATH`
  * environment variable.
  *
- * @namespace Adonis/Src/Env
+ * @binding Adonis/Src/Env
  * @group Core
  * @alias Env
  * @singleton
@@ -62,7 +53,7 @@ class Env {
      * under testing mode
      */
     if (bootedAsTesting) {
-      this.load('.env.testing.js')
+      this.load('.env.testing')
     }
   }
 
@@ -79,7 +70,7 @@ class Env {
    * @private
    */
   _interpolate(env, envConfig) {
-    const matches = String(env).match(/\$([a-zA-Z0-9_]+)|\${([a-zA-Z0-9_]+)}/g) || []
+    const matches = env.match(/\$([a-zA-Z0-9_]+)|\${([a-zA-Z0-9_]+)}/g) || []
     _.each(matches, (match) => {
       const key = match.replace(/\$|{|}/g, '')
       const variable = envConfig[key] || process.env[key] || ''
@@ -106,8 +97,7 @@ class Env {
     }
 
     try {
-
-      const envConfig = jsconfig(options.path)
+      const envConfig = dotenv.parse(fs.readFileSync(options.path, options.encoding))
 
       /**
        * Dotenv doesn't overwrite existing env variables, so we
@@ -145,7 +135,7 @@ class Env {
    */
   getEnvPath() {
     if (!process.env.ENV_PATH || process.env.ENV_PATH.length === 0) {
-      return '.env.js'
+      return '.env'
     }
     return process.env.ENV_PATH
   }

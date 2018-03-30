@@ -43,7 +43,7 @@ module.exports = function (appRoot) {
       })
       .catch((error) => {
         if (!error.status || error.status == 500) {
-          require('./error')(error);
+          require('../../lib/error')(error);
         }
 
         if (typeof response === 'undefined') {

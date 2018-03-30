@@ -1,7 +1,7 @@
 const test = require('japa')
 const path = require('path')
 
-test.group('Env Lib', (group) => {
+test.group('Env', (group) => {
   test('should env()', (assert) => {
     require('../../lib/env');
     env();
@@ -20,8 +20,10 @@ test.group('Env Lib', (group) => {
     process.env.NODE_ENV = 'testing';
     const _env = new Env(__dirname);
 
-    process.env.ENV_PATH = './user';
+    process.env.ENV_PATH = path.join(__dirname, 'user');
+
     env.getEnvPath();
+    delete process.env.ENV_PATH
   })
 
 })

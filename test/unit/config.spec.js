@@ -15,6 +15,7 @@ const path = require('path')
 const configPath = path.join(__dirname, './config')
 
 const Config = require('../../src/Config')
+require('../../lib/env')
 
 test.group('Config', (group) => {
   group.afterEach(() => {

@@ -1,6 +1,6 @@
 {
   "name": "lesswork-framework",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "A nodejs based framework for serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -40,6 +40,7 @@
     "repl.history": "^0.1.4",
     "require-all": "^2.2.0",
     "serverless-aws-documentation": "^1.0.1",
+    "serverless-dotenv-plugin": "^1.0.2",
     "serverless-mocha-plugin": "^1.7.0",
     "serverless-offline": "^3.18.0"
   },
