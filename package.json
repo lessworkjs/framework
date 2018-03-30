@@ -37,6 +37,8 @@
     "require-all": "^2.2.0"
   },
   "devDependencies": {
+    "lesswork-cmd": "^5.0.7",
+    "lesswork-commands": "^1.0.2",
     "clear-require": "^2.0.0",
     "co-mocha": "^1.2.2",
     "coveralls": "^3.0.0",
