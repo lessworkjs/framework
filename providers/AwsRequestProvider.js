@@ -4,7 +4,7 @@ const {
   ServiceProvider
 } = require('adonis-fold');
 
-class RequestProvider extends ServiceProvider {
+class AwsRequestProvider extends ServiceProvider {
   /**
    * Register method called by the Ioc container
    * to register the provider
@@ -22,4 +22,4 @@ class RequestProvider extends ServiceProvider {
   }
 }
 
-module.exports = RequestProvider;
+module.exports = AwsRequestProvider;

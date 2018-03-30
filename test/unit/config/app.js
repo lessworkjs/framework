@@ -96,8 +96,9 @@ module.exports = {
   providers: [
     path.join(__dirname, '../../../providers/AppProvider'),
     path.join(__dirname, '../../../providers/MiddlewareProvider'),
-    path.join(__dirname, '../../../providers/RequestProvider'),
-    path.join(__dirname, '../../../providers/ResponseProvider'),
+    path.join(__dirname, '../../../providers/AwsRequestProvider'),
+    path.join(__dirname, '../../../providers/AwsResponseProvider'),
+    path.join(__dirname, '../../../providers/AwsStateProvider'),
     path.join(__dirname, '../../../providers/EventProvider'),
     path.join(__dirname, '../../../providers/LintlProvider'),
   ],

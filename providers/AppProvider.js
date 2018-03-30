@@ -8,16 +8,6 @@ const path = require('path');
 
 class AppProvider extends ServiceProvider {
 
-  registerState() {
-    this.app.singleton('Lesswork/Src/State/Aws', function (app) {
-      const State = require('../src/State/Aws');
-
-      return new State();
-    });
-
-    return this;
-  }
-
   registerApp() {
     this.app.singleton('Lesswork/Src/App', function (app) {
       const App = require('../src/App');
@@ -81,8 +71,7 @@ class AppProvider extends ServiceProvider {
   }
 
   * register() {
-    this.registerState()
-      .registerApp()
+    this.registerApp()
       .registerConfig()
       .registerCommand()
       .registerEnv()
