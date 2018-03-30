@@ -15,7 +15,7 @@ module.exports = function (appRoot) {
     providers = providers || appConfig.providers;
 
     fold.Ioc.singleton('Lesswork/Src/Helpers', function (app) {
-      const Helpers = require('lesswork-framework/src/Helpers');
+      const Helpers = require('../Helpers');
 
       return new Helpers(appRoot);
     });
