@@ -14,10 +14,6 @@ class Kernel {
     // Don't unshift, instead change rest of class to be.. a class :P.
     args.unshift(this._state);
 
-    if (process.env.LESSWORK_FUNCTION_MODE) {
-      return args;
-    }
-
     const state = args[0];
     const lastArg = args[args.length - 1];
 

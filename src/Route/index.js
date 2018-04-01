@@ -18,9 +18,48 @@ class Route extends Macroable {
 
     this._middleware = null;
     this._authorizer = null;
+    this._documentation = {};
     this._arguments = args;
     this._appRoot = appRoot || process.cwd();
+  }
 
+  docs(documentation) {
+    this._documentation = documentation;
+    return this;
+  }
+
+  description(description) {
+    this._documentation.description = description;
+    return this;
+  }
+
+  requestModels(requestModels) {
+    if (typeof requestModels !== 'object') {
+      requestModels = {
+        'application/json': requestModels
+      };
+    }
+
+    this._documentation.requestModels = requestModels;
+    return this;
+  }
+
+  methodResponses(methodResponses) {
+    if (typeof methodResponses !== 'object') {
+      methodResponses = [methodResponses];
+    }
+
+    this._documentation.methodResponses = methodResponses;
+    return this;
+  }
+
+  tags(tags) {
+    if (typeof tags !== 'object') {
+      tags = [tags];
+    }
+
+    this._documentation.tags = tags;
+    return this;
   }
 
   auth(authorizer) {
@@ -33,43 +72,60 @@ class Route extends Macroable {
     return this;
   }
 
-  run(method, path, callback, options = {}) {
-    let middleware = this._middleware;
-    let authorizer = this._authorizer;
+  setOptions(method, path, callback, options = {}) {
+    this._method = method;
+    this._path = path;
+    this._callback = callback;
+    this._options = options;
+    return this;
+  }
 
-    return new Kernel(this._arguments, this._appRoot).handle(path, callback, Object.assign({
-      method,
-      middleware,
-      authorizer,
-    }, options));
+  handle() {
+    const options = Object.assign({
+      method: this._method,
+      middleware: this._middleware,
+      authorizer: this._authorizer,
+      documentation: this._documentation,
+    }, this._options);
+
+    if (process.env.LESSWORK_FUNCTION_MODE) {
+      return [
+        [this._arguments, this._appRoot],
+        this._path,
+        this._callback,
+        options,
+      ];
+    }
+
+    return new Kernel(this._arguments, this._appRoot).handle(this._path, this._callback, options);
   }
 
   get() {
-    return this.run('get', ...arguments);
+    return this.setOptions('get', ...arguments);
   }
 
   post() {
-    return this.run('post', ...arguments);
+    return this.setOptions('post', ...arguments);
   }
 
   put() {
-    return this.run('put', ...arguments);
+    return this.setOptions('put', ...arguments);
   }
 
   patch() {
-    return this.run('patch', ...arguments);
+    return this.setOptions('patch', ...arguments);
   }
 
   delete() {
-    return this.run('delete', ...arguments);
+    return this.setOptions('delete', ...arguments);
   }
 
   options() {
-    return this.run('options', ...arguments);
+    return this.setOptions('options', ...arguments);
   }
 
   connect() {
-    return this.run('connect', ...arguments);
+    return this.setOptions('connect', ...arguments);
   }
 }
 

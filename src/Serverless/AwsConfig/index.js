@@ -3,6 +3,7 @@
 const path = require('path');
 const serverless = require(path.resolve(process.cwd(), 'serverless.js'));
 const _ = require('lodash');
+const Documentation = require('./Documentation');
 
 class ServerlessConfig {
   constructor(directory) {
@@ -11,21 +12,7 @@ class ServerlessConfig {
 
   load(file) {
     this.config = require(path.join(this.directory, file));
-
-    this.setFile(file)
-      .setMethod();
-
-    return this;
-  }
-
-  setFile(file) {
-    this.file = file;
     this.fileName = file.split('.')[0];
-
-    return this;
-  }
-
-  setMethod() {
     this.methods = Object.getOwnPropertyNames(this.config).filter(hash => !['constructor', 'serverless'].includes(hash));
 
     return this;
@@ -43,6 +30,8 @@ class ServerlessConfig {
 
   makeConfig(method, configEntries) {
     const args = this.config[method]();
+
+    console.log(args);
     let config;
 
     if (args) {
@@ -64,13 +53,13 @@ class ServerlessConfig {
 
     const httpMethods = ['get', 'post', 'patch', 'put', 'delete'];
 
-    const path = httpMethods.includes(method) ? this.fileName : `${this.fileName}.${method}`;
+    const _path = config.path || (httpMethods.includes(method) ? this.fileName : `${this.fileName}.${method}`);
 
     const newConfig = configEntries[`${_.camelCase(this.fileName)}${_.toUpper(method)}`] = {
       handler: `routes/${this.fileName}.${method}`,
       events: [{
         http: {
-          path: path,
+          path: _path,
           method: httpMethods.includes(method) ? method : 'get',
           cors: true,
         }
@@ -78,17 +67,19 @@ class ServerlessConfig {
     };
 
     if (serverless.plugins && serverless.plugins.includes('serverless-aws-documentation')) {
-      newConfig.events[0].http.documentation = {
-        description: `routes/${this.fileName}@${method}`,
-        tags: [
-          this.fileName
-        ]
-      };
+      newConfig.events[0].http.documentation = new Documentation().render(this.fileName, method, _path);
+
+      if (config.documentation) {
+        Object.assign(newConfig.events[0].http.documentation, config.documentation);
+      }
     }
 
     if (config) {
+      // TO-DO: foreach or object assign?
       for (let conf in config) {
-        newConfig.events[0].http[conf] = config[conf];
+        if (config[conf]) {
+          newConfig.events[0].http[conf] = config[conf];
+        }
       }
     }
   }
@@ -103,6 +94,9 @@ class ServerlessConfig {
     if (Object.keys(results).length != this.methods.length) {
       throw new Error(`Missing configuration on '${this.fileName}'`);
     }
+
+    const util = require('util')
+    console.log(util.inspect(results, false, null))
 
     return results;
   }
