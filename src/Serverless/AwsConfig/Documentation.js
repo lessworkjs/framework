@@ -10,7 +10,7 @@ class Docs {
     };
 
     const matches = _path.match(/[^{\}]+(?=})/g);
-    if (matches.length) {
+    if (matches && matches.length) {
       const pathParams = []
 
       matches.forEach(function (param) {

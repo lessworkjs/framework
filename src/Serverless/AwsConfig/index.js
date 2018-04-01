@@ -31,7 +31,6 @@ class ServerlessConfig {
   makeConfig(method, configEntries) {
     const args = this.config[method]();
 
-    console.log(args);
     let config;
 
     if (args) {
@@ -94,9 +93,6 @@ class ServerlessConfig {
     if (Object.keys(results).length != this.methods.length) {
       throw new Error(`Missing configuration on '${this.fileName}'`);
     }
-
-    const util = require('util')
-    console.log(util.inspect(results, false, null))
 
     return results;
   }
