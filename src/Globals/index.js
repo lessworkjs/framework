@@ -1,5 +1,3 @@
-'use strict';
-
 class Globals {
   register() {
     global.App = use('App');
@@ -17,7 +15,7 @@ class Globals {
     global.Response = use('Response');
     global.response = function () {
       return Response.success(...arguments);
-    }
+    };
 
     global.Request = use('Request');
     global.State = use('State');

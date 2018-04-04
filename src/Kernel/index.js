@@ -1,5 +1,3 @@
-'use strict';
-
 const Middleware = require('./Middleware');
 const path = require('path');
 
@@ -24,14 +22,12 @@ class Kernel {
     }
 
     // TO-DO: refactor out th need...
-    require('./lib')(this._appRoot)(function () {
+    require('./lib')(this._appRoot)(() => {
       Event.fire('app:start');
 
       State.set(state);
 
-      require(Helpers.appRoot('app/Http/Kernel'))
-
-      const handle = function () {
+      const handle = () => {
         if (Helpers.isWorkCommand()) {
           return callback();
         }

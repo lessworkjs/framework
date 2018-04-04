@@ -1,58 +1,46 @@
-'use strict';
-
-const fold = require('adonis-fold');
+const fold = require('@adonisjs/fold');
 const path = require('path');
 const Globals = require('../Globals');
 
 require('../../lib/env');
 
-module.exports = function (appRoot) {
-
+module.exports = (appRoot) => {
   const appConfig = require(path.join(appRoot, './config/app'));
   const packageFile = require(path.join(appRoot, '/package.json'));
 
-  return function (callback, providers) {
+  return async (callback, providers) => {
     providers = providers || appConfig.providers;
 
-    fold.Ioc.singleton('Lesswork/Src/Helpers', function (app) {
+    fold.resolver.appNamespace('App');
+
+    fold.ioc.singleton('Lesswork/Src/Helpers', (app) => {
       const Helpers = require('../Helpers');
 
       return new Helpers(appRoot);
     });
 
-    fold.Ioc.alias('Adonis/Src/Helpers', 'Lesswork/Src/Helpers');
+    fold.ioc.alias('Lesswork/Src/Helpers', 'Helpers');
 
-    fold.Registrar
-      .register(providers)
-      .then(() => {
-        fold.Ioc.aliases(appConfig.aliases);
+    fold.registrar.providers(providers).register();
 
-        if (packageFile.autoload) {
-          for (let load in packageFile.autoload) {
-            fold.Ioc.autoload(load, path.join(appRoot, packageFile.autoload[load]));
-          }
-        }
+    await fold.registrar.boot();
 
-        new Globals().register();
+    Object.keys(appConfig.aliases).forEach((alias) => {
+      fold.ioc.alias(appConfig.aliases[alias], alias);
+    });
 
-        Helpers.requireIfExists(Helpers.databasePath('factory'));
+    if (packageFile.autoload) {
+      for (const load in packageFile.autoload) {
+        fold.ioc.autoload(path.join(appRoot, packageFile.autoload[load]), load);
+      }
+    }
 
-        Helpers.requireIfExists(path.join(Helpers.configPath(), 'events'));
+    new Globals().register();
 
-        callback();
-      })
-      .catch((error) => {
-        if (!error.status || error.status == 500) {
-          require('../../lib/error')(error);
-        }
+    Helpers.requireIfExists(Helpers.databasePath('factory'));
 
-        if (typeof response === 'undefined') {
-          return;
-        }
+    Helpers.requireIfExists(path.join(Helpers.configPath(), 'events'));
 
-        use('Event').fire('app.error', error);
-
-        Response.error(use('ErrorTransformer').transform(error), error.status);
-      });
+    callback();
   };
 };

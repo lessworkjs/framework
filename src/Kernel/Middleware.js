@@ -1,87 +1,48 @@
-'use strict';
-/**
- * WIP
- * 
- * From https://github.com/adonisjs/adonis-framework/blob/3.0.13/src/Server/index.js
- * 
- */
+const MiddlewareBase = require('@adonisjs/middleware-base');
 
-const Macroable = require('macroable');
-const co = require('co');
-
-class Middleware extends Macroable {
+class Middleware {
   constructor(callback, config) {
-    super();
+    this.middleware = new MiddlewareBase('handle');
 
-    const helpers = require('../Route/helpers');
-    const Middleware = use('Middleware');
-
-    const run = function* (callback) {
-      if (typeof callback === 'string') {
-        callback = Helpers.requireByName(callback);
-      }
-
-      const results = yield co(callback).catch(error => {
-        require('../../lib/error')(error);
-      });
-
-      return results;
-    }
-
-    const routeAction = function* (handler) {
-      const results = yield run(callback);
-
-      // TO-DO: collect.js 
-      if (!results) {
-        return;
-      }
-
-      Response.success(results);
-    };
-
-    let routeMiddlewares = false;
+    let routeMiddlewares = [];
 
     if (config.middleware) {
-      routeMiddlewares = typeof config.middleware === "object" ? config.middleware : [config.middleware];
+      routeMiddlewares = typeof config.middleware === 'object' ? config.middleware : [config.middleware];
     }
 
-    const callRouteAction = function (resolvedRoute, request, response) {
-      resolvedRoute.middlewares = routeMiddlewares;
+    const kernel = require(Helpers.appRoot('app/Http/kernel'));
 
-      const chain = helpers.makeMiddlewareChain(Middleware, routeAction, false, resolvedRoute)
-      return _executeChain(chain, request, response)
-    };
+    this.middleware.registerGlobal(kernel.globalMiddleware);
+    this.middleware.registerNamed(kernel.namedMiddleware);
 
-    const finalHandler = function* (resolvedRoute, request, response) {
-      yield callRouteAction(resolvedRoute, request, response)
-    };
+    this.middleware
+      .composeGlobalAndNamed(routeMiddlewares)
+      .params([Request])
+      .run()
+      .then(() => {
+        const results = this.run(callback);
 
-    const _respond = function (request, response, finalHandler) {
-      try {
-        const chain = helpers.makeMiddlewareChain(Middleware, finalHandler, true)
-        return _executeChain(chain, request, response);
-      } catch (error) {
-        handleError(error);
-      }
-    };
+        // TO-DO: collect.js
+        if (!results) {
+          return;
+        }
 
-    const handleError = function (error) {
-      require('../../lib/error')(error);
+        Response.success(results);
+      })
+      .catch((error) => {
+        require('../../lib/error')(error);
 
-      Response.error(use('ErrorTransformer').transform(error), error.status);
-    }
-
-    const _executeChain = function (chain, request, response) {
-      const middleware = Middleware;
-      return require('co')(function* () {
-        yield middleware.compose(chain, request, response);
-      }).catch((error) => {
-        handleError(error);
+        Response.error(use('ErrorTransformer').transform(error), error.status);
       });
-    };
-
-    _respond(Request, Response, finalHandler);
   }
+
+  run(callback) {
+    if (typeof callback === 'string') {
+      return Helpers.requireByName(callback);
+    }
+
+    return callback();
+  };
 }
 
 module.exports = Middleware;

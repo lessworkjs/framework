@@ -1,8 +1,6 @@
-'use strict';
-
 const {
-  ServiceProvider
-} = require('adonis-fold');
+  ServiceProvider,
+} = require('@adonisjs/fold');
 
 class LintlProvider extends ServiceProvider {
   /**
@@ -13,11 +11,11 @@ class LintlProvider extends ServiceProvider {
    *
    * @return {void}
    */
-  * register() {
-    this.app.singleton('Lesswork/Src/Lintl', function (app) {
+  register() {
+    this.app.singleton('Lesswork/Src/Lintl', (app) => {
       const Lintl = require('../src/Lintl');
 
-      return new Lintl(use('App'), use('Helpers'), use('Config').get('app.fallback_locale'));
+      return new Lintl(app.use('App'), app.use('Helpers'), app.use('Config').get('app.fallback_locale'));
     });
   }
 }

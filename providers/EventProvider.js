@@ -1,8 +1,6 @@
-'use strict';
-
 const {
-  ServiceProvider
-} = require('adonis-fold');
+  ServiceProvider,
+} = require('@adonisjs/fold');
 
 class EventProvider extends ServiceProvider {
   /**
@@ -13,12 +11,13 @@ class EventProvider extends ServiceProvider {
    *
    * @return {void}
    */
-  * register() {
-    this.app.singleton('Lesswork/Src/Event', function (app) {
-      const Event = require('../src/Event');
+  register() {
+    this.app.singleton('Lesswork/Src/Event', (app) => {
+      const Event = require('@adonisjs/framework/src/Event');
 
-      return new Event(use('Config'), use('Helpers'));
+      return new Event(app.use('Config'), app.use('Helpers'));
     });
+    this.app.alias('Lesswork/Src/Event', 'Adonis/Src/Event');
   }
 }
 

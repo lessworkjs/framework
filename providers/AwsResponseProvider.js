@@ -1,8 +1,6 @@
-'use strict';
-
 const {
-  ServiceProvider
-} = require('adonis-fold');
+  ServiceProvider,
+} = require('@adonisjs/fold');
 
 class AwsResponseProvider extends ServiceProvider {
   /**
@@ -13,11 +11,11 @@ class AwsResponseProvider extends ServiceProvider {
    *
    * @return {void}
    */
-  * register() {
-    this.app.singleton('Lesswork/Src/Response/Aws', function (app) {
+  register() {
+    this.app.singleton('Lesswork/Src/Response/Aws', (app) => {
       const Response = require('../src/Response/Aws');
 
-      return new Response(use('State'));
+      return new Response(app.use('State'));
     });
   }
 }
