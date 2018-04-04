@@ -1,6 +1,6 @@
 'use strict';
 
-const work = require('lesswork-cmd');
+const work = require('@adonisjs/ace');
 const commandsPath = require.resolve('lesswork-commands');
 const path = require('path');
 

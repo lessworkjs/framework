@@ -34,7 +34,7 @@ class AppProvider extends ServiceProvider {
 
   registerCommand() {
     this.app.bind('Lesswork/Src/Command', () => {
-      const work = require('lesswork-cmd');
+      const work = require('@adonisjs/ace');
 
       return work.Command;
     });
