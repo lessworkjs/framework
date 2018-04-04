@@ -10,7 +10,8 @@
     "test:pretty": "npm run pretty-error &&  nyc --all mocha \"test/**/*.spec.js\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coverage:all": "npm run pretty-error && ./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0",
-    "pretty-error": "export PRETTYERROR=true"
+    "pretty-error": "export PRETTYERROR=true",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
@@ -30,20 +31,23 @@
   "dependencies": {
     "adonis-binding-resolver": "^1.0.1",
     "adonis-fold": "^3.0.3",
+    "debug": "^3.1.0",
+    "dotenv": "^5.0.1",
+    "eslint-config-airbnb": "^16.1.0",
     "intl": "^1.2.5",
     "intl-messageformat": "^2.2.0",
     "jsonwebtoken": "^8.2.0",
     "lodash": "^4.17.5",
     "macroable": "^1.0.0",
-    "require-all": "^2.2.0",
-    "debug": "^3.1.0",
-    "dotenv": "^5.0.1"
+    "require-all": "^2.2.0"
   },
   "devDependencies": {
     "clear-require": "^2.0.0",
     "co-mocha": "^1.2.2",
     "coveralls": "^3.0.0",
     "ejs": "^2.5.8",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "japa": "^1.0.6",
     "lesswork-cmd": "^5.0.7",
     "lesswork-commands": "^1.0.5",
