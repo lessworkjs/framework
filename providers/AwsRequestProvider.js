@@ -17,6 +17,7 @@ class AwsRequestProvider extends ServiceProvider {
 
       return new Request(app.use('State'));
     });
+    this.app.alias('Lesswork/Src/Request/Aws', 'Request');
   }
 }
 

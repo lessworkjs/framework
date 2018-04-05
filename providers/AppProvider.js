@@ -9,6 +9,7 @@ class AppProvider extends ServiceProvider {
 
       return new App();
     });
+    this.app.alias('Lesswork/Src/App', 'App');
 
     return this;
   }
@@ -20,12 +21,14 @@ class AppProvider extends ServiceProvider {
       return new Config(app.use('Helpers').configPath());
     });
     this.app.alias('Lesswork/Src/Config', 'Adonis/Src/Config');
+    this.app.alias('Lesswork/Src/Config', 'Config');
 
     return this;
   }
 
   registerRoute() {
     this.app.singleton('Lesswork/Src/Route', () => require('../src/Route'));
+    this.app.alias('Lesswork/Src/Route', 'Route');
 
     return this;
   }
@@ -37,6 +40,7 @@ class AppProvider extends ServiceProvider {
       return work.Command;
     });
     this.app.alias('Lesswork/Src/Command', 'Adonis/Src/Command');
+    this.app.alias('Lesswork/Src/Command', 'Command');
 
     return this;
   }
@@ -48,6 +52,7 @@ class AppProvider extends ServiceProvider {
       return new Env(app.use('Helpers').appRoot());
     });
     this.app.alias('Lesswork/Src/Env', 'Adonis/Src/Env');
+    this.app.alias('Lesswork/Src/Env', 'Env');
 
     return this;
   }
@@ -59,6 +64,7 @@ class AppProvider extends ServiceProvider {
       return Exception;
     });
     this.app.alias('Lesswork/Src/Exception', 'Adonis/Src/Exception');
+    this.app.alias('Lesswork/Src/Exception', 'Exception');
 
     return this;
   }

@@ -17,6 +17,7 @@ class AwsResponseProvider extends ServiceProvider {
 
       return new Response(app.use('State'));
     });
+    this.app.alias('Lesswork/Src/Response/Aws', 'Response');
   }
 }
 

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-const Macroable = require('macroable');
+const SinkHelpers = require('@adonisjs/sink/src/Helpers');
 const path = require('path');
 const fs = require('fs');
 
@@ -23,11 +23,9 @@ const fs = require('fs');
  * @class Helpers
  * @constructor
  */
-class Helpers extends Macroable {
+class Helpers extends SinkHelpers {
   constructor(appRoot) {
-    super();
-
-    this._appRoot = appRoot;
+    super(appRoot);
   }
 
   requireByName(hash) {
@@ -48,206 +46,6 @@ class Helpers extends Macroable {
     }
 
     return require(file);
-  }
-
-  /**
-   * Returns path to the application root
-   *
-   * @method appRoot
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  appRoot(toFile = '') {
-    return path.join(this._appRoot, toFile);
-  }
-
-  /**
-   * Returns path to the public directory or a
-   * specific file to the public directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method publicPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  publicPath(toFile = '') {
-    return path.join(this._appRoot, '/public', toFile);
-  }
-
-  /**
-   * Returns path to the config directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method configPath
-   *
-   * @return {String}
-   */
-  configPath(...args) {
-    if (args[0]) {
-      throw new Error('You should never read a config file from the config directory and instead use config provider.');
-    }
-    return path.join(this._appRoot, '/config');
-  }
-
-  /**
-   * Returns path to the resources directory or a
-   * specific file to the resources directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method resourcesPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  resourcesPath(toFile = '') {
-    return path.join(this._appRoot, '/resources', toFile);
-  }
-
-  /**
-   * Returns path to the views directory or a
-   * specific file to the views directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method viewsPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  viewsPath(toFile = '') {
-    return path.join(this._appRoot, '/resources/views', toFile);
-  }
-
-  /**
-   * Returns path to the database directory or a
-   * specific file to the database directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method databasePath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  databasePath(toFile = '') {
-    return path.join(this._appRoot, '/database', toFile);
-  }
-
-  /**
-   * Returns path to the migrations directory or a
-   * specific file to the migrations directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method migrationsPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  migrationsPath(toFile = '') {
-    return path.join(this._appRoot, '/database/migrations', toFile);
-  }
-
-  /**
-   * Returns path to the seeds directory or a
-   * specific file to the seeds directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method seedsPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  seedsPath(toFile = '') {
-    return path.join(this._appRoot, '/database/seeds', toFile);
-  }
-
-  /**
-   * Returns path to the tmp directory or a
-   * specific file to the tmp directory.
-   *
-   * ## Note
-   * This method does not check the existence of
-   * file.
-   *
-   * @method tmpPath
-   *
-   * @param  {String}   [toFile = '']
-   *
-   * @return {String}
-   */
-  tmpPath(toFile = '') {
-    return path.join(this._appRoot, '/tmp', toFile);
-  }
-
-  /**
-   * Tells whether the process has been started by
-   * ace command.
-   *
-   * @method isWorkCommand
-   *
-   * @return {Boolean}
-   */
-  isWorkCommand() {
-    const processFile = process.mainModule.filename;
-
-    if (processFile.endsWith('work')) {
-      return true;
-    }
-
-    /**
-     * When command is executed via `adonis cli`, then ace is a children
-     * of the process mainModule
-     */
-    return !!process.mainModule.children.find(child => child.filename.endsWith('work'));
-  }
-
-  /**
-   * makes complete namespace for a given path and base
-   * namespace
-   *
-   * @method makeNameSpace
-   *
-   * @param  {String}      baseNameSpace
-   * @param  {String}      toPath
-   * @return {String}
-   *
-   * @public
-   */
-  makeNameSpace(baseNameSpace, toPath) {
-    const appNameSpace = 'App';
-
-    if (toPath.startsWith(`${appNameSpace}/`)) {
-      return toPath;
-    }
-    return path.normalize(`${appNameSpace}/${baseNameSpace}/${toPath}`);
   }
 }
 

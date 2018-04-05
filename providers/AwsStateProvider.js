@@ -17,6 +17,7 @@ class AwsStateProvider extends ServiceProvider {
 
       return new State();
     });
+    this.app.alias('Lesswork/Src/State/Aws', 'State');
   }
 }
 

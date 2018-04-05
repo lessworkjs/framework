@@ -18,6 +18,7 @@ class EventProvider extends ServiceProvider {
       return new Event(app.use('Config'), app.use('Helpers'));
     });
     this.app.alias('Lesswork/Src/Event', 'Adonis/Src/Event');
+    this.app.alias('Lesswork/Src/Event', 'Event');
   }
 }
 

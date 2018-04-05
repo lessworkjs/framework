@@ -17,6 +17,7 @@ class LintlProvider extends ServiceProvider {
 
       return new Lintl(app.use('App'), app.use('Helpers'), app.use('Config').get('app.fallback_locale'));
     });
+    this.app.alias('Lesswork/Src/Lintl', 'Lintl');
   }
 }
 
