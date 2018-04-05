@@ -14,6 +14,7 @@ module.exports = {
     "class-methods-use-this": [0],
     "no-underscore-dangle": [0],
     "prefer-destructuring": [0],
+    "linebreak-style": [0],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true,
       "optionalDependencies": false,
