@@ -1,10 +1,9 @@
-'use strict';
-
 const work = require('@adonisjs/ace');
+
 const commandsPath = require.resolve('lesswork-commands');
 const path = require('path');
 
-module.exports = function (appConfig, testing) {
+module.exports = (appConfig, testing) => {
   let Commands = require('require-all')({
     dirname: path.join(commandsPath, '../src/Commands'),
     recursive: true,
@@ -23,7 +22,7 @@ module.exports = function (appConfig, testing) {
     work.addCommand(require(AppCommands[name]));
   });
 
-  work.onError(function (error) {
+  work.onError((error) => {
     require('../../lib/error')(error);
     process.exit(1);
   });
@@ -34,5 +33,5 @@ module.exports = function (appConfig, testing) {
     return work;
   }
 
-  work.invoke();
+  return work.invoke();
 };

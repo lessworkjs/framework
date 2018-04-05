@@ -1,21 +1,15 @@
 class Globals {
-  register() {
+  register(...args) {
     global.App = use('App');
     global.Helpers = use('Helpers');
     global.Config = use('Config');
-    global.config = function () {
-      return use('Config').get(...arguments);
-    };
+    global.config = () => use('Config').get(...args);
 
     global.Env = use('Env');
-    global.env = function () {
-      return use('Env').get(...arguments);
-    };
+    global.env = () => use('Env').get(...args);
 
     global.Response = use('Response');
-    global.response = function () {
-      return Response.success(...arguments);
-    };
+    global.response = () => Response.success(...args);
 
     global.Request = use('Request');
     global.State = use('State');

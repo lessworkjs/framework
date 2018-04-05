@@ -1,13 +1,11 @@
-'use strict';
-
 /**
  * Authentication Base Class
- * 
+ *
  * @class Base
  */
 class Base {
-  callback() {
-    State.callback(null, this.IAMPolicy(...arguments));
+  callback(...args) {
+    State.callback(null, this.IAMPolicy(...args));
   }
 
   IAMPolicy(principalId, effect, resource, context) {
@@ -19,7 +17,7 @@ class Base {
           Action: 'execute-api:Invoke',
           Effect: effect,
           Resource: resource,
-        }, ],
+        }],
       },
       context,
     };
@@ -45,8 +43,8 @@ class Base {
 
   approve(authString, user) {
     // TO-DO: restrict to requested route.
-    this.callback(authString, 'Allow', State.event('methodArn').split('/').slice(0, 2).join('/') + '/*', {
-      user
+    this.callback(authString, 'Allow', `${State.event('methodArn').split('/').slice(0, 2).join('/')}/*`, {
+      user,
     });
   }
 }

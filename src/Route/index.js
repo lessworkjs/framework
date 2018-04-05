@@ -1,5 +1,3 @@
-'use strict';
-
 const Kernel = require('../Kernel');
 const Macroable = require('macroable');
 
@@ -36,7 +34,7 @@ class Route extends Macroable {
   requestModels(requestModels) {
     if (typeof requestModels !== 'object') {
       requestModels = {
-        'application/json': requestModels
+        'application/json': requestModels,
       };
     }
 
@@ -100,32 +98,32 @@ class Route extends Macroable {
     return new Kernel(this._arguments, this._appRoot).handle(this._path, this._callback, options);
   }
 
-  get() {
-    return this.setOptions('get', ...arguments);
+  get(...args) {
+    return this.setOptions('get', ...args);
   }
 
-  post() {
-    return this.setOptions('post', ...arguments);
+  post(...args) {
+    return this.setOptions('post', ...args);
   }
 
-  put() {
-    return this.setOptions('put', ...arguments);
+  put(...args) {
+    return this.setOptions('put', ...args);
   }
 
-  patch() {
-    return this.setOptions('patch', ...arguments);
+  patch(...args) {
+    return this.setOptions('patch', ...args);
   }
 
-  delete() {
-    return this.setOptions('delete', ...arguments);
+  delete(...args) {
+    return this.setOptions('delete', ...args);
   }
 
-  options() {
-    return this.setOptions('options', ...arguments);
+  options(...args) {
+    return this.setOptions('options', ...args);
   }
 
-  connect() {
-    return this.setOptions('connect', ...arguments);
+  connect(...args) {
+    return this.setOptions('connect', ...args);
   }
 }
 

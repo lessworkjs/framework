@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Controller Class
  *

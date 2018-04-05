@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const _ = require('lodash');
 
@@ -19,7 +17,7 @@ class Serverless {
 
   get provider() {
     if (this.serverless.provider) {
-      return _.capitalize(this.serverless.provider.name)
+      return _.capitalize(this.serverless.provider.name);
     }
 
     return 'Aws';
@@ -29,7 +27,7 @@ class Serverless {
     try {
       return require(`./${this.provider}Config`);
     } catch (error) {
-      throw new Error(`Your serverless provider '${this.provider}' is not supported. Check your serverless configuration 'provider.name' setting.`)
+      throw new Error(`Your serverless provider '${this.provider}' is not supported. Check your serverless configuration 'provider.name' setting.`);
     }
   }
 }

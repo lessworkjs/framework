@@ -1,11 +1,8 @@
-'use strict';
-
-const path = require('path');
 const Macroable = require('macroable');
 
 /**
  * Test Class
- * 
+ *
  * @class Test
  */
 class Test extends Macroable {
@@ -18,13 +15,13 @@ class Test extends Macroable {
     this.obj.requestContext = this.obj.requestContext || {};
     this.obj.requestContext.authorizer = this.obj.requestContext.authorizer || {};
     this.obj.requestContext.authorizer.user = JSON.stringify({
-      id
+      id,
     });
 
     return this;
   }
 
-  get_hashed(key = 'hash_id', value = 1) {
+  getHashed(key = 'hash_id', value = 1) {
     return this.get(key, value, true);
   }
 

@@ -1,5 +1,3 @@
-'use strict';
-
 const Macroable = require('macroable');
 
 /**
@@ -23,10 +21,10 @@ class Response extends Macroable {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true
+        'Access-Control-Allow-Credentials': true,
       },
       body: body ? JSON.stringify(body) : {},
-      isBase64Encoded: false
+      isBase64Encoded: false,
     };
   }
 
@@ -39,7 +37,7 @@ class Response extends Macroable {
       return this.error(args[0]);
     }
 
-    this.success(...args.slice(1));
+    return this.success(...args.slice(1));
   }
 
   success(...args) {
@@ -58,7 +56,7 @@ class Response extends Macroable {
       data = args[1](data);
     }
 
-    if (args[1] && typeof args[1] === 'number' || args[2]) {
+    if ((args[1] && typeof args[1] === 'number') || args[2]) {
       statusCode = args[2] || args[1];
     }
 

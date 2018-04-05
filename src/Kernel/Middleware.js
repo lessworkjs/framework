@@ -42,7 +42,7 @@ class Middleware {
     }
 
     return callback();
-  };
+  }
 }
 
 module.exports = Middleware;

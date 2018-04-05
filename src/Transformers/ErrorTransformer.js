@@ -1,5 +1,3 @@
-'use strict';
-
 class ErrorTransformer {
   transform(error) {
     return {

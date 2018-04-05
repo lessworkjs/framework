@@ -1,23 +1,21 @@
-'use strict';
-
 class Docs {
   render(fileName, method, _path) {
     const results = {
       description: `API Route 'routes/${fileName}@${method}'`,
       tags: [
-        fileName
+        fileName,
       ],
     };
 
-    const matches = _path.match(/[^{\}]+(?=})/g);
+    const matches = _path.match(/[^{}]+(?=})/g);
     if (matches && matches.length) {
-      const pathParams = []
+      const pathParams = [];
 
-      matches.forEach(function (param) {
+      matches.forEach((param) => {
         pathParams.push({
-          "name": param,
-          "description": `Path Param '${param}'`,
-          "required": true
+          name: param,
+          description: `Path Param '${param}'`,
+          required: true,
         });
       });
 
@@ -26,7 +24,6 @@ class Docs {
 
     return results;
   }
-
 }
 
 module.exports = Docs;

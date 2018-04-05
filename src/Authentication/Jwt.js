@@ -1,10 +1,8 @@
-'use strict';
-
 const jwt = require('jsonwebtoken');
 
 /**
  * Authentication JWT Class
- * 
+ *
  * @class Jwt
  */
 class Jwt extends require('./Base') {
@@ -15,12 +13,12 @@ class Jwt extends require('./Base') {
       return this.deny(authString);
     }
 
-    jwt.verify(authString, secret, (error, decoded) => {
+    return jwt.verify(authString, secret, (error, decoded) => {
       if (error) {
         return this.deny(authString);
       }
 
-      this.approve(authString, JSON.stringify(decoded.user));
+      return this.approve(authString, JSON.stringify(decoded.user));
     });
   }
 }

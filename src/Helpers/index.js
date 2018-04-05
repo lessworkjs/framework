@@ -1,4 +1,3 @@
-'use strict';
 /*
  * adonis-ignitor
  *
@@ -9,7 +8,7 @@
  */
 
 const Macroable = require('macroable');
-const path = require('path')
+const path = require('path');
 const fs = require('fs');
 
 /**
@@ -26,9 +25,9 @@ const fs = require('fs');
  */
 class Helpers extends Macroable {
   constructor(appRoot) {
-    super()
+    super();
 
-    this._appRoot = appRoot
+    this._appRoot = appRoot;
   }
 
   requireByName(hash) {
@@ -61,7 +60,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   appRoot(toFile = '') {
-    return path.join(this._appRoot, toFile)
+    return path.join(this._appRoot, toFile);
   }
 
   /**
@@ -79,7 +78,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   publicPath(toFile = '') {
-    return path.join(this._appRoot, '/public', toFile)
+    return path.join(this._appRoot, '/public', toFile);
   }
 
   /**
@@ -93,11 +92,11 @@ class Helpers extends Macroable {
    *
    * @return {String}
    */
-  configPath() {
-    if (arguments[0]) {
-      throw new Error('You should never read a config file from the config directory and instead use config provider.')
+  configPath(...args) {
+    if (args[0]) {
+      throw new Error('You should never read a config file from the config directory and instead use config provider.');
     }
-    return path.join(this._appRoot, '/config')
+    return path.join(this._appRoot, '/config');
   }
 
   /**
@@ -115,7 +114,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   resourcesPath(toFile = '') {
-    return path.join(this._appRoot, '/resources', toFile)
+    return path.join(this._appRoot, '/resources', toFile);
   }
 
   /**
@@ -133,7 +132,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   viewsPath(toFile = '') {
-    return path.join(this._appRoot, '/resources/views', toFile)
+    return path.join(this._appRoot, '/resources/views', toFile);
   }
 
   /**
@@ -151,7 +150,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   databasePath(toFile = '') {
-    return path.join(this._appRoot, '/database', toFile)
+    return path.join(this._appRoot, '/database', toFile);
   }
 
   /**
@@ -169,7 +168,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   migrationsPath(toFile = '') {
-    return path.join(this._appRoot, '/database/migrations', toFile)
+    return path.join(this._appRoot, '/database/migrations', toFile);
   }
 
   /**
@@ -187,7 +186,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   seedsPath(toFile = '') {
-    return path.join(this._appRoot, '/database/seeds', toFile)
+    return path.join(this._appRoot, '/database/seeds', toFile);
   }
 
   /**
@@ -205,7 +204,7 @@ class Helpers extends Macroable {
    * @return {String}
    */
   tmpPath(toFile = '') {
-    return path.join(this._appRoot, '/tmp', toFile)
+    return path.join(this._appRoot, '/tmp', toFile);
   }
 
   /**
@@ -217,17 +216,17 @@ class Helpers extends Macroable {
    * @return {Boolean}
    */
   isWorkCommand() {
-    const processFile = process.mainModule.filename
+    const processFile = process.mainModule.filename;
 
     if (processFile.endsWith('work')) {
-      return true
+      return true;
     }
 
     /**
      * When command is executed via `adonis cli`, then ace is a children
      * of the process mainModule
      */
-    return !!process.mainModule.children.find((child) => child.filename.endsWith('work'))
+    return !!process.mainModule.children.find(child => child.filename.endsWith('work'));
   }
 
   /**
@@ -246,10 +245,10 @@ class Helpers extends Macroable {
     const appNameSpace = 'App';
 
     if (toPath.startsWith(`${appNameSpace}/`)) {
-      return toPath
+      return toPath;
     }
-    return path.normalize(`${appNameSpace}/${baseNameSpace}/${toPath}`)
+    return path.normalize(`${appNameSpace}/${baseNameSpace}/${toPath}`);
   }
 }
 
-module.exports = Helpers
+module.exports = Helpers;

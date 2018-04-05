@@ -4,7 +4,7 @@ const {
 
 class AppProvider extends ServiceProvider {
   registerApp() {
-    this.app.singleton('Lesswork/Src/App', (app) => {
+    this.app.singleton('Lesswork/Src/App', () => {
       const App = require('../src/App');
 
       return new App();
@@ -25,9 +25,7 @@ class AppProvider extends ServiceProvider {
   }
 
   registerRoute() {
-    this.app.singleton('Lesswork/Src/Route', () => {
-      return require('../src/Route');
-    });
+    this.app.singleton('Lesswork/Src/Route', () => require('../src/Route'));
 
     return this;
   }
@@ -47,7 +45,7 @@ class AppProvider extends ServiceProvider {
     this.app.singleton('Lesswork/Src/Env', (app) => {
       const Env = require('@adonisjs/framework/src/Env');
 
-      return new Env(app.use('Helpers')._appRoot);
+      return new Env(app.use('Helpers').appRoot());
     });
     this.app.alias('Lesswork/Src/Env', 'Adonis/Src/Env');
 

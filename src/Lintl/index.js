@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * WIP
  */
@@ -47,12 +45,12 @@ class Lintl extends Macroable {
   }
 
   _numberFormat(...args) {
-    let number = args[0];
+    const number = args[0];
     let locale = this.app.getLocale();
     let fallback = true;
     let format = false;
 
-    args.slice(1).forEach(function (_arg) {
+    args.slice(1).forEach((_arg) => {
       if (typeof _arg === 'string') {
         locale = _arg;
       }
@@ -74,7 +72,9 @@ class Lintl extends Macroable {
       return number;
     }
 
-    return new Intl.NumberFormat(_.without([locale, fallback || null], null), format).format(number);
+    return new Intl
+      .NumberFormat(_.without([locale, fallback || null], null), format)
+      .format(number);
   }
 
   _translate(...args) {
@@ -83,7 +83,7 @@ class Lintl extends Macroable {
     let fallback = true;
     let format = null;
 
-    args.slice(1).forEach(function (_arg) {
+    args.slice(1).forEach((_arg) => {
       if (typeof _arg === 'string') {
         locale = _arg;
       }
@@ -107,14 +107,13 @@ class Lintl extends Macroable {
     hash = hash.split('.');
 
     const file = hash[0];
-    if (fallback && this.fallback != locales[0]) {
+    if (fallback && this.fallback !== locales[0]) {
       locales.push(this.fallback);
     }
 
     let line = null;
 
-    for (let locale of locales) {
-
+    for (const locale of locales) {
       try {
         const config = this.helpers.requireIfExists(path.join(this.helpers.resourcesPath(path.join('lang', locale)), `${file}.js`));
         if (!config) {
@@ -125,7 +124,8 @@ class Lintl extends Macroable {
       }
 
       try {
-        line = new IntlMessageFormat(hash.slice(1).reduce((o, i) => o[i], config), locale).format(format);
+        line = new IntlMessageFormat(hash.slice(1).reduce((o, i) => o[i], config), locale)
+          .format(format);
 
         break;
       } catch (e) {

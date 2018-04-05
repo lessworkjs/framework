@@ -1,5 +1,3 @@
-'use strict';
-
 const Macroable = require('macroable');
 
 /**
@@ -16,12 +14,16 @@ class State extends Macroable {
     this.state = {
       event: args[0] || {},
       context: args[1] || {},
-      callback: args[2] || function () {}
+      callback: args[2] || this.defaultCallback,
     };
 
     this.state.context.callbackWaitsForEmptyEventLoop = false;
 
     this.callback = this.state.callback;
+  }
+
+  defaultCallback() {
+
   }
 
   context(hash) {
@@ -39,7 +41,7 @@ class State extends Macroable {
       return event;
     }
 
-    if (hash == 'body') {
+    if (hash === 'body') {
       if (!event[hash]) {
         return {};
       }

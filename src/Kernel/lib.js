@@ -13,7 +13,7 @@ module.exports = (appRoot) => {
 
     fold.resolver.appNamespace('App');
 
-    fold.ioc.singleton('Lesswork/Src/Helpers', (app) => {
+    fold.ioc.singleton('Lesswork/Src/Helpers', () => {
       const Helpers = require('../Helpers');
 
       return new Helpers(appRoot);
@@ -31,7 +31,9 @@ module.exports = (appRoot) => {
 
     if (packageFile.autoload) {
       for (const load in packageFile.autoload) {
-        fold.ioc.autoload(path.join(appRoot, packageFile.autoload[load]), load);
+        if (packageFile.autoload[load]) {
+          fold.ioc.autoload(path.join(appRoot, packageFile.autoload[load]), load);
+        }
       }
     }
 

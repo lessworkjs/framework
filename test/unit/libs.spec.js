@@ -9,7 +9,7 @@ test.group('Lib', (group) => {
   })
 
   test('should get hashed', (assert) => {
-    Test.get_hashed(1);
+    Test.getHashed(1);
   })
 
   test('should get', (assert) => {

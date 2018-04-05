@@ -1,5 +1,4 @@
 const Middleware = require('./Middleware');
-const path = require('path');
 
 class Kernel {
   constructor(state, appRoot) {
@@ -34,12 +33,14 @@ class Kernel {
 
         const config = typeof lastArg === 'object' ? lastArg : false;
 
-        new Middleware(callback, config);
-      }
+        return new Middleware(callback, config);
+      };
 
       handle();
 
       Event.fire('app:end');
+
+      return true;
     });
   }
 }
