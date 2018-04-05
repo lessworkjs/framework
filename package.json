@@ -1,6 +1,6 @@
 {
   "name": "@lessworkjs/framework",
-  "version": "0.0.47",
+  "version": "0.0.50",
   "description": "A nodejs based framework for serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "coverage:all": "npm run pretty-error && ./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0",
     "pretty-error": "export PRETTYERROR=true",
     "lint": "eslint ./",
-    "publish": "npm publish --access public"
+    "publish:public": "npm publish --access public"
   },
   "repository": {
     "type": "git",

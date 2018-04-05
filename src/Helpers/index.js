@@ -9,6 +9,7 @@
 
 const SinkHelpers = require('@adonisjs/sink/src/Helpers');
 const fs = require('fs');
+const path = require('path');
 
 /**
  * This class returns absolute path to commonly
@@ -63,6 +64,19 @@ class Helpers extends SinkHelpers {
      * of the process mainModule
      */
     return !!process.mainModule.children.find(child => child.filename.endsWith('work'));
+  }
+
+  /**
+   * Returns path to the application root
+   *
+   * @method appRoot
+   *
+   * @param  {String}   [toFile = '']
+   *
+   * @return {String}
+   */
+  appRoot(toFile = '') {
+    return path.join(this._appRoot, toFile)
   }
 }
 
