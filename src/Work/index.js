@@ -1,6 +1,6 @@
 const work = require('@adonisjs/ace');
 
-const commandsPath = require.resolve('lesswork-commands');
+const commandsPath = require.resolve('@lessworkjs/commands');
 const path = require('path');
 
 module.exports = (appConfig, testing) => {

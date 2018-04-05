@@ -42,6 +42,28 @@ class Helpers extends SinkHelpers {
 
     return require(file);
   }
+
+  /**
+   * Tells whether the process has been started by
+   * ace command.
+   *
+   * @method isWorkCommand
+   *
+   * @return {Boolean}
+   */
+  isWorkCommand() {
+    const processFile = process.mainModule.filename;
+
+    if (processFile.endsWith('work')) {
+      return true;
+    }
+
+    /**
+     * When command is executed via `adonis cli`, then ace is a children
+     * of the process mainModule
+     */
+    return !!process.mainModule.children.find(child => child.filename.endsWith('work'));
+  }
 }
 
 module.exports = Helpers;
