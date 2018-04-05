@@ -1,6 +1,6 @@
 {
   "name": "@lessworkjs/framework",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "description": "A nodejs based framework for serverless applications.",
   "main": "index.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "jsonwebtoken": "^8.2.0",
     "lodash": "^4.17.5",
     "macroable": "^1.0.0",
+    "pify": "^3.0.0",
     "require-all": "^2.2.0"
   },
   "devDependencies": {
