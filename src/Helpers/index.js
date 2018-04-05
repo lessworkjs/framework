@@ -76,7 +76,7 @@ class Helpers extends SinkHelpers {
    * @return {String}
    */
   appRoot(toFile = '') {
-    return path.join(this._appRoot, toFile)
+    return path.join(this._appRoot, toFile);
   }
 }
 
