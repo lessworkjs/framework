@@ -8,7 +8,6 @@
  */
 
 const SinkHelpers = require('@adonisjs/sink/src/Helpers');
-const path = require('path');
 const fs = require('fs');
 
 /**
@@ -24,10 +23,6 @@ const fs = require('fs');
  * @constructor
  */
 class Helpers extends SinkHelpers {
-  constructor(appRoot) {
-    super(appRoot);
-  }
-
   requireByName(hash) {
     hash = hash.split('@');
     const route = hash[0];

@@ -30,11 +30,9 @@ module.exports = (appRoot) => {
     });
 
     if (packageFile.autoload) {
-      for (const load in packageFile.autoload) {
-        if (packageFile.autoload[load]) {
-          fold.ioc.autoload(path.join(appRoot, packageFile.autoload[load]), load);
-        }
-      }
+      Object.keys(packageFile.autoload).forEach((load) => {
+        fold.ioc.autoload(path.join(appRoot, packageFile.autoload[load]), load);
+      });
     }
 
     new Globals().register();

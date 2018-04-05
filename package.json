@@ -6,7 +6,7 @@
   "scripts": {
     "make:docs": "./node_modules/.bin/esdoc",
     "japa": "./node_modules/.bin/japa",
-    "test": "nyc --all mocha \"test/**/*.spec.js\"",
+    "test": "npm run lint && nyc --all mocha \"test/**/*.spec.js\"",
     "test:pretty": "npm run pretty-error &&  nyc --all mocha \"test/**/*.spec.js\"",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coverage:all": "npm run pretty-error && ./node_modules/nyc/bin/nyc.js --all ./node_modules/mocha/bin/mocha || exit 0",

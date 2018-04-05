@@ -52,8 +52,9 @@ class ServerlessConfig {
     const httpMethods = ['get', 'post', 'patch', 'put', 'delete'];
 
     const _path = config.path || (httpMethods.includes(method) ? this.fileName : `${this.fileName}.${method}`);
+    const keyName = `${_.camelCase(this.fileName)}${_.toUpper(method)}`;
 
-    const newConfig = configEntries[`${_.camelCase(this.fileName)}${_.toUpper(method)}`] = {
+    const newConfig = {
       handler: `routes/${this.fileName}.${method}`,
       events: [{
         http: {
@@ -75,13 +76,14 @@ class ServerlessConfig {
     }
 
     if (config) {
-      // TO-DO: foreach or object assign?
-      for (const conf in config) {
+      Object.keys(config).forEach((conf) => {
         if (config[conf]) {
           newConfig.events[0].http[conf] = config[conf];
         }
-      }
+      });
     }
+
+    configEntries[keyName] = newConfig;
   }
 
   render() {

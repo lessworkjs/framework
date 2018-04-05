@@ -69,12 +69,20 @@ class AppProvider extends ServiceProvider {
     return this;
   }
 
+  registerExceptionHandler() {
+    this.app.bind('Adonis/Exceptions/BaseExceptionHandler', () => require('@adonisjs/framework/src/Exception/BaseHandler'));
+    this.app.alias('Adonis/Exceptions/BaseExceptionHandler', 'BaseExceptionHandler');
+
+    return this;
+  }
+
   register() {
     this.registerApp()
       .registerConfig()
       .registerCommand()
       .registerEnv()
       .registerException()
+      .registerExceptionHandler()
       .registerRoute();
   }
 }

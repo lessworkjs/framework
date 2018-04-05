@@ -113,25 +113,22 @@ class Lintl extends Macroable {
 
     let line = null;
 
-    for (const locale of locales) {
-      try {
-        const config = this.helpers.requireIfExists(path.join(this.helpers.resourcesPath(path.join('lang', locale)), `${file}.js`));
-        if (!config) {
-          continue;
-        }
-      } catch (error) {
-        continue;
+    locales.some((locale) => {
+      const config = this.helpers.requireIfExists(path.join(this.helpers.resourcesPath(path.join('lang', locale)), `${file}.js`));
+
+      if (!config) {
+        return false;
       }
 
       try {
         line = new IntlMessageFormat(hash.slice(1).reduce((o, i) => o[i], config), locale)
           .format(format);
 
-        break;
+        return true;
       } catch (e) {
-        continue;
+        return false;
       }
-    }
+    });
 
     if (line) {
       return line;

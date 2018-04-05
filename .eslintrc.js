@@ -13,6 +13,7 @@ module.exports = {
     "import/no-dynamic-require": [0],
     "class-methods-use-this": [0],
     "no-underscore-dangle": [0],
+    "prefer-destructuring": [0],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true,
       "optionalDependencies": false,
